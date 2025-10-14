@@ -1,0 +1,6 @@
+Hello
+Worlds
+output.txt
+README.md
+scripts.sh
+text.txt
