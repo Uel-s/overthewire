@@ -1,26 +1,24 @@
 # Passwords for Bandit.
 
- 1.Bandit0.
+0.Bandit0
 `bandit0`
-
-2.Bandit0.
-
+1.Bandit1.
 `ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If`
 
-3.Bandit1.
+2.Bandit2.
 `263JGJPfgU6LtdEvgfWU1XP5yac29mFx`
 
-4.Bandit2.
+3.Bandit3.
 `MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx`
 
-5.Bandit3.
+4.Bandit4.
 `2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ`
 
-6.Bandit4.
+5.Bandit5.
 `4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw`
 
-7.Bandit5.
+6.Bandit6.
 `HWasnPhtq9AVKe0dmk45nxy20cvUa6EG`
 
-8.Bandit6.
+7.Bandit7.
 `morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj`
