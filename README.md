@@ -22,3 +22,6 @@
 
 7.Bandit7.
 `morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj`
+
+8.Bandit8.
+`dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc`
