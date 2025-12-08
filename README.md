@@ -1,387 +1,343 @@
-# Linux Command Mastery — README
+# Linux & SSH Cheat Sheet
 
-A clean, practical cheat-sheet of everything learned so far in this journey. Simple explanations, real use-cases, and zero fluff.
+A comprehensive guide to Linux commands, SSH, and file operations.
 
 ---
 
-## 1. **Basic Navigation Commands**
+## 1. Introduction & Core Concepts
+
+### **Definitions**
+*   **SSH (Secure Shell)**: A cryptographic network protocol used for secure remote access to network services over insecure networks. It ensures information remains secret, authentic, and safe.
+*   **Unix (1970)**: The "Grandpa" of OS. The blueprint that modern OSs were built on (GNU/Linux, macOS, BSD).
+*   **Linux Kernel**: The middle-man between hardware and software.
+*   **GNU/Linux**: The combination of GNU (commands, compilers, libraries) and the Linux Kernel, creating OSs like Kali Linux, Debian, and Fedora.
+*   **Compiler**: A program that translates high-level language (e.g., C++) into machine code (binary) that the processor can run.
+
+---
+
+## 2. Basic Navigation
 
 ### **pwd**
-
 Shows your current working directory.
-
-```
+```bash
 pwd
 ```
-
-Useful when you're deep in a filesystem and lost like a character in a bad horror movie.
+*Tip: Useful when you're deep in a filesystem and lost.*
 
 ### **ls / ll**
-
 Lists files in a directory.
-
-```
-ls      # basic listing
-ll      # long listing (ls -l) with permissions, sizes, owners
+```bash
+ls          # Basic listing
+ls -l       # Long listing (permissions, sizes, owners)
+ls -la      # Long listing including hidden files
+ls -il      # Show inode numbers with list
+ll          # Alias for 'ls -l' (common in many shells)
 ```
 
 ### **cd**
-
 Moves between directories.
-
-```
+```bash
 cd /path/to/folder
-cd ..   # go up one level
+cd ..       # Go up one level
+cd ~        # Go to home directory
+cd -        # Go to previous directory
 ```
 
 ---
 
-## 2. **File Operations**
-
-### **cat**
-
-Reads the contents of a file.
-
-```
-cat file.txt
-```
+## 3. File Operations
 
 ### **touch**
-
-Creates an empty file.
-
-```
+Creates an empty file or updates timestamp.
+```bash
 touch newfile.txt
 ```
 
+### **cat**
+Reads or concatenates file contents.
+```bash
+cat file.txt
+cat ./-     # Read a file specifically named '-'
+```
+
 ### **echo**
-
-Prints text or writes text into files.
-
-```
-echo "Hello" > file.txt
-```
-
-### **mv**
-
-Moves or renames files.
-
-```
-mv old.txt new.txt
-mv file.txt /another/path/
+Prints text or writes to files.
+```bash
+echo "Hello"                # Print to screen
+echo "Hello" > file.txt     # Overwrite file with "Hello"
+echo "World" >> file.txt    # Append "World" to file
 ```
 
 ### **cp**
-
-Copies files.
-
-```
+Copies files or directories.
+```bash
 cp source.txt target.txt
-cp -r folder/ backup_folder/
+cp -r folder/ backup_folder/    # Recursive copy (for directories)
+cp filename /path/to/dest/
 ```
 
-### **rm / rm -rf**
-
-Removes files.
-
+### **mv**
+Moves or renames files.
+```bash
+mv old.txt new.txt              # Rename
+mv file.txt ~/Documents/        # Move
 ```
+
+### **rm**
+Removes files or directories.
+```bash
 rm file.txt
-rm -rf folder/   # delete folder and contents recursively
+rm -rf folder/      # Forcefully delete directory and contents recursively
 ```
-
-**Warning:** rm -rf does not forgive.
-
----
-
-## 3. **Viewing & Searching**
-
-### **grep**
-
-Searches text for patterns.
-
-```
-grep "password" file.txt
-```
-
-Useful flags:
-
-* `-r` → recursive inside folders
-* `-i` → case-insensitive
-* `-n` → show line numbers
-
-### **find**
-
-Finds files based on name, type, size, etc.
-
-```
-find / -name secret.txt
-```
+> [!WARNING]
+> `rm -rf` is permanent and does not forgive errors.
 
 ### **file**
-
-Detects a file's real type.
-
-```
+Detects the file type (text, binary, executable, etc.).
+```bash
 file mystery.bin
 ```
 
-Great for CTFs, TryHackMe, and when Linux trolls you with weird extensions.
-
-### **du**
-
-Shows disk usage.
-
-```
-du -h folder/
-```
-
-`-h` → human-readable (MB/GB instead of raw bytes)
-
 ---
 
-## 4. **Editors**
-
-### **nano**
-
-Simple terminal editor.
-
-```
-nano file.txt
-```
-
-### **pico**
-
-Older version of nano. Works the same.
-
----
-
-## 5. **SSH & Remote Operations**
-
-### **ssh**
-
-Connects to a remote server.
-
-```
-ssh user@host
-```
-
-### **scp**
-
-Copies files between machines.
-
-```
-scp file.txt user@host:/path/
-```
-
-The remote version of `cp`.
-
----
-
-## 6. **Permissions**
+## 4. Permissions & Ownership
 
 ### **chmod**
+Changes file permissions.
 
-Changes permissions.
+**Numeric Mode:**
+*   **7** = `rwx` (Read + Write + Execute)
+*   **6** = `rw-` (Read + Write)
+*   **5** = `r-x` (Read + Execute)
+*   **4** = `r--` (Read only)
+*   **0** = `---` (No access)
 
+**Common Permissions:**
+```bash
+chmod 755 script.sh    # Owner: rwx, Group: r-x, Others: r-x (Standard for scripts)
+chmod 644 file.txt     # Owner: rw-, Group: r--, Others: r-- (Standard for files)
+chmod 600 key.pem      # Owner: rw-, Group: ---, Others: --- (Private keys/Secrets)
+chmod 700 directory/   # Owner: rwx, Group: ---, Others: --- (Private directories)
 ```
-chmod 755 script.sh
-chmod +x script.sh
+
+**Symbolic Mode:**
+*   `u` = user/owner, `g` = group, `o` = others, `a` = all
+*   `+` = add, `-` = remove, `=` = set
+```bash
+chmod u+x script.sh    # Add execute for user
+chmod g+w file.txt     # Add write for group
+chmod o-r file.txt     # Remove read for others
 ```
 
-### **chown** *(not previously mentioned but important)*
-
-Changes file owner.
-
-```
-chown user:user file.txt
+### **chown**
+Changes file owner and group.
+```bash
+chown user:group file.txt
 ```
 
 ---
 
-## 7. **Manual Pages**
+## 5. Viewing, Searching & Processing
 
-### **man**
-
-Reads help documentation.
-
+### **grep**
+Searches text for patterns.
+```bash
+grep "password" file.txt
+grep -r "search_term" .     # Recursive search in current dir
+grep -i "text" file.txt     # Case-insensitive
+grep -n "text" file.txt     # Show line numbers
 ```
-man grep
+
+### **find**
+Finds files based on properties.
+```bash
+find / -name secret.txt
+find / -type f -size 33c -user bandit 2>/dev/null
+```
+*   `-type f`: File
+*   `-size 33c`: Exactly 33 bytes
+*   `2>/dev/null`: Hide error messages
+
+### **sort & uniq**
+Sorts lines and handles duplicates.
+```bash
+sort file.txt                   # Sort alphabetically
+sort -n numbers.txt             # Sort numerically
+sort -r file.txt                # Reverse sort
+sort file.txt | uniq            # Remove distinct duplicates
+sort file.txt | uniq -c         # Count occurrences
+sort file.txt | uniq -u         # Show only unique lines
+sort file.txt | uniq -d         # Show only duplicate lines
 ```
 
-Your built-in Linux textbook.
+### **wc**
+Counts lines, words, and characters.
+```bash
+wc -l file.txt      # Count lines
+```
+
+### **tr**
+Translates or deletes characters.
+```bash
+echo "HELLO" | tr "A-Z" "a-z"       # Uppercase to Lowercase
+echo "pass1234" | tr -d "0-9"       # Delete numbers -> "pass"
+echo "Hello   World" | tr -s " "    # Squeeze repeated spaces
+```
+
+### **Encodings & Hex**
+```bash
+# Base64
+echo "hello" | base64               # Encode -> aGVsbG8K
+echo "aGVsbG8K" | base64 -d         # Decode -> hello
+
+# Hex Tools
+xxd file.bin                        # Hex dump
+xxd -r -p hex.txt > output.bin      # Reverse plain hex to binary
+
+# Strings
+strings binary_file                 # Extract printable strings
+```
+
+### **du**
+Shows disk usage.
+```bash
+du -h file.txt          # Human-readable size
+du -sh *                # Summary of all files in current dir
+du -h . | sort -h       # Sort by size
+```
 
 ---
 
-## 8. **Compression & Extraction**
+## 6. Compression & Archives
 
 ### **tar**
-
-Archives files.
-
-```
-tar -cvf archive.tar folder/
-tar -xvf archive.tar
+Tape ARchive - used for combining multiple files.
+```bash
+tar -cf archive.tar file1 file2     # Create archive
+tar -tf archive.tar                 # List contents
+tar -xf archive.tar                 # Extract archive
+tar -czf archive.tar.gz folder/     # Create Gzip compressed archive
+tar -xzf archive.tar.gz             # Extract Gzip compressed archive
 ```
 
 ### **gzip / gunzip**
-
-Compress or decompress single files.
-
-```
-gzip file.txt
-gunzip file.txt.gz
+Fast compression.
+```bash
+gzip file.txt           # Compresses to file.txt.gz
+gunzip file.txt.gz      # Extracts to file.txt
 ```
 
 ### **bzip2 / bunzip2**
-
-Like gzip but slower and more compressed.
-
-```
-bzip2 file.txt
-bunzip2 file.txt.bz2
+Higher compression ratio, slower speed.
+```bash
+bzip2 file.txt          # Compresses to file.txt.bz2
+bunzip2 file.txt.bz2    # Extracts to file.txt
 ```
 
 ---
 
-## 9. **Hex Tools**
+## 7. Network & Remote Access
 
-### **xxd**
-
-Turns binary → hex or hex → binary.
-
-```
-xxd demo.bin            # show hex
-xxd -p demo.bin         # plain hexdump
-xxd -r -p demo.hex > out.bin   # reverse plain hex back
+### **SSH (Secure Shell)**
+Connecting to a remote machine.
+```bash
+ssh user@host
+ssh -p 2220 user@localhost  # Connect to specific port
 ```
 
-`-p` outputs plain hex without ASCII formatting.
+### **Key Management**
+Generating keys:
+```bash
+# New Standard (Recommended)
+ssh-keygen -t ed25519 -C "email@example.com"
+
+# Old Standard
+ssh-keygen -t rsa
+```
+
+### **SSH Agent**
+Avoid re-typing passphrases.
+```bash
+eval "$(ssh-agent -s)"      # Start agent
+ssh-add ~/.ssh/id_ed25519   # Add key
+ssh-add -l                  # List keys
+```
+
+### **SCP (Secure Copy)**
+Transfer files securely over SSH.
+```bash
+# Local -> Remote
+scp -P 2220 file.txt user@host:~/destination/
+
+# Remote -> Local
+scp -P 2220 user@host:~/file.txt ~/local_destination/
+
+# Recursive (Directories)
+scp -r -P 2220 user@host:~/dir ~/local_dir/
+```
+
+### **Firewall (UFW)**
+Manage network access.
+```bash
+sudo ufw enable             # Turn on firewall
+sudo ufw status             # Check status
+sudo ufw allow ssh          # Allow default SSH
+sudo ufw allow 2220         # Allow specific port
+sudo ufw deny 23            # Block Telnet
+```
+
+### **GitHub & SSH**
+1.  Generate key: `ssh-keygen -t ed25519 -C "github"`
+2.  Copy public key: `cat ~/.ssh/id_ed25519.pub`
+3.  Add to GitHub Settings -> SSH Keys.
+4.  Configure Git:
+    ```bash
+    git config --global user.name "Your Name"
+    git config --global user.email "email@example.com"
+    ```
 
 ---
 
-## 10. **Text & Line Tools**
+## 8. Shell Syntax & Scripting
 
-### **sort**
+### **Control Operators**
+*   `;` (Semicolon): Run commands sequentially.
+    ```bash
+    touch file.txt ; echo "Done"
+    ```
+*   `&&` (AND): Run next command ONLY if previous succeeds.
+    ```bash
+    make && make install
+    ```
+*   `||` (OR): Run next command ONLY if previous fails.
+    ```bash
+    cat missing_file.txt || echo "File not found"
+    ```
 
-Sorts lines.
-
-```
-sort file.txt
-```
-
-### **uniq**
-
-Removes duplicates in sorted input.
-
-```
-uniq file.txt
-uniq -c file.txt   # count occurrences
-```
-
-### **wc** *(added because you used it earlier)*
-
-Counts lines, words, characters.
-
-```
-wc -l file.txt
-```
-
----
-
-## 11. **Shell Syntax**
-
-### **; (semicolon)**
-
-Runs commands sequentially, even if the first fails.
-
-```
-cmd1 ; cmd2
-```
-
-### **&& (and)**
-
-Runs the next command only if the first succeeds.
-
-```
-cmd1 && cmd2
-```
-
-### **|| (or)**
-
-Runs the next command if the first fails.
-
-```
-cmd1 || cmd2
-```
-
----
-
-## 12. **Misc Tools**
-
-### **whoami**
-
-Shows your current user.
-
-### **hostname**
-
-Shows the machine name.
-
-### **history**
-
-Shows previously used commands.
-
-### **clear**
-
-Wipes your terminal screen.
-
----
-
-## 13. **Network Basics**
-
-(You used some earlier in SSH lessons, so adding them.)
-
-### **ping**
-
-Tests if a host is reachable.
-
-### **ifconfig / ip addr**
-
-Shows network interfaces.
-
-### **netcat (nc)** *(Encountered in Bandit levels)*
-
-Sends/receives data over network.
-
-```
-nc host port
+### **Case Statement Example**
+```bash
+#!/bin/bash
+read -p "Enter a number 1-3: " num
+case $num in
+    1) echo "One" ;;
+    2) echo "Two" ;;
+    3) echo "Three" ;;
+    *) echo "Invalid" ;;
+esac
 ```
 
 ---
 
-## 14. **TryHackMe / Bandit Essentials**
+## 9. Miscellaneous
 
-### Identify file types
-
-```
-file filename
-```
-
-### Decode hex → binary
-
-```
-xxd -r -p hex.txt > out.bin
+### **Manual & Help**
+```bash
+man grep        # Open manual for grep
+grep --help     # Quick help flags
 ```
 
-### Searching for passwords
-
+### **System Info**
+```bash
+whoami          # Show current user
+history         # Show command history
 ```
-grep -r "pattern" .
-```
-
-### Extracting weird archives
-
-```
-tar, gzip, bzip2, file, xxd
-```
-
-
