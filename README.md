@@ -1,4 +1,4 @@
-# Linux BASIC Commands.
+# Linux BASIC Commands(BANDIT).
 
 A comprehensive guide to Linux commands, SSH, and file operations.
 
@@ -350,4 +350,41 @@ grep --help     # Quick help flags
 ```bash
 whoami          # Show current user
 history         # Show command history
+```
+---
+### **Piping and Redirection!**
+ - Every program we run on the command line has 3 data streams connected to it.
+```bash
+1. STDIN(0) - Standard input (data fed into the program).
+2. STDOUT(1) - Standard output (data printed by the program, default to terminal).
+3. STDERR(2) - Standard Error (for error messages, also default to the terminal).
+```
+- **Piping and Redirection** is the means by which we connect these `streams` between programs and files to direct data in interesting and useful ways
+---
+### **Redirecting to a file**
+- At times we wish to save or share the `STDOUT` stream,  we use the operator `>`
+
+```bash
+1. kay@kay:$ ls
+
+   barry.txt bob example.png firstfile foo1 video.mpeg
+
+2. kay@kay:$ ls > myoutput
+
+3. kay@kay:$ ls
+   barry.txt bob example.png firstfile foo1 myoutput video.mpeg
+
+4. kay@kay:$ cat myoutput
+   barry.txt
+   bob
+   example.png
+   firstfile
+   foo1
+   myoutput
+   video.mpeg
+   
+ 5. kay@kay:$ 
+
+
+
 ```
