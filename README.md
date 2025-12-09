@@ -1,4 +1,4 @@
-# Linux & SSH Cheat Sheet
+# Linux BASIC Commands.
 
 A comprehensive guide to Linux commands, SSH, and file operations.
 
@@ -151,8 +151,8 @@ grep -n "text" file.txt     # Show line numbers
 ### **find**
 Finds files based on properties.
 ```bash
-find / -name secret.txt
-find / -type f -size 33c -user bandit 2>/dev/null
+find / -name README.md 2>/dev/null
+find / -type f -size 33c -user bandit -group bandit1 2>/dev/null
 ```
 *   `-type f`: File
 *   `-size 33c`: Exactly 33 bytes
@@ -173,6 +173,7 @@ sort file.txt | uniq -d         # Show only duplicate lines
 ### **wc**
 Counts lines, words, and characters.
 ```bash
+wc file.txt (everything)
 wc -l file.txt      # Count lines
 ```
 
@@ -191,7 +192,8 @@ echo "hello" | base64               # Encode -> aGVsbG8K
 echo "aGVsbG8K" | base64 -d         # Decode -> hello
 
 # Hex Tools
-xxd file.bin                        # Hex dump
+xxd file.bin   
+xxd -p file.bin # only hex                     # Hex dump
 xxd -r -p hex.txt > output.bin      # Reverse plain hex to binary
 
 # Strings
@@ -287,15 +289,23 @@ sudo ufw deny 23            # Block Telnet
 ```
 
 ### **GitHub & SSH**
-1.  Generate key: `ssh-keygen -t ed25519 -C "github"`
+1.  Generate key: `ssh-keygen -t ed25519 -C "github" || ssh-keygen -t rsa`
 2.  Copy public key: `cat ~/.ssh/id_ed25519.pub`
 3.  Add to GitHub Settings -> SSH Keys.
 4.  Configure Git:
     ```bash
     git config --global user.name "Your Name"
     git config --global user.email "email@example.com"
+    git config --global --list # test config--
     ```
+---
+### **Configure passphrase**
 
+```bash
+$ eval "$(ssh-agent -s)"
+$ ssh-add ~/.ssh/id_ed25519 # add private key
+$ ssh-add -l # confirm key is loaded
+```
 ---
 
 ## 8. Shell Syntax & Scripting
@@ -314,7 +324,7 @@ sudo ufw deny 23            # Block Telnet
     cat missing_file.txt || echo "File not found"
     ```
 
-### **Case Statement Example**
+### **Case Statement Example double-semicolon**
 ```bash
 #!/bin/bash
 read -p "Enter a number 1-3: " num
