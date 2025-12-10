@@ -384,7 +384,44 @@ history         # Show command history
    video.mpeg
    
  5. kay@kay:$ 
+```
+### **Saving to an Existing File**
 
+ - If the file doesn’t exist, the shell creates it.
+If the file already exists, the shell wipes everything in it before writing new stuff.
 
+```bash 
+$ cat myoutput
 
+  barry.txt
+  bob
+  example.png
+  firstfile
+  foo1
+  myoutput
+  video.mpeg
+$ wc -l barry.txt > myoutput
+
+$ cat myoutput
+
+  7 barry.txt
+```
+- We can instead get the new data to be appended to the file by using the double greater than operator ( >> ).
+
+```bash
+$ cat myoutput 
+
+  7 barry.txt
+$ ls >> myoutput
+
+$ cat myoutput
+
+  7 barry.txt
+  barry.txt
+  bob
+  example.png
+  firstfile
+  foo1
+  myoutput
+  video.mpeg
 ```
