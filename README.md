@@ -387,7 +387,7 @@ history         # Show command history
 ```
 ### **Saving to an Existing File**
 
- - If the file doesn’t exist, the shell creates it.
+ - If the file doesn’t exist, the shell creates it.`>`
 If the file already exists, the shell wipes everything in it before writing new stuff.
 
 ```bash 
@@ -406,7 +406,7 @@ $ cat myoutput
 
   7 barry.txt
 ```
-- We can instead get the new data to be appended to the file by using the double greater than operator ( >> ).
+- We can instead get the new data to be appended to the file by using the double greater than operator `>>`.
 
 ```bash
 $ cat myoutput 
@@ -416,7 +416,6 @@ $ ls >> myoutput
 
 $ cat myoutput
 
-  7 barry.txt
   barry.txt
   bob
   example.png
@@ -424,4 +423,113 @@ $ cat myoutput
   foo1
   myoutput
   video.mpeg
+  7 barry.txt
+```
+
+### **Redirecting from a File**
+
+- Sometimes you don’t want random extra info (like filenames) in your output.
+Using < `less than` hides the source — it sends “anonymous data.”
+
+```bash
+$ wc -l myoutput
+  8 myoutput
+$ wc -l < myoutput
+  7
+```
+
+- Combining both to save memory.
+
+```bash
+$ wc -l < barry.txt > myoutput
+  8
+```
+
+### **REdirecting STDERR**
+- Streams have int on each; `STDIN 0` , `STDOUT 1`, `STDERR 2`.
+
+- Three things happen when a command is written `STDIN` command received to the program `STDOUT` programs' output ob terminal and `STDERR` error message printed on the cli.
+
+**EXAMPLE**
+```bash
+ls -l video.mpg blah.foo
+```
+- video.mpg exists → goes to STDOUT
+
+- blah.foo does NOT exist → error → goes to STDERR.
+
+**Redirect ONLY errors (STDERR → file)**
+
+- To hide the error message `2>`
+
+```bash
+$ ls -l file.txt example.txt  myoutput
+
+ cannot access 'example.txt': No such file or directory
+ -rw-rw-r-- 1 kay kay 20 Dec 11 15:43 file.txt
+```
+
+```bash
+$ ls -l file.txt example.txt 2> myoutput
+  -rw-rw-r-- 1 kay kay 20 Dec 11 15:43 file.txt
+```
+- To have both normal output and error message into a single file.
+
+```bash
+ $ ls -l file.txt example.txt > myoutput 2>&1
+  ls: cannot access 'example.txt': No such file or directory
+ -rw-rw-r-- 1 kay kay 20 Dec 11 15:43 file.txt
+```
+### **Piping**
+
+ - Sending data from one program to another the operator `|` is used.
+ - head is used to start from the front and tail from the back with (-#) the number of file you need. 
+
+**EXAMPLE**
+
+```bash
+ $ ls > myoutput
+
+  file.txt
+  myoutput
+  pass.md
+  README.md
+  script.sh
+  vscode.f
+```
+ - Now i want the first 3. 
+
+```bash
+$ ls | head -3
+ file.txt
+ myoutput
+ pass.md
+```
+- The last three
+
+```bash
+$ ls | tail -3
+ README.md
+ script.sh
+ vscode.f
+```
+
+### Redirect and Piping Combination.
+
+```bash
+$ ls > myoutput
+file.txt
+myoutput
+pass.md
+README.md
+script.sh
+vscode.f
+```
+- To get only one
+
+```bash
+$ ls | head -3 | tail -2 > myoutput
+  myoutput
+  pass.md
+
 ```
