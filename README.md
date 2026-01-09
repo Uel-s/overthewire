@@ -4,7 +4,7 @@ A comprehensive guide to Linux commands, SSH, and file operations.
 
 ---
 
-## 1. Introduction & Core Concepts
+## 1. Introduction & Core Concepts..
 
 ### **Definitions**
 *   **SSH (Secure Shell)**: A cryptographic network protocol used for secure remote access to network services over insecure networks. It ensures information remains secret, authentic, and safe.
