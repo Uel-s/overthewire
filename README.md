@@ -35,7 +35,7 @@ ll          # Alias for 'ls -l' (common in many shells)
 ```
 
 ### **cd**
-Moves between directories.
+Moves between directories..
 ```bash
 cd /path/to/folder
 cd ..       # Go up one level
