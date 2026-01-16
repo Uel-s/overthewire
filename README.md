@@ -31,7 +31,7 @@ ls          # Basic listing
 ls -l       # Long listing (permissions, sizes, owners)
 ls -la      # Long listing including hidden files
 ls -il      # Show inode numbers with list
-ll          # Alias for 'ls -l' (common in many shells)
+ll          # Alias for 'ls -la' (common in many shells)
 ```
 
 ### **cd**
@@ -73,7 +73,8 @@ Copies files or directories.
 ```bash
 cp source.txt target.txt
 cp -r folder/ backup_folder/    # Recursive copy (for directories)
-cp filename /path/to/dest/
+cp filename /path/to/dest/      # cp pass.md ~/Documents/
+
 ```
 
 ### **mv**
@@ -144,6 +145,9 @@ Searches text for patterns.
 ```bash
 grep "password" file.txt
 grep -r "search_term" .     # Recursive search in current dir
+# Example; mikneat@miknitt:~/overthewire$ grep -r "Password" 
+#file.txt:# Passwords for Bandit.
+#pass.md:# Passwords for Bandit.
 grep -i "text" file.txt     # Case-insensitive
 grep -n "text" file.txt     # Show line numbers
 ```
@@ -174,7 +178,9 @@ sort file.txt | uniq -d         # Show only duplicate lines
 Counts lines, words, and characters.
 ```bash
 wc file.txt (everything)
-wc -l file.txt      # Count lines
+wc -l file.txt # Counts lines
+wc -c file.txt # counts characters
+wc -w file.txt # counts words
 ```
 
 ### **tr**
