@@ -207,7 +207,7 @@ strings binary_file                 # Extract printable strings
 ```
 
 ### **du**
-Shows disk usage.
+How much space it takes on disk.
 ```bash
 du -h file.txt          # Human-readable size
 du -sh *                # Summary of all files in current dir
