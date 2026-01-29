@@ -93,6 +93,15 @@ rm -rf folder/      # Forcefully delete directory and contents recursively
 > [!WARNING]
 > `rm -rf` is permanent and does not forgive errors.
 
+### **purge**
+Uninstall app + system configs.
+```bash
+sudo apt purge app.name
+sudo apt autoremove --purge # Clears any left-overs
+sudo apt autoclean
+which app name # Checks if the file is gone.
+```
+
 ### **file**
 Detects the file type (text, binary, executable, etc.).
 ```bash
