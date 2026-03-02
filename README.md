@@ -183,7 +183,7 @@ sort file.txt | uniq -u         # Show only unique lines
 sort file.txt | uniq -d         # Show only duplicate lines
 ```
 
-### **wc**
+### **wc(word count)**
 Counts lines, words, and characters.
 ```bash
 wc file.txt (everything)
@@ -460,7 +460,7 @@ $ wc -l < barry.txt > myoutput
   8
 ```
 
-### **REdirecting STDERR**
+### **Redirecting STDERR**
 - Streams have int on each; `STDIN 0` , `STDOUT 1`, `STDERR 2`.
 
 - Three things happen when a command is written `STDIN` command received to the program `STDOUT` programs' output ob terminal and `STDERR` error message printed on the cli.
