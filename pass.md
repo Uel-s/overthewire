@@ -1,7 +1,8 @@
 # Passwords for Bandit.
 
-0.Bandit0
+0.Bandit0.
 `bandit0`
+
 1.Bandit1.
 `ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If`
 

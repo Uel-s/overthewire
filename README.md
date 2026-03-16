@@ -187,7 +187,8 @@ Searches text for patterns.
 
 ```bash
 grep "password" file.txt
-grep -r "search_term" .     # Recursive search in current dir
+grep -r "search_term" . # Recursive search in current dir(starting from the current directory (.))
+grep -r "search_term"  # Recursive search in current dir(starting from the current directory by default)
 # Example; mikneat@miknitt:~/overthewire$ grep -r "Password"
 #file.txt:# Passwords for Bandit.
 #pass.md:# Passwords for Bandit.
