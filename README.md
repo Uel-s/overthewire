@@ -198,6 +198,8 @@ grep -F "a.b" file.txt      # Points exactly a.b, not “a + any char + b”
 grep -E "cat|dog" file.txt  # Allows for interpretation of operators ie. `|`==`OR`
 ```
 
+`Flags can be combined ie $ grep -i -n "a" text.txt`
+
 ### **find**
 
 Finds files based on properties.
@@ -253,7 +255,7 @@ echo "Hello   World" | tr -s " "    # Squeeze repeated spaces
 echo "hello" | base64               # Encode -> aGVsbG8K
 echo "aGVsbG8K" | base64 -d         # Decode -> hello
 
-# Hex Tools
+# Used to view or convert data in hexadecimal (hex) format
 xxd file.bin
 xxd -p file.bin # only hex                     # Hex dump
 xxd -r -p hex.txt > output.bin      # Reverse plain hex to binary
@@ -642,6 +644,7 @@ $ ls | head -3 | tail -2 > myoutput
 
 ### **GNU.**
 
-- Show Computer Processor.
 
-  `uname -m`
+ `uname -m`   <!-- Show Computer Processor.  -->
+ 
+`kill -9 #`    <!-- Kill process -->
