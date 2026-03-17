@@ -194,6 +194,8 @@ grep -r "search_term"  # Recursive search in current dir(starting from the curre
 #pass.md:# Passwords for Bandit.
 grep -i "text" file.txt     # Case-insensitive
 grep -n "text" file.txt     # Show line numbers
+grep -F "a.b" file.txt      # Points exactly a.b, not “a + any char + b”
+grep -E "cat|dog" file.txt  # Allows for interpretation of operators ie. `|`==`OR`
 ```
 
 ### **find**
