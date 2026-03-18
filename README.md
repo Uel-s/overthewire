@@ -648,3 +648,37 @@ $ ls | head -3 | tail -2 > myoutput
  `uname -m`   <!-- Show Computer Processor.  -->
  
 `kill -9 #`    <!-- Kill process -->
+
+ <!-- Deleting file/apps -->
+
+ ```py
+ 1.sudo apt remove --purge filename
+ 2.sudo apt autoremove
+
+ ##Bonus; $npm uninstall -g filename
+ ```
+ ### System DNS
+
+**systemctl** = manage services
+
+**resolvectl** = check DNS
+
+**systemd-resolved** = the actual DNS service running in the background
+
+
+
+ <!-- Reset DNS connection -->
+
+ ```py
+ 1. $ sudo rm /etc/resolv.conf
+
+    $ sudo ln -s /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+
+ 2. $ resolvectl status wlp2s0 
+
+ 3. $ ping -c 2 8.8.8.8  # Check dns
+
+ 4. $ ping -c 2 google.com # checks connection 
+ ```
+
+ 
