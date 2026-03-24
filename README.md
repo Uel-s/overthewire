@@ -251,7 +251,7 @@ echo "Hello   World" | tr -s " "    # Squeeze repeated spaces
 ### **Encodings & Hex**
 
 ```bash
-# Base64
+# Base64 (value from 0 to 63) (A-Z=0-25) (a-z=(26-51) (0-9=52-61) 62=+or- 63=or/_)
 echo "hello" | base64               # Encode -> aGVsbG8K
 echo "aGVsbG8K" | base64 -d         # Decode -> hello
 
