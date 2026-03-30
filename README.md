@@ -609,6 +609,8 @@ $ ls | head -3 | tail -2 > myoutput
 ```
 ## Rotation.
 
+- A cipher is an algorithm or method for performing encryption and decryption to secure messages.
+
 ### ROT13. 
 
 - Used to rotate alphabets both Upper and lower at the 13th position(M/m).
@@ -660,4 +662,22 @@ Hello678
 
 ```py
 cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m' | tr '0-9' '5-90-4'
+```
+### ROT47.
+
+- Ascii used to represent text using numbers.(0-127 chr).
+- 👉 ROT47 = shift printable ASCII(usually 94 char) characters by 47 positions.
+- It affects letters, numbers, and symbols (not just letters)
+
+***Example1***
+
+```py
+echo "ROT47 test 123!" | tr '\!-~' 'P-~\!-O'
+```
+
+***Example2***
+
+```py
+Input:  The Quick Brown Fox
+Output: %96 "F:4< qC@H? u@I
 ```
