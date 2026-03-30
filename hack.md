@@ -46,8 +46,11 @@ ssh-add -l # confirm key is loaded
  <!-- Deleting file/apps -->
 
  ```py
- 1.sudo apt remove --purge filename
+ 1.sudo apt remove --purge filename 
+
  2.sudo apt autoremove
+ 
+ 3.npm uninstall -g filename
 
  ##Bonus; $npm uninstall -g filename
  ```
