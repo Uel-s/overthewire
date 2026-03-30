@@ -609,7 +609,8 @@ $ ls | head -3 | tail -2 > myoutput
 ```
 ## Rotation.
 
-### ROT13.
+### ROT13. 
+
 - Used to rotate alphabets both Upper and lower at the 13th position(M/m).
 
 ***In-site***
@@ -636,4 +637,27 @@ Uryyb → Hello
 1. $ cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
 ```
 
- 
+### ROT5.
+
+- ROT5 is a practice similar to ROT13 that applies to numeric digits (ROT15+ROT3).
+
+***In-site***
+
+```py
+01234 56789
+56789 01234
+```
+***Example1***
+
+```py
+Hello123
+Hello678
+```
+
+***Example2***
+
+- Find the code which is encoded with  ROT18.
+
+```py
+cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m' | tr '0-9' '5-90-4'
+```
