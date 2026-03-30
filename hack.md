@@ -49,7 +49,7 @@ ssh-add -l # confirm key is loaded
  1.sudo apt remove --purge filename 
 
  2.sudo apt autoremove
- 
+
  3.npm uninstall -g filename
 
  ##Bonus; $npm uninstall -g filename
@@ -74,7 +74,7 @@ ssh-add -l # confirm key is loaded
 
  3. $ ping -c 2 8.8.8.8  # Check dns
 
- 4. $ ping -c 2 google.com # checks connection 
+ 4. $ ping -c 2 google.com # checks connection (ping -c 3 github.com)
  ```
 
 ### Connecting Nextdns
