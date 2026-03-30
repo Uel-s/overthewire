@@ -607,6 +607,33 @@ $ ls | head -3 | tail -2 > myoutput
   pass.md
 
 ```
+## Rotation.
 
+### ROT13.
+- Used to rotate alphabets both Upper and lower at the 13th position(M/m).
+
+***In-site***
+
+```py
+ABCDEFGHIJKLM NOPQRSTUVWXYZ
+NOPQRSTUVWXYZ ABCDEFGHIJKLM
+
+abcdefghijklm nopqrstuvwxyz 
+nopqrstuvwxyz abcdefghijklm
+```
+***Example***
+
+```py
+Hello → Uryyb 
+Uryyb → Hello
+```
+
+***Q.The password for the next level is stored in the file data.txt, where all lowercase (a-z) and uppercase (A-Z) letters have been rotated by 13 positions*** 
+
+`Solution`
+
+```py
+1. $ cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+```
 
  
