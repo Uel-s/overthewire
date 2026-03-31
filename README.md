@@ -1,4 +1,4 @@
-# Linux BASIC Commands(BANDIT).
+# Capture the flag (BANDIT).
 
 A comprehensive guide to Linux commands, SSH, and file operations.
 
@@ -665,7 +665,7 @@ cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m' | tr '0-9' '5-90-4'
 ```
 ### ROT47.
 
-- Ascii used to represent text using numbers.(0-127 chr).
+- ASCII maps characters (letters, digits, symbols) to numbers (0–127)
 - 👉 ROT47 = shift printable ASCII(usually 94 char) characters by 47 positions.
 - It affects letters, numbers, and symbols (not just letters)
 
@@ -680,4 +680,60 @@ echo "ROT47 test 123!" | tr '\!-~' 'P-~\!-O'
 ```py
 Input:  The Quick Brown Fox
 Output: %96 "F:4< qC@H? u@I
+```
+
+## Hex dump
+
+- A hex dump is just a way to look at raw data (bytes) as hexadecimal numbers so you can see exactly what’s inside a file.
+
+- Computers store everything as bytes (8 bits). 
+
+- A hex dump shows each byte like this:
+
+```py
+00000000 → memory/file position (offset)
+
+48 65 6c 6c 6f (Hello) -> raw bytes in Hex
+```
+`Hex = base 16 (0–9, A–F)`
+
+- For spotting hidden formatting issues.
+
+```py
+Common hex values:
+0a → newline (\n)
+09 → tab (\t)
+20 → space
+00 → null byte (end or padding)
+*  → repeated identical lines were skipped to save space
+```
+
+## Summary.
+`Hex dump (xxd {used in ctf}, hexdump {more readable}, od -x {low level lang})`
+- Use to see raw bytes
+
+`cat`
+- Use to see normal text
+
+`strings`
+- Use to extract readable text from binary
+
+***example***
+
+```py
+echo -e "A\tB\nC" | xxd
+
+00000000: 4109 420a 430a                           A.B.C.
+```
+```py
+echo -e "A\tB\nC" | hexdump -C
+
+00000000  41 09 42 0a 43 0a                                 |A.B.C.|
+00000006
+```
+```py
+echo  "A\tB\nC" | od -x 
+
+0000000 5c41 4274 6e5c 0a43
+0000010
 ```
