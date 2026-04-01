@@ -722,7 +722,7 @@ Common hex values:
 
 ```py
 echo -e "A\tB\nC" | xxd
-
+#(hex dump)
 00000000: 4109 420a 430a                           A.B.C.
 ```
 ```py
@@ -736,4 +736,15 @@ echo  "A\tB\nC" | od -x
 
 0000000 5c41 4274 6e5c 0a43
 0000010
+```
+
+```py
+echo "00000000: 4109 420a 430a" | xxd -r -p (human readable)
+output:A       B
+C
+```
+
+```py
+echo "00000000: 4109 420a 430a" | xxd -p (hexadecimal)
+output: 30303030303030303a2034313039203432306120343330610a
 ```
