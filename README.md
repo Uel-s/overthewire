@@ -304,6 +304,7 @@ gunzip file.txt.gz      # Extracts to file.txt
 Higher compression ratio, slower speed.
 
 ```bash
+mv file.txt file.bz2    # change into bz2
 bzip2 file.txt          # Compresses to file.txt.bz2
 bunzip2 file.txt.bz2    # Extracts to file.txt
 ```
