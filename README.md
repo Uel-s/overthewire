@@ -284,10 +284,10 @@ du -h . | sort -h       # Sort by size
 Tape ARchive - used for combining multiple files.
 
 ```bash
-tar -cf archive.tar file1 file2     # Create archive
-tar -tf archive.tar                 # List contents
-tar -xf archive.tar                 # Extract archive
-tar -czf archive.tar.gz folder/     # Create Gzip compressed archive
+tar -cf archive.txt file1 file2     # Creates files within archive.txt
+tar -tf archive.txt                 # List contents within archive.txt
+tar -xf archive.tar                 # Extract  files from archive.txt
+tar -czf archive.tar.gz folder/     # Create Gzip compressed archive -z → compress with gzip -f → specify filename
 tar -xzf archive.tar.gz             # Extract Gzip compressed archive
 ```
 
