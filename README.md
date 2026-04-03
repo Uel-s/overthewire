@@ -256,9 +256,10 @@ echo "hello" | base64               # Encode -> aGVsbG8K
 echo "aGVsbG8K" | base64 -d         # Decode -> hello
 
 # Used to view or convert data in hexadecimal (hex) format
-xxd file.bin
-xxd -p file.bin # only hex                     # Hex dump
-xxd -r -p hex.txt > output.bin      # Reverse plain hex to binary
+xxd  → convert to hexdump
+xxd -r → reverse a formatted hex dump back to binary
+xxd -p → output plain hex (no formatting)
+xxd -r -p → reverse plain hex back to binary     # Reverse plain hex to binary
 
 # Strings
 strings binary_file                 # Extract printable strings
