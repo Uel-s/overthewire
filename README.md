@@ -750,3 +750,44 @@ C
 echo "00000000: 4109 420a 430a" | xxd -p (hexadecimal)
 output: 30303030303030303a2034313039203432306120343330610a
 ```
+
+***Question***
+
+- The password for the next level is stored in the file data.txt, which is a hexdump of a file that has been repeatedly compressed. For this level it may be useful to create a directory under /tmp in which you can work. Use mkdir with a hard to guess directory name. Or better, use the command “mktemp -d”. Then copy the datafile using cp, and rename it using mv (read the manpages!)
+
+***steps***
+
+```py
+# 1. Create workspace
+tmpdir=$(mktemp -d)
+cd $tmpdir
+
+# 2. Copy file
+cp ~/data.txt .
+
+# 3. Reverse hexdump → binary
+xxd -r data.txt > file
+
+# 4. Check type
+file file   # → gzip
+
+# 5. Decompress gzip
+mv file file.gz
+gunzip file.gz
+
+# 6. Check again
+file file   # → bzip2
+
+# 7. Decompress bzip2
+mv file file.bz2
+bunzip2 file.bz2
+
+# 8. Check again
+file file   # → tar
+
+# 9. Extract tar
+tar -xf file
+
+# 10. Repeat process (VERY IMPORTANT)
+file *
+```
