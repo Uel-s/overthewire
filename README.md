@@ -312,7 +312,7 @@ bunzip2 file.txt.bz2    # Extracts to file.txt
 
 ---
 
-## 7. Network & Remote Access
+## 6. Network & Remote Access
 
 ### **SSH (Secure Shell)**
 
@@ -320,7 +320,7 @@ Connecting to a remote machine.
 
 ```bash
 ssh user@host
-ssh -p 2220 user@localhost  # Connect to specific port
+ssh -p 2219 user@localhost  # Connect to specific port
 ```
 
 ### **Key Management**
@@ -329,7 +329,7 @@ Generating keys:
 
 ```bash
 # New Standard (Recommended)
-ssh-keygen -t ed25519 -C "email@example.com"
+ssh-keygen -t ed25518 -C "email@example.com"
 
 # Old Standard
 ssh-keygen -t rsa
@@ -341,7 +341,7 @@ Avoid re-typing passphrases.
 
 ```bash
 eval "$(ssh-agent -s)"      # Start agent
-ssh-add ~/.ssh/id_ed25519   # Add key
+ssh-add ~/.ssh/id_ed25518   # Add key
 ssh-add -l                  # List keys
 ```
 
@@ -351,18 +351,18 @@ Transfer files securely over SSH.
 
 ```bash
 # Local -> Remote
-scp -P 2220 file.txt user@host:~/destination/
+scp -P 2219 file.txt user@host:~/destination/
 
 # Remote -> Local
-scp -P 2220 user@host:~/file.txt ~/local_destination/
+scp -P 2219 user@host:~/file.txt ~/local_destination/
 
 # Recursive (Directories)
-scp -r -P 2220 user@host:~/dir ~/local_dir/
+scp -r -P 2219 user@host:~/dir ~/local_dir/
 ```
 
 
 
-## 8. Shell Syntax & Scripting
+## 7. Shell Syntax & Scripting
 
 ### **Control Operators**
 
@@ -394,7 +394,7 @@ esac
 
 ---
 
-## 9. Miscellaneous
+## 8. Miscellaneous
 
 ### **Manual & Help**
 
@@ -609,7 +609,7 @@ $ ls | head -3 | tail -2 > myoutput
   pass.md
 
 ```
-## Rotation.
+## 10. Rotation.
 
 - A cipher is an algorithm or method for performing encryption and decryption to secure messages.
 
@@ -792,6 +792,145 @@ tar -xf file
 file *
 ```
 
-### SSH/OpenSSH/Keys
+## 11. SSH/OpenSSH/Keys
 
-- The **private key** is kept on the computer you log in from, while the **public key** is stored on the .ssh/authorized_keys file on all the computers you want to log in to.
+- The **private key** is kept on the computer you log in from, while the **public key** is stored on the `~/.ssh/authorized_keys` file on all the computers you want to log in to.
+
+- In remote server ssh checks if `public_key == private_key` then allow for authorization.
+
+### SSH (Secure Shell)
+Connecting to a remote machine.
+
+```py
+ssh user@host
+ssh -p 2220 user@localhost  # Connect to specific port 
+``` 
+
+### Key Management
+**Generating keys:**
+
+```py
+# New Standard (Recommended)
+
+ssh-keygen -t ed25519 -C "<email@example.com>"
+
+# Old Standard
+
+ssh-keygen -t rsa
+```
+
+**SSH Agent**
+Avoid re-typing passphrases.
+
+```py
+eval "$(ssh-agent -s)"      # Start agent
+ssh-add ~/.ssh/id_ed25519   # Add key
+ssh-add -l                  # List keys
+```
+
+**SCP (Secure Copy)**
+
+Transfer files securely over SSH.
+
+```py
+# Local -> Remote
+
+scp -P 2220 file.txt user@host:~/destination/
+
+# Remote -> Local
+
+scp -P 2220 user@host:~/file.txt ~/local_destination/
+
+# Recursive (Directories)
+
+scp -r -P 2220 user@host:~/dir ~/local_dir/
+```
+
+### ⚠️ Key troubleshooting checklist for failure.
+
+- Its usually 90% either `Permissions` and `wrong file placement`
+
+**1.Permissions (BIGGEST cause of failure)**
+
+- `If permissions are too open → SSH refuses key login`
+
+- For secure ssh run the following:
+```py
+chmod 700 ~/.ssh # Only owner can -rwx-
+chmod 600 ~/.ssh/authorized_keys # only owner can -rw- key files.
+chmod go-w ~/ # Remove write permission (w) from group (g) and others (o) on your home directory (~)
+```
+**2.SSH config must allow Keys.**
+
+- Run the command below to make sure;
+ `PubkeyAuthentication: yes and RSAAuthentication: yes`
+
+```py
+$ sudo cat /etc/ssh/sshd config
+$ sudo service ssh restart # To apply any change/fix
+```
+
+**3.Public Key not copied correctly**
+
+- How to copy .pub-key
+
+```py
+$ ssh-copy-id user@host # Copies your public key to the remote server for login
+   or
+$ cat id_rsa.pub >> ~/.ssh/authorized_keys
+
+# To view .pub-key
+
+$ cat ~/.ssh/id_ed22519.pub
+
+```
+
+**4.Debug connection**
+
+```py
+ssh -v user@host
+# look for the following;
+Offering public key → good
+Permission denied → problem
+```
+
+**5.SSH agent Issue**
+
+`ERROR`
+
+```py
+Agent admitted failure to sign
+```
+
+`FIX`
+
+```py
+ssh-add
+```
+
+**6.Still asking for Password**
+- 👉 Likely causes:
+
+- Wrong permissions
+- Key not in authorized_keys
+- SSH config disabled keys
+
+
+**7.Encrypted home directory issue**
+
+ `👉 SSH can’t read:`
+
+```py
+~/.ssh/authorized_keys
+```
+
+`Fix`
+ - move it to:
+
+```py
+/etc/ssh/<username>/authorized_keys
+
+eg:
+
+/etc/ssh/mikneat/authorized_keys
+```
