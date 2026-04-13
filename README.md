@@ -791,3 +791,7 @@ tar -xf file
 # 10. Repeat process (VERY IMPORTANT)
 file *
 ```
+
+### SSH/OpenSSH/Keys
+
+- The **private key** is kept on the computer you log in from, while the **public key** is stored on the .ssh/authorized_keys file on all the computers you want to log in to.
