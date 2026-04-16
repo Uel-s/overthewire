@@ -345,20 +345,6 @@ ssh-add ~/.ssh/id_ed25518   # Add key
 ssh-add -l                  # List keys
 ```
 
-### **SCP (Secure Copy)**
-
-Transfer files securely over SSH.
-
-```bash
-# Local -> Remote
-scp -P 2219 file.txt user@host:~/destination/
-
-# Remote -> Local
-scp -P 2219 user@host:~/file.txt ~/local_destination/
-
-# Recursive (Directories)
-scp -r -P 2219 user@host:~/dir ~/local_dir/
-```
 
 
 
@@ -828,23 +814,40 @@ ssh-add ~/.ssh/id_ed25519   # Add key
 ssh-add -l                  # List keys
 ```
 
-**SCP (Secure Copy)**
+### **SCP (Secure Copy)**
 
 Transfer files securely over SSH.
 
-```py
-# Local -> Remote
+```bash
 
-scp -P 2220 file.txt user@host:~/destination/
+# Local → Remote (upload file)
+scp -P 2220 local_file.txt username@host:~/remote_path/
 
-# Remote -> Local
+# example
+scp -P 2220 key.txt bandit13@bandit.labs.overthewire.org:~/
 
-scp -P 2220 user@host:~/file.txt ~/local_destination/
+# Remote → Local (download file)
 
-# Recursive (Directories)
+scp -P 2220 username@host:~/remote_file.txt ~/local_path/
 
-scp -r -P 2220 user@host:~/dir ~/local_dir/
+# example
+scp -P 2220 bandit13@bandit.labs.overthewire.org:~/sshkey.private ~/key
+
+# Recursive copy (directories)
+
+# Local → Remote directory
+scp -r -P 2220 my_folder/ username@host:~/remote_folder/
+
+# Remote → Local directory
+scp -r -P 2220 username@host:~/remote_folder/ ~/my_folder/
+
+# - -P = SSH port (IMPORTANT: uppercase P)
+# - -r = recursive (folders)
+# - format is ALWAYS:
+#   scp [options] source destination
 ```
+
+
 
 ### ⚠️ Key troubleshooting checklist for failure.
 
@@ -881,7 +884,7 @@ $ cat id_rsa.pub >> ~/.ssh/authorized_keys
 
 # To view .pub-key
 
-$ cat ~/.ssh/id_ed22519.pub
+$ cat ~/.ssh/id_ed22519.pub || $ cat ~/.ssh/authorized_keys
 
 ```
 
