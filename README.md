@@ -38,6 +38,7 @@ ls -l       # Long listing (permissions, sizes, owners)
 ls -la      # Long listing including hidden files
 ls -il      # Show inode numbers with list
 ll          # Alias for 'ls -la' (common in many shells)
+ll /        # list root dir
 ```
 
 ### **cd**
@@ -737,46 +738,7 @@ echo "00000000: 4109 420a 430a" | xxd -p (hexadecimal)
 output: 30303030303030303a2034313039203432306120343330610a
 ```
 
-***Question***
 
-- The password for the next level is stored in the file data.txt, which is a hexdump of a file that has been repeatedly compressed. For this level it may be useful to create a directory under /tmp in which you can work. Use mkdir with a hard to guess directory name. Or better, use the command “mktemp -d”. Then copy the datafile using cp, and rename it using mv (read the manpages!)
-
-***steps***
-
-```py
-# 1. Create workspace
-tmpdir=$(mktemp -d)
-cd $tmpdir
-
-# 2. Copy file
-cp ~/data.txt .
-
-# 3. Reverse hexdump → binary
-xxd -r data.txt > file
-
-# 4. Check type
-file file   # → gzip
-
-# 5. Decompress gzip
-mv file file.gz
-gunzip file.gz
-
-# 6. Check again
-file file   # → bzip2
-
-# 7. Decompress bzip2
-mv file file.bz2
-bunzip2 file.bz2
-
-# 8. Check again
-file file   # → tar
-
-# 9. Extract tar
-tar -xf file
-
-# 10. Repeat process (VERY IMPORTANT)
-file *
-```
 
 ## 11. SSH/OpenSSH/Keys
 
@@ -798,7 +760,7 @@ ssh -p 2220 user@localhost  # Connect to specific port
 ```py
 # New Standard (Recommended)
 
-ssh-keygen -t ed25519 -C "<email@example.com>"
+ssh-keygen -t ed25519 -C "comment"
 
 # Old Standard
 
@@ -810,7 +772,7 @@ Avoid re-typing passphrases.
 
 ```py
 eval "$(ssh-agent -s)"      # Start agent
-ssh-add ~/.ssh/id_ed25519   # Add key
+ssh-add ~/.ssh/id_ed25519   # Add private-key
 ssh-add -l                  # List keys
 ```
 
@@ -869,7 +831,7 @@ chmod go-w ~/ # Remove write permission (w) from group (g) and others (o) on you
  `PubkeyAuthentication: yes and RSAAuthentication: yes`
 
 ```py
-$ sudo cat /etc/ssh/sshd config
+sudo cat /etc/ssh/sshd_config
 $ sudo service ssh restart # To apply any change/fix
 ```
 
