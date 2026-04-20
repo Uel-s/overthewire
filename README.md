@@ -899,3 +899,53 @@ eg:
 
 /etc/ssh/mikneat/authorized_keys
 ```
+```py
+#################################
+# SSH COMMON FLAGS + USE CASES
+#################################
+
+# Use specific private key
+ssh -i key user@host
+# → when key is not default (~/.ssh/id_*)
+
+# Specify port
+ssh -p 2220 user@host
+# → when server not on port 22 (Bandit uses 2220)
+
+# Verbose (debugging)
+ssh -v user@host
+ssh -vvv user@host
+# → shows why auth fails
+
+# Disable strict host checking (CTF/testing)
+ssh -o StrictHostKeyChecking=no user@host
+# → avoids "authenticity" prompt
+
+# Use different config file
+ssh -F custom_config user@host
+# → for custom setups
+
+# Forward local port
+ssh -L 8080:localhost:80 user@host
+# → access remote service locally
+
+# Run command without shell
+ssh user@host "ls -la"
+# → execute remote command directly
+
+# Allocate TTY (force interactive shell)
+ssh -t user@host
+# → needed for some commands (sudo, etc.)
+
+# Quiet mode
+ssh -q user@host
+# → suppress output
+
+# Background connection
+ssh -f user@host
+# → run in background (with port forwarding)
+
+# Jump host (proxy)
+ssh -J jumpuser@jumphost user@target
+# → connect through another server
+```
