@@ -619,18 +619,13 @@ nopqrstuvwxyz abcdefghijklm
 Hello → Uryyb 
 Uryyb → Hello
 ```
-
-***Q.The password for the next level is stored in the file data.txt, where all lowercase (a-z) and uppercase (A-Z) letters have been rotated by 13 positions*** 
-
-`Solution`
-
 ```py
-1. $ cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+$ cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
 ```
 
 ### ROT5.
 
-- ROT5 is a practice similar to ROT13 that applies to numeric digits (ROT15+ROT3).
+- ROT5 is a practice similar to ROT13 that applies to numeric digits (ROT13+ROT5).
 
 ***In-site***
 
