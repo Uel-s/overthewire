@@ -258,7 +258,7 @@ echo "aGVsbG8K" | base64 -d         # Decode -> hello
 
 # Used to view or convert data in hexadecimal (hex) format
 xxd  → convert to hexdump
-xxd -r → reverse a formatted hex dump back to binary
+xxd -r → reverse a formatted hexdump back to binary
 xxd -p → output plain hex (no formatting)
 xxd -r -p → reverse plain hex back to binary     # Reverse plain hex to binary
 
@@ -285,6 +285,7 @@ du -h . | sort -h       # Sort by size
 Tape ARchive - used for combining multiple files.
 
 ```bash
+tar -cf archive.txt file1.txt file2.txt
 tar -cf archive.txt file1 file2     # Creates files within archive.txt
 tar -tf archive.txt                 # List contents within archive.txt
 tar -xf archive.tar                 # Extract  files from archive.txt
