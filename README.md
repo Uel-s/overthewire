@@ -1,10 +1,10 @@
-# Capture the flag (BANDIT).
+# Capture the flag (BANDIT)
 
 A comprehensive guide to Linux commands, SSH, and file operations.
 
 ---
 
-## 1. Introduction & Core Concepts..
+## 1. Introduction & Core Concepts
 
 ### **Definitions**
 
@@ -347,22 +347,24 @@ ssh-add ~/.ssh/id_ed25518   # Add key
 ssh-add -l                  # List keys
 ```
 
-
-
-
 ## 7. Shell Syntax & Scripting
 
 ### **Control Operators**
 
 - `;` (Semicolon): Run commands sequentially.
+
   ```bash
   touch file.txt ; echo "Done"
   ```
+
 - `&&` (AND): Run next command ONLY if previous succeeds.
+
   ```bash
   make && make install
   ```
+
 - `||` (OR): Run next command ONLY if previous fails.
+
   ```bash
   cat missing_file.txt || echo "File not found"
   ```
@@ -577,7 +579,7 @@ $ ls | tail -3
  vscode.f
 ```
 
-### Redirect and Piping Combination.
+### Redirect and Piping Combination
 
 ```bash
 $ ls > myoutput
@@ -597,15 +599,16 @@ $ ls | head -3 | tail -2 > myoutput
   pass.md
 
 ```
-## 10. Rotation.
+
+## 10. Rotation
 
 - A cipher is an algorithm or method for performing encryption and decryption to secure messages.
 
-### ROT13. 
+### ROT13
 
 - Used to rotate alphabets both Upper and lower at the 13th position(M/m).
 
-***In-site***
+_**In-site**_
 
 ```py
 ABCDEFGHIJKLM NOPQRSTUVWXYZ
@@ -614,53 +617,57 @@ NOPQRSTUVWXYZ ABCDEFGHIJKLM
 abcdefghijklm nopqrstuvwxyz 
 nopqrstuvwxyz abcdefghijklm
 ```
-***Example***
+
+***Example**_
 
 ```py
 Hello → Uryyb 
 Uryyb → Hello
 ```
+
 ```py
-$ cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
 ```
 
-### ROT5.
+### ROT5
 
 - ROT5 is a practice similar to ROT13 that applies to numeric digits (ROT13+ROT5).
 
-***In-site***
+_**In-site**_
 
 ```py
 01234 56789
 56789 01234
 ```
-***Example1***
+
+***Example1**_
 
 ```py
 Hello123
 Hello678
 ```
 
-***Example2***
+_**Example2**_
 
 - Find the code which is encoded with  ROT18.
 
 ```py
 cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m' | tr '0-9' '5-90-4'
 ```
-### ROT47.
+
+### ROT47
 
 - ASCII maps characters (letters, digits, symbols) to numbers (0–127)
 - 👉 ROT47 = shift printable ASCII(usually 94 char) characters by 47 positions.
 - It affects letters, numbers, and symbols (not just letters)
 
-***Example1***
+_**Example1**_
 
 ```py
 echo "ROT47 test 123!" | tr '\!-~' 'P-~\!-O'
 ```
 
-***Example2***
+_**Example2**_
 
 ```py
 Input:  The Quick Brown Fox
@@ -671,7 +678,7 @@ Output: %96 "F:4< qC@H? u@I
 
 - A hex dump is just a way to look at raw data (bytes) as hexadecimal numbers so you can see exactly what’s inside a file.
 
-- Computers store everything as bytes (8 bits). 
+- Computers store everything as bytes (8 bits).
 
 - A hex dump shows each byte like this:
 
@@ -680,6 +687,7 @@ Output: %96 "F:4< qC@H? u@I
 
 48 65 6c 6c 6f (Hello) -> raw bytes in Hex
 ```
+
 `Hex = base 16 (0–9, A–F)`
 
 - For spotting hidden formatting issues.
@@ -693,29 +701,35 @@ Common hex values:
 *  → repeated identical lines were skipped to save space
 ```
 
-## Summary.
+## Summary
+
 `Hex dump (xxd {used in ctf}, hexdump {more readable}, od -x {low level lang})`
+
 - Use to see raw bytes
 
 `cat`
+
 - Use to see normal text
 
 `strings`
+
 - Use to extract readable text from binary
 
-***example***
+_**example**_
 
 ```py
 echo -e "A\tB\nC" | xxd
 #(hex dump)
 00000000: 4109 420a 430a                           A.B.C.
 ```
+
 ```py
 echo -e "A\tB\nC" | hexdump -C
 
 00000000  41 09 42 0a 43 0a                                 |A.B.C.|
 00000006
 ```
+
 ```py
 echo  "A\tB\nC" | od -x 
 
@@ -734,8 +748,6 @@ echo "00000000: 4109 420a 430a" | xxd -p (hexadecimal)
 output: 30303030303030303a2034313039203432306120343330610a
 ```
 
-
-
 ## 11. SSH/OpenSSH/Keys
 
 - The **private key** is kept on the computer you log in from, while the **public key** is stored on the `~/.ssh/authorized_keys` file on all the computers you want to log in to.
@@ -743,14 +755,16 @@ output: 30303030303030303a2034313039203432306120343330610a
 - In remote server ssh checks if `public_key == private_key` then allow for authorization.
 
 ### SSH (Secure Shell)
+
 Connecting to a remote machine.
 
 ```py
 ssh user@host
 ssh -p 2220 user@localhost  # Connect to specific port 
-``` 
+```
 
 ### Key Management
+
 **Generating keys:**
 
 ```py
@@ -805,9 +819,7 @@ scp -r -P 2220 username@host:~/remote_folder/ ~/my_folder/
 #   scp [options] source destination
 ```
 
-
-
-### ⚠️ Key troubleshooting checklist for failure.
+### ⚠️ Key troubleshooting checklist for failure
 
 - Its usually 90% either `Permissions` and `wrong file placement`
 
@@ -816,11 +828,13 @@ scp -r -P 2220 username@host:~/remote_folder/ ~/my_folder/
 - `If permissions are too open → SSH refuses key login`
 
 - For secure ssh run the following:
+
 ```py
 chmod 700 ~/.ssh # Only owner can -rwx-
 chmod 600 ~/.ssh/authorized_keys # only owner can -rw- key files.
 chmod go-w ~/ # Remove write permission (w) from group (g) and others (o) on your home directory (~)
 ```
+
 **2.SSH config must allow Keys.**
 
 - Run the command below to make sure;
@@ -870,12 +884,12 @@ ssh-add
 ```
 
 **6.Still asking for Password**
+
 - 👉 Likely causes:
 
 - Wrong permissions
 - Key not in authorized_keys
 - SSH config disabled keys
-
 
 **7.Encrypted home directory issue**
 
@@ -886,7 +900,8 @@ ssh-add
 ```
 
 `Fix`
- - move it to:
+
+- move it to:
 
 ```py
 /etc/ssh/<username>/authorized_keys
@@ -895,6 +910,7 @@ eg:
 
 /etc/ssh/mikneat/authorized_keys
 ```
+
 ```py
 #################################
 # SSH COMMON FLAGS + USE CASES
@@ -945,3 +961,125 @@ ssh -f user@host
 ssh -J jumpuser@jumphost user@target
 # → connect through another server
 ```
+
+## 12. IP Address and Ports
+
+- Every device on a network has an IP(Internet Protocol ) address (a unique identifier for communication). 
+
+- IPv4 addresses are 32-bit, written as four octets (0–255) like 216.27.61.137.(IPv6 exists  
+  (128-bit), e.g. 2001:db8::1)
+
+- Your ISP assigns your router a public IP, while your devices usually get private IPs inside
+  your network.
+
+- You can connect to servers using either a domain name or an IP address (though many modern  
+  servers require the domain).
+
+### Commands to use.
+
+- 1. To check your Local IP.
+```py
+$ ip a || hostname -I
+```
+
+- 2. Public IP
+
+```py
+$ curl ifconfig.me
+```
+
+- 3. To check (DNS query) information about a domain name eg IP address.
+
+```py
+$ dig +short google.com # Only IP
+
+$ dig google.com || $ nslookup google.com 
+
+# Show routing
+$ ip route
+
+# Show ports/connections
+$ ss -tuln
+
+```
+
+- A **subnet**, or subnetwork, is a logical subdivision of an IP network. The practice of dividing a network into two or more networks is called subnet
+
+***
+Private IPs (local network):
+192.168.x.x, 10.x.x.x, 172.16–31.x.x
+
+Public IP = visible on the internet (given by ISP)
+
+CIDR (/24) = splits network vs host (e.g. 192.168.1.108/24)
+
+Dynamic IP = auto-assigned (DHCP)
+
+Static IP = manually fixed
+*** 
+
+
+### LocalHost.
+
+- localhost = your own machine talking to itself.
+
+- $ curl = a command-line tool to send requests to URLs (servers) and get responses.
+
+```py
+# Get API data
+curl https://api.github.com
+
+# Show headers + debug
+curl -v https://example.com
+
+# Download a file
+curl -O https://example.com/file.zip
+
+# POST data (API)
+curl -X POST -d "name=modi" https://example.com/api
+```
+- `Loopback` is a built-in networking feature where your computer sends traffic back to itself instead of out to the network. 
+
+```py
+Main loopback addresses:
+
+127.0.0.1 #IPv4
+::1       #IPv6
+```
+
+- localhost is just a label → loopback is what actually does the work
+
+***
+A. Loopback (127.0.0.1)
+
+Use: local testing, dev servers
+Safe + isolated
+
+B. Private IP (192.168.x.x)
+
+Use: access from other devices (same WiFi)
+Example: phone → your laptop server
+
+C. Public IP / domain
+
+Use: expose to internet
+Example: deployed apps
+***
+
+- `Name resolution` is how you system turns the name `localhost` to an `IP` which is stored in /etc/hosts
+
+- IP gets you to the server Port gets you to the exact service
+
+***
+Common ports you should memorize
+80 → HTTP (web)
+443 → HTTPS (secure web)
+22 → SSH (remote login)
+25 → SMTP (email sending)
+53 → DNS (domain lookup)
+***
+
+- TCP → reliable, ordered (web, email, SSH)
+- UDP → faster, no guarantee (streaming, games)
+
+-----ss -tuln----???
