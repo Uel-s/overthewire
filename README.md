@@ -770,7 +770,7 @@ ssh -p 2220 user@localhost  # Connect to specific port
 ```py
 # New Standard (Recommended)
 
-ssh-keygen -t ed25519 -C "comment"
+ssh-keygen -t ed25519 -C "comment"  
 
 # Old Standard
 
@@ -780,10 +780,22 @@ ssh-keygen -t rsa
 **SSH Agent**
 Avoid re-typing passphrases.
 
+`Linux`
+
 ```py
 eval "$(ssh-agent -s)"      # Start agent
 ssh-add ~/.ssh/id_ed25519   # Add private-key
 ssh-add -l                  # List keys
+```
+
+`Windows`
+
+```py
+Get-Service ssh-agent
+Set-Service -Name ssh-agent -StartupType Automatic
+Start-Service ssh-agent
+ssh-add $env:USERPROFILE\.ssh\id_ed25519
+ssh-add -l
 ```
 
 ### **SCP (Secure Copy)**
@@ -964,7 +976,7 @@ ssh -J jumpuser@jumphost user@target
 
 ## 12. IP Address and Ports
 
-- Every device on a network has an IP(Internet Protocol ) address (a unique identifier for communication). 
+- Every device on a network has an IP(Internet Protocol ) address (a unique identifier for communication).
 
 - IPv4 addresses are 32-bit, written as four octets (0–255) like 216.27.61.137.(IPv6 exists  
   (128-bit), e.g. 2001:db8::1)
@@ -975,20 +987,21 @@ ssh -J jumpuser@jumphost user@target
 - You can connect to servers using either a domain name or an IP address (though many modern  
   servers require the domain).
 
-### Commands to use.
+### Commands to use
 
 - 1. To check your Local IP.
-```py
-$ ip a || hostname -I
-```
-
-- 2. Public IP
 
 ```py
-$ curl ifconfig.me
+ip a || hostname -I
 ```
 
-- 3. To check (DNS query) information about a domain name eg IP address.
+- 1. Public IP
+
+```py
+curl ifconfig.me
+```
+
+- 1. To check (DNS query) information about a domain name eg IP address.
 
 ```py
 $ dig +short google.com # Only IP
@@ -1016,10 +1029,9 @@ CIDR (/24) = splits network vs host (e.g. 192.168.1.108/24)
 Dynamic IP = auto-assigned (DHCP)
 
 Static IP = manually fixed
-*** 
+***
 
-
-### LocalHost.
+### LocalHost
 
 - localhost = your own machine talking to itself.
 
@@ -1038,7 +1050,8 @@ curl -O https://example.com/file.zip
 # POST data (API)
 curl -X POST -d "name=modi" https://example.com/api
 ```
-- `Loopback` is a built-in networking feature where your computer sends traffic back to itself instead of out to the network. 
+
+- `Loopback` is a built-in networking feature where your computer sends traffic back to itself instead of out to the network.
 
 ```py
 Main loopback addresses:
@@ -1083,3 +1096,187 @@ Common ports you should memorize
 - UDP → faster, no guarantee (streaming, games)
 
 -----ss -tuln----???
+
+**Command under IP/Ports**
+
+`1.ssh`
+
+- Used to log into another computer _SAFELY_
+
+```bash
+ssh bandit14@bandit.labs.overthewire.org -p 2220
+ssh -L 8080:localhost:80 user@server # this is port forwarding allows port 8080 reach port 8-
+```
+
+`2.telnet(Primitive TCP testing)`.
+
+```bash
+Use-cases:
+
+Check if port is reachable
+Manually test plaintext protocols:
+SMTP
+HTTP
+POP3
+Redis
+
+Bad for:
+
+Security (not encrypted)
+Modern remote login.
+```
+
+`3.nc(netcat)→ The hacker’s screwdriver`
+
+```bash
+Use-cases:
+
+Port testing
+Debugging services
+Ad hoc file transfer
+Reverse shells (security testing)
+```
+
+```py
+Check port:
+
+nc -zv google.com 80
+
+Output:
+
+Connection succeeded
+
+Create listener:
+
+nc -l 4444
+
+Connect to listener:
+
+nc host 4444
+
+Now chat between machines.
+
+Send file:
+
+Sender:
+
+nc -l 4444 < file.txt
+
+Receiver:
+
+nc host 4444 > received.txt
+
+Scan ports:
+
+nc -zv 192.168.1.1 20-100
+
+-z  -> scan mode (don’t send data)
+-v  -> verbose output
+```
+
+`4.openssl s_client→ TLS detective`
+***
+
+1. TLS (Transport Layer Security)
+Security protocol used in HTTPS.
+Encrypts data between browser and server.
+Prevents spying and tampering.
+Handles the “secure handshake” before data is exchanged.
+
+In short: TLS = encryption + secure communication layer.
+
+1. Certificate (SSL/TLS Certificate)
+Digital identity of a website/server.
+Proves the server is who it claims to be.
+Contains:
+Domain name
+Public key
+Expiry date
+Issuer (Certificate Authority)
+Issued by trusted authorities like:
+Let's Encrypt
+DigiCert
+
+In short: Certificate = website ID card for trust.
+
+1. SNI (Server Name Indication)
+Extension of TLS.
+Sends the website name before encryption starts.
+Needed when many websites share one IP address.
+Helps server choose the correct certificate.
+
+In short: SNI = tells server which website you want.
+
+How they work together
+Browser connects to server
+Sends SNI (requested domain)
+Server responds with correct certificate
+TLS handshake starts
+Secure encrypted connection begins
+One-line memory trick
+TLS = secure tunnel
+Certificate = identity proof
+SNI = chooses the right website
+***
+
+```bash
+Connect to HTTPS:
+
+$ openssl s_client -connect google.com:443
+
+Shows:
+
+Certificate chain
+Cipher suite
+TLS version
+Verification status
+
+Check specific hostname cert:
+
+$ openssl s_client -connect example.com:443 -servername example.com
+
+(important for SNI)
+
+Extract certificate:
+
+$ openssl s_client -connect example.com:443 </dev/null
+```
+
+`5.nmap → Recon scanner(What’s running on this machine/network?)`
+
+***
+Use-cases:
+
+Discover devices
+Security auditing
+Find forgotten services
+Identify exposed ports
+***
+
+```bash
+Basic scan:
+
+$ nmap 192.168.1.1
+
+Shows open ports.
+
+Service detection:
+
+$ nmap -sV 192.168.1.1
+
+OS detection:
+
+$ sudo nmap -O 192.168.1.1
+
+Aggressive scan:
+
+$ sudo nmap -A target
+
+Scan subnet:
+
+$ nmap 192.168.1.0/24
+
+Find live hosts:
+
+$ nmap -sn 192.168.1.0/24
+```
