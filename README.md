@@ -989,7 +989,7 @@ ssh -J jumpuser@jumphost user@target
 
 ### Commands to use
 
-- 1. To check your Local IP.
+- 1. To check your Local IP/Private IP.
 
 ```py
 ip a || hostname -I
@@ -1008,10 +1008,10 @@ $ dig +short google.com # Only IP
 
 $ dig google.com || $ nslookup google.com 
 
-# Show routing
+# How does my computer decide where to send network traffic
 $ ip route
 
-# Show ports/connections
+#  Checking which services or applications are listening for incoming network connections.
 $ ss -tuln
 
 ```
@@ -1019,16 +1019,19 @@ $ ss -tuln
 - A **subnet**, or subnetwork, is a logical subdivision of an IP network. The practice of dividing a network into two or more networks is called subnet
 
 ***
+`Technologies used to manage addresses in a computer network`
 Private IPs (local network):
 192.168.x.x, 10.x.x.x, 172.16–31.x.x
 
 Public IP = visible on the internet (given by ISP)
 
-CIDR (/24) = splits network vs host (e.g. 192.168.1.108/24)
+Classless Inter-Domain Routing (CIDR) (/24) = splits network vs host (e.g. 192.168.1.108/24) - prevents waste of IP addresses and help internet routers direct traffic efficiently.
 
-Dynamic IP = auto-assigned (DHCP)
+Dynamic IP = Temporary Address assigned automatically and can change over time(smart tv,smartphone).
 
-Static IP = manually fixed
+Dynamic Host Configuration Protocol(DHCP) = The automated service that hand out dynamic ip address.
+
+Static IP = Permanent,manually configured address that never changes. (website,servers)
 ***
 
 ### LocalHost
@@ -1052,6 +1055,7 @@ curl -X POST -d "name=modi" https://example.com/api
 ```
 
 - `Loopback` is a built-in networking feature where your computer sends traffic back to itself instead of out to the network.
+- `Packets` is data divided into smaller units for transmission and reassembled at the destination 
 
 ```py
 Main loopback addresses:
@@ -1094,6 +1098,8 @@ Common ports you should memorize
 
 - TCP → reliable, ordered (web, email, SSH)
 - UDP → faster, no guarantee (streaming, games)
+- LAN → Locally
+- WAN → Globally 
 
 -----ss -tuln----???
 
