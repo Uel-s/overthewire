@@ -1002,6 +1002,7 @@ curl ifconfig.me
 ```
 
 - 1. To check (DNS query) information about a domain name eg IP address.
+(DNS=converting names into IP addresses)
 
 ```py
 $ dig +short google.com # Only IP
@@ -1050,11 +1051,18 @@ curl -v https://example.com
 # Download a file
 curl -O https://example.com/file.zip
 
-# POST data (API)
-curl -X POST -d "name=modi" https://example.com/api
+# HTTP REQUESTS
+$ curl -X POST https://api.example.com/users \
+-H "Content-Type: application/json" \
+-d '{"name":"John"}'
+
+$ curl -X PUT https://api.example.com/users/1 \
+-d '{"name":"Mike"}'
+
+$ curl -X DELETE https://api.example.com/users/1
 ```
 
-- `Loopback` is a built-in networking feature where your computer sends traffic back to itself instead of out to the network.
+- `Loopback/localhost` is a built-in networking feature where your computer sends traffic back to itself instead of out to the network.
 - `Packets` is data divided into smaller units for transmission and reassembled at the destination 
 
 ```py
@@ -1085,15 +1093,20 @@ Example: deployed apps
 
 - `Name resolution` is how you system turns the name `localhost` to an `IP` which is stored in /etc/hosts
 
-- IP gets you to the server Port gets you to the exact service
+- IP gets you to the server and Port gets you to the exact service
 
 ***
 Common ports you should memorize
+
 80 → HTTP (web)
+
 443 → HTTPS (secure web)
+
 22 → SSH (remote login)
-25 → SMTP (email sending)
-53 → DNS (domain lookup)
+
+25 → SMTP(Simple Mail Transfer Protocol) email sending
+
+53 → DNS (domain lookup) 
 ***
 
 - TCP → reliable, ordered (web, email, SSH)
@@ -1101,7 +1114,6 @@ Common ports you should memorize
 - LAN → Locally
 - WAN → Globally 
 
------ss -tuln----???
 
 **Command under IP/Ports**
 
