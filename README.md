@@ -1106,7 +1106,7 @@ Common ports you should memorize
 
 25 → SMTP(Simple Mail Transfer Protocol) email sending
 
-53 → DNS (domain lookup) 
+53 → DNS (domain lookup) UDP&TCP
 ***
 
 - TCP → reliable, ordered (web, email, SSH)
@@ -1123,24 +1123,26 @@ Common ports you should memorize
 
 ```bash
 ssh bandit14@bandit.labs.overthewire.org -p 2220
-ssh -L 8080:localhost:80 user@server # this is port forwarding allows port 8080 reach port 8-
+ssh -L 8080:localhost:80 user@server # this is port forwarding allows port 8080 to reach port 80 
 ```
 
 `2.telnet(Primitive TCP testing)`.
 
 ```bash
+$ telnet google.com 80
+
 Use-cases:
 
 Check if port is reachable
 Manually test plaintext protocols:
 SMTP
 HTTP
-POP3
-Redis
+POP3 = Download emails to your device and optionally remove them from server
+Redis = Stores data to RAM.
 
 Bad for:
 
-Security (not encrypted)
+Security (not encrypted).
 Modern remote login.
 ```
 
@@ -1158,7 +1160,7 @@ Reverse shells (security testing)
 ```py
 Check port:
 
-nc -zv google.com 80
+$ nc -zv google.com 80
 
 Output:
 
@@ -1166,27 +1168,39 @@ Connection succeeded
 
 Create listener:
 
-nc -l 4444
+$ nc -l 4444
 
 Connect to listener:
 
-nc host 4444
+$ nc host 4444
 
 Now chat between machines.
 
-Send file:
+Send file Remote:
+
+Receiver(listens first):
+
+$ nc -l 4444 > file1.txt
 
 Sender:
 
-nc -l 4444 < file.txt
+$ nc host 4444 < file.txt
+
+Send file local:
 
 Receiver:
 
-nc host 4444 > received.txt
+$ nc -l 4444 > file1.py
+
+Sender:
+
+$ nc localhost 4444 < file.py
+
+
 
 Scan ports:
 
-nc -zv 192.168.1.1 20-100
+$ nc -zv 192.168.1.1 20-100
 
 -z  -> scan mode (don’t send data)
 -v  -> verbose output
