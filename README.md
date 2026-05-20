@@ -1206,7 +1206,7 @@ $ nc -zv 192.168.1.1 20-100
 -v  -> verbose output
 ```
 
-`4.openssl s_client→ TLS detective`
+`4.openssl s_client→ TLS detective`(low level curl)
 
 ***
 
@@ -1215,7 +1215,7 @@ $ nc -zv 192.168.1.1 20-100
 Security protocol used in HTTPS.
 
 Encrypts data between browser and server.
-
+telnet
 Prevents spying and tampering.
 
 Handles the “secure handshake” before data is exchanged.
@@ -1235,7 +1235,7 @@ Contains:
 Domain name
 
 Public key
-
+telnet
 Expiry date
 
 Issuer (Certificate Authority)
@@ -1259,6 +1259,8 @@ Needed when many websites share one IP address.
 Helps server choose the correct certificate.
 
 In short: `Server Name Indication ` = tells server which website you want.
+
+4.SSL (Secure Sockets Layer) is the standard security technology for establishing an encrypted link between a server and a client. It ensures that all data passed between a web server and a browser remains private and secure.
 
 How they work together
 
