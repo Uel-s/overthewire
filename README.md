@@ -1207,48 +1207,79 @@ $ nc -zv 192.168.1.1 20-100
 ```
 
 `4.openssl s_client→ TLS detective`
+
 ***
 
 1. TLS (Transport Layer Security)
+
 Security protocol used in HTTPS.
+
 Encrypts data between browser and server.
+
 Prevents spying and tampering.
+
 Handles the “secure handshake” before data is exchanged.
 
-In short: TLS = encryption + secure communication layer.
 
-1. Certificate (SSL/TLS Certificate)
+In short: `Transport layer Security` = encryption + secure communication layer.
+
+2. Certificate (SSL/TLS Certificate)
+
+
 Digital identity of a website/server.
+
 Proves the server is who it claims to be.
+
 Contains:
+
 Domain name
+
 Public key
+
 Expiry date
+
 Issuer (Certificate Authority)
+
 Issued by trusted authorities like:
+
 Let's Encrypt
+
 DigiCert
 
-In short: Certificate = website ID card for trust.
+In short: `Certificate` = website ID card for trust.
 
-1. SNI (Server Name Indication)
+3. SNI (Server Name Indication)
+
 Extension of TLS.
+
 Sends the website name before encryption starts.
+
 Needed when many websites share one IP address.
+
 Helps server choose the correct certificate.
 
-In short: SNI = tells server which website you want.
+In short: `Server Name Indication ` = tells server which website you want.
 
 How they work together
+
 Browser connects to server
+
 Sends SNI (requested domain)
+
 Server responds with correct certificate
+
 TLS handshake starts
+
 Secure encrypted connection begins
+
 One-line memory trick
+
 TLS = secure tunnel
+
 Certificate = identity proof
+
 SNI = chooses the right website
+
 ***
 
 ```bash
