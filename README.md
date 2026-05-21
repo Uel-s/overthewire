@@ -1320,28 +1320,27 @@ Identify exposed ports
 
 ```bash
 Basic scan:
+1. Shows open ports.
 
 $ nmap 192.168.1.1
 
-Shows open ports.
-
-Service detection:
+2. Service detection:
 
 $ nmap -sV 192.168.1.1
 
-OS detection:
+3. OS detection:
 
 $ sudo nmap -O 192.168.1.1
 
-Aggressive scan:
+4. Aggressive scan:tell me everything about this host
 
-$ sudo nmap -A target
+$ sudo nmap -A 192.168.1.1
 
-Scan subnet:
+5. Scan subnet:
 
 $ nmap 192.168.1.0/24
 
-Find live hosts:
+6. Find live hosts:
 
 $ nmap -sn 192.168.1.0/24
 ```
