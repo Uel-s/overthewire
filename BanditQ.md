@@ -53,3 +53,11 @@ $ chmod 600 ~/bandit13 # to give permission to cp.
 $ ssh -i bandit13 bandit14@bandit.labs.overthewire.org -p 2220 # cp into bandit14 ./ssh
 
 ```
+
+1. The password for the next level can be retrieved by submitting the password of the current level to port 30000 on localhost.
+
+```py
+$ bandit14@bandit:~$ nc localhost 30000
+MU4VWeTyJk8ROof1qqmcBPaLh7lDCPvS
+
+```
