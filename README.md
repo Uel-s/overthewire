@@ -252,7 +252,7 @@ echo "Hello   World" | tr -s " "    # Squeeze repeated spaces
 ### **Encodings & Hex**
 
 ```bash
-# Base64 (value from 0 to 63) (A-Z=0-25) (a-z=(26-51) (0-9=52-61) 62=+or- 63=or/_)
+# Base64 (value from 0 to 63) (A-Z=0-25) (a-z=(26-51) (0-9=52-61) 62=+or- 63=/or_)
 echo "hello" | base64               # Encode -> aGVsbG8K
 echo "aGVsbG8K" | base64 -d         # Decode -> hello
 
@@ -602,7 +602,7 @@ $ ls | head -3 | tail -2 > myoutput
 
 ## 10. Rotation
 
-- A cipher is an algorithm or method for performing encryption and decryption to secure messages.
+- A cipher is an algorithm or method for performing encryption and decryption to secure messages. 
 
 ### ROT13
 
@@ -1184,9 +1184,9 @@ $ nc -l 4444 > file1.txt
 
 Sender:
 
-$ nc host 4444 < file.txt
+$ nc host 4444 < file.txt # nc 192.168.1.20 4444 < file.txt
 
-Send file local:
+Send file locally:
 
 Receiver:
 
@@ -1210,7 +1210,7 @@ $ nc -zv 192.168.1.1 20-100
 
 ***
 
-1. TLS (Transport Layer Security)
+1. TLS (Transport Layer Security)~NEW~
 
 Security protocol used in HTTPS.
 
@@ -1260,7 +1260,7 @@ Helps server choose the correct certificate.
 
 In short: `Server Name Indication ` = tells server which website you want.
 
-4.SSL (Secure Sockets Layer) is the standard security technology for establishing an encrypted link between a server and a client. It ensures that all data passed between a web server and a browser remains private and secure.
+4.SSL (Secure Sockets Layer) is the standard security technology for establishing an encrypted link between a server and a client. It ensures that all data passed between a web server and a browser remains private and secure. ~OLDER~
 
 How they work together
 
