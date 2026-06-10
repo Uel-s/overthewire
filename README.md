@@ -602,7 +602,7 @@ $ ls | head -3 | tail -2 > myoutput
 
 ## 10. Rotation
 
-- A cipher is an algorithm or method for performing encryption and decryption to secure messages. 
+- A cipher is an algorithm or method for performing encryption and decryption to secure messages.
 
 ### ROT13
 
@@ -1042,6 +1042,7 @@ Static IP = Permanent,manually configured address that never changes. (website,s
 - $ curl = a command-line tool to send requests to URLs (servers) and get responses.
 
 ```py
+$ curl -Iv https://google.com #HTTPS debugging
 # Get API data
 curl https://api.github.com
 
@@ -1063,7 +1064,7 @@ $ curl -X DELETE https://api.example.com/users/1
 ```
 
 - `Loopback/localhost` is a built-in networking feature where your computer sends traffic back to itself instead of out to the network.
-- `Packets` is data divided into smaller units for transmission and reassembled at the destination 
+- `Packets` is data divided into smaller units for transmission and reassembled at the destination
 
 ```py
 Main loopback addresses:
@@ -1112,8 +1113,7 @@ Common ports you should memorize
 - TCP → reliable, ordered (web, email, SSH)
 - UDP → faster, no guarantee (streaming, games)
 - LAN → Locally
-- WAN → Globally 
-
+- WAN → Globally
 
 **Command under IP/Ports**
 
@@ -1208,6 +1208,8 @@ $ nc -zv 192.168.1.1 20-100
 
 `4.openssl s_client→ TLS detective`(low level curl)
 
+- This is a tool used for troubleshooting and testing used to connect to servers over ssl/tls and inspect the secure connection details.
+
 ***
 
 1. TLS (Transport Layer Security)~NEW~
@@ -1220,11 +1222,9 @@ Prevents spying and tampering.
 
 Handles the “secure handshake” before data is exchanged.
 
-
 In short: `Transport layer Security` = encryption + secure communication layer.
 
-2. Certificate (SSL/TLS Certificate)
-
+1. Certificate (SSL/TLS Certificate)
 
 Digital identity of a website/server.
 
@@ -1248,7 +1248,7 @@ DigiCert
 
 In short: `Certificate` = website ID card for trust.
 
-3. SNI (Server Name Indication)
+1. SNI (Server Name Indication)
 
 Extension of TLS.
 
@@ -1258,7 +1258,7 @@ Needed when many websites share one IP address.
 
 Helps server choose the correct certificate.
 
-In short: `Server Name Indication ` = tells server which website you want.
+In short: `Server Name Indication` = tells server which website you want.
 
 4.SSL (Secure Sockets Layer) is the standard security technology for establishing an encrypted link between a server and a client. It ensures that all data passed between a web server and a browser remains private and secure. ~OLDER~
 
@@ -1344,3 +1344,252 @@ $ nmap 192.168.1.0/24
 
 $ nmap -sn 192.168.1.0/24
 ```
+
+### 1. Certificate inspection
+
+- if curl or your browser complains about an untrusted certificate, use the `showcerts` flag to dump the full chain sent by the server.
+
+```py
+openssl s_client -connect example.com:443 -servername example.com -showcerts < /dev/null
+```
+
+### 2. Deep Protocol Hex-Dumps (True "Verbose" Debugging)
+
+- If a connection is dropping mid-handshake and you do not know why, you can peek at the raw data packets using -debug or -msg
+
+```py
+openssl s_client -connect example.com:443 -servername example.com -msg -debug < /dev/null
+
+```
+
+### 3.Testing for Legacy System Compatibility
+
+- To check whether a machine support you specific tls version and force openssl to drop to older protocol levels.
+
+```py
+openssl s_client -connect example.com:443 -servername example.com -tls1_2 < /dev/null #1.2 only.
+openssl s_client -connect example.com:443 -servername example.com -tls1_3 < /dev/null #1.3 only.
+
+```
+
+### 4. Testing a specific Cipher Suite.(specific/weak cipher)
+
+```py
+# Test a TLS 1.2 cipher
+openssl s_client -connect example.com:443 -servername example.com -cipher ECDHE-RSA-AES128-GCM-SHA256 < /dev/null
+
+# Test a TLS 1.3 cipher
+openssl s_client -connect example.com:443 -servername example.com -ciphersuites TLS_AES_256_GCM_SHA384 < /dev/null
+
+```
+
+### 5. Troubleshooting mTLS (Mutual TLS / Client Certificates)
+
+- When a server demands a client certificate to let you in, debugging it can be tricky. Pass your local client certificate and key to test the handshake:
+
+```py
+openssl s_client -connect example.com:443 -servername example.com -cert client.crt -key client.key -CAfile rootCA.crt
+```
+
+### 6.Testing Non-Web Services (STARTTLS)
+
+```py
+# Test a Mail Server (SMTP)
+openssl s_client -connect ://example.com -starttls smtp
+
+# Test a Database (MySQL)
+openssl s_client -connect ://example.com -starttls mysql
+```
+
+## 13. Network troubleshooting
+
+`1.ncat(Netcat)`.
+
+- A simpler (`nc`) network client/server tool.
+
+ Use Cases.
+
+- Test if a port is open.
+- Create a quick TCP server.
+- Send raw data to a service.
+- Debug network connectivity.
+`for commands same as nc`
+
+`2.socat (Source ↔ Destination) .`
+
+- A much powerful version of netcat.
+
+Use Case:
+
+- Forwarding ports.
+- Bridge Protocols.
+- Create encrypted tunnels.
+- Connect files, sockets, serial ports, TCP & UDP
+
+```py
+#port forwarding 8080 -> 80
+$ socat TCP-LISTEN:8080,fork TCP:example.com:443
+$ curl -vk https://localhost:8080 
+
+# local Chat.
+
+## Machine A (listener).
+$ socat TCP-LISTEN:4444,fork STDOUT 
+
+## Machine B (client).
+$ socat STDIN TCP:localhost:4444
+
+# Same Network Chat.
+
+## Machine A.
+$ socat TCP-LISTEN:4444,reuseaddr STDIO
+
+## Machine B.
+
+$ socat STDIO TCP:192.168.1.10:4444
+
+# Remote Chat.
+
+$ socat TCP-LISTEN:4444,reuseaddr STDIO
+
+### Client 
+
+$ socat STDIO TCP:<Public_IP>:4444 #Pub.IP192.123.123.1
+
+# Requirements.
+On the server side ONLY :
+
+Determine the machine's local IP:
+
+hostname -I
+
+Allow the port through the firewall:
+
+sudo ufw allow 4444/tcp
+
+Start the listener:
+
+socat TCP-LISTEN:4444,reuseaddr STDIO
+
+## TLS Client.(This performs a TLS handshake.)
+$ socat - OPENSSL:google.com:443
+GET / HTTP/1.1
+Host: google.com
+
+## TLS Server.
+$ openssl req -x509 -newkey rsa:2048 \
+ -keyout key.pem \
+ -out cert.pem \
+ -nodes
+
+ $ socat OPENSSL-LISTEN:4444,cert=cert.pem,key=key.pem,fork STOUT #Start TLS Server.
+ $ socat STDIN OPENSSL:localhost:4444,verify=0 # Connect 
+
+ ## File Transfer.
+
+ ### Receiver.
+
+ $ socat TCP-LISTEN:4444,fork FILE:received.txt,create
+
+ ### Sender
+
+ $ socat FILE:file.txt TCP:localhost:4444 
+
+# A `Unix domain socket` is a secure data communication endpoint that allows two different applications running on the same physical computer to exchange data.
+
+### Connect to a UNIX Socket server .
+
+$ socat UNIX-LISTEN:/tmp/chat.sock,fork STDOUT
+
+### Connect 
+
+$ socat STDIN UNIX-CONNECT:/tmp/chat.sock
+
+### Connect to an Existing UNIX Socket.
+
+$ socat - UNIX-CONNECT:/tmp/chat.sock
+
+```
+
+`3. netstat(Network Statistics)`
+
+- a command-line tool used to display active network connections (both incoming and outgoing),  routing tables, and interface statistics.
+
+```py
+
+# show listening ports:
+
+$ netstat -tulnp
+
+```
+
+```py
+
+# Show routing table
+
+$ netstat -rn
+
+```
+
+```py
+# Continuos mode to watch live connections.
+
+$ netstat -c 
+
+```
+
+```py
+
+# This flag includes all established outbound web-browsing connections too not just listening.
+
+$ netstat -a
+
+```
+
+```py
+
+#  Interface Statistics. Shows a quick health breakdown of packets sent, received, or dropped on your Wi-Fi card
+
+$ netstat -i
+
+```
+
+```py
+
+# Protocol Summary.
+
+netstat -s
+
+```
+
+`4.ss (Socket Statistics).`
+
+- Used to display detailed information about network sockets.
+
+```py
+# Listening ports and processes
+
+$ ss -tunlp
+
+```
+
+```py
+
+```py
+# Establish connection.
+
+$ ss -tan
+
+```
+
+```py
+
+# shows only connections that are actively transmitting data right now.
+
+$ ss -t state established #(or just -t)
+
+```
+
+
+
+- A `socket` is an internal software endpoint that allows two different programs (either on the same computer or across the internet) to talk to each other.
