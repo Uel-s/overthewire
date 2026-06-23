@@ -987,6 +987,14 @@ ssh -J jumpuser@jumphost user@target
 - You can connect to servers using either a domain name or an IP address (though many modern  
   servers require the domain).
 
+- A MAC address is the hardware address of a network interface (Wi-Fi card, Ethernet card). ($ ip link)
+
+```bash
+Public IP 102.89.10.25 Identifies your network on the Internet
+Local (Private) IP 192.168.100.17 Identifies your device inside your local network
+MAC Address 34:56:FE:A1:22:9C Identifies device's serial number/ID card
+```
+
 ### Commands to use
 
 - 1. To check your Local IP/Private IP.
@@ -1172,7 +1180,7 @@ $ nc -l 4444
 
 Connect to listener:
 
-$ nc host 4444
+$ nc localhost 4444
 
 Now chat between machines.
 
@@ -1343,6 +1351,10 @@ $ nmap 192.168.1.0/24
 6. Find live hosts:
 
 $ nmap -sn 192.168.1.0/24
+
+7. $ nmap -p 22 192.168.100.1 # ssh lookup
+
+8. $ sudo nmap -sn 192.168.100.17/24 # show specific devices connected to the network
 ```
 
 ### 1. Certificate inspection
@@ -1428,7 +1440,7 @@ Use Case:
 
 ```py
 #port forwarding 8080 -> 80
-$ socat TCP-LISTEN:8080,fork TCP:example.com:443
+$ socat TCP-LISTEN:8080,fork TCP:example.com:
 $ curl -vk https://localhost:8080 
 
 # local Chat.
@@ -1564,7 +1576,7 @@ netstat -s
 
 `4.ss (Socket Statistics).`
 
-- Used to display detailed information about network sockets.
+- Used to display detailed information about `network sockets `.
 
 ```py
 # Listening ports and processes
@@ -1586,10 +1598,31 @@ $ ss -tan
 
 # shows only connections that are actively transmitting data right now.
 
-$ ss -t state established #(or just -t)
+$ ss -t state established #(or just -t) (or -tp to see specific server)
 
 ```
 
-
-
 - A `socket` is an internal software endpoint that allows two different programs (either on the same computer or across the internet) to talk to each other.
+
+### Network troubleshooting summary.
+
+```bash
+| Tool       | Main Purpose                                |
+| ---------- | ------------------------------------------- |
+| ss         | See network connections and listening ports |
+| netstat    | Older version of `ss`                       |
+| nmap       | Discover and scan hosts/services            |
+| nc(netcat) | Create simple TCP/UDP connections           |
+| ncat       | Enhanced netcat with extra features         |
+| socat      | Connect almost anything to almost anything  |
+
+```
+```
+tunlp
+-t -> show tcp port.
+-u -> show udp port.
+-n -> show numerical addresses (192.168.0.1:80).
+-l -> show only listening port.
+-p -> show the PID(process ID) and program name using port.
+```
+
