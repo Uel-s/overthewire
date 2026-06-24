@@ -4,37 +4,37 @@
 `bandit0`
 
 1.Bandit1.
-`ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If`
+`6y2kwnwK6grgvwvpvLaa2T1cpFEKOhNR`
 
 2.Bandit2.
-`263JGJPfgU6LtdEvgfWU1XP5yac29mFx`
+`PK8fYLZg2hnHSz83plBL1iEPKdD3QToB`
 
 3.Bandit3.
-`MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx`
+`7ZZ2LFrykP2zEyvBl4m3clcL7tGYJPME`
 
 4.Bandit4.
-`2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ`
+`xzTXq1rDJQVVAzdv5cHq1TQytTWufAMq`
 
 5.Bandit5.
-`4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw`
+`6C7h9GD8M6ai5nr7wo1RonrzFjj9yIrG`
 
 6.Bandit6.
-`HWasnPhtq9AVKe0dmk45nxy20cvUa6EG`
+`pXa26xhMWaC2SvDotA4r9EgZkulOeSBW`
 
 7.Bandit7.
-`morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj`
+`Bmnnvf82KzQlfxgAI2d1zYbr1u9pr3E3`
 
 8.Bandit8.
-`dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc`
+`VR1ljMayciFxbnUokuQmJFw6QC9VKtub`
 
 9.Bandit9.
-`4CKMh1JI91bUIZZPXDqGanal4xvAg0JM`
+`EjmOSvuAu7sGAHqHVcBDPirRe9T03kxl`
 
 10.Bandit10.
-`FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey`
+`B0s2khmbT9u0geKuOoVGW3JZKhndE3BG`
 
 11.Bandit11.
-`dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr`
+`pYfOY6HwUsDj5rL9UvyhU7MCmv8vN5Ro`
 
 12.Bandit12.
 `7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4`
