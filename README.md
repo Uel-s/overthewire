@@ -1626,3 +1626,44 @@ tunlp
 -p -> show the PID(process ID) and program name using port.
 ```
 
+```bash
+Quick Memory Trick
+Command What it does
+s_client Connect to TLS server
+x509 Read/manage certificates
+req Create/read CSRs(Certificate Signing Requests)
+genpkey Generate private keys
+verify Validate certificates
+
+Flow: genpkey → req → x509 → verify → s_client
+
+Typical Workflow
+Step 1: Generate Private Key
+openssl genpkey -algorithm RSA -out private.key
+
+Step 2: Create CSR
+openssl req -new -key private.key -out request.csr 
+
+#Create
+openssl req \
+-x509 \
+-new \
+-key private.key \
+-out cert.pem \
+-days 365
+
+
+Step 3: Obtain Certificate
+
+CA signs your CSR and returns cert.pem.
+
+Step 4: Inspect Certificate
+openssl x509 -in cert.pem -text -noout 
+
+
+Step 5: Verify Certificate
+openssl verify -CAfile ca.pem cert.pem
+
+Step 6: Test TLS Server
+openssl s_client -connect example.com:443
+```
