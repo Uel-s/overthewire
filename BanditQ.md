@@ -10,8 +10,8 @@ $ cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
 
 ```py
 # 1. Create workspace
-tmpdir=$(mktemp -d)
-cd $tmpdir
+$(mktemp -d) = tmpdir
+cd $tmpdir tmpdir
 
 # 2. Copy file
 cp ~/data.txt .
@@ -48,7 +48,7 @@ file *
 ```py
 $ scp -P 2220 bandit13@bandit.labs.overthewire.org:~/sshkey.private ~/bandit13 # on localhost cli
 
-$ chmod 600 ~/bandit13 # to give permission to cp.
+$ chmod 700 ~/bandit13 # to give permission to cp.
 
 $ ssh -i bandit13 bandit14@bandit.labs.overthewire.org -p 2220 # cp into bandit14 ./ssh
 
