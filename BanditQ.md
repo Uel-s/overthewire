@@ -72,7 +72,7 @@ pbLYuZtTg4MgaqfJx8jbA9gKKGqM68A7
 
 ```py
 $ nmap -p 31000-32000 localhost # to find open ports
-$ openssl s_client -connect localhost:31790 ign_eof # prevent network from closing
+$ openssl s_client -connect localhost:31790 -ign_eof # prevent network from closing
 $ mktemp -d # create a dir to store the private sshkey.
 $ touch sshprivate.key # cp sshkey
 $ nano sshprivate.key # paste key here
