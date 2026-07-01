@@ -1616,6 +1616,8 @@ $ ss -t state established #(or just -t) (or -tp to see specific server)
 | ncat       | Enhanced netcat with extra features         |
 | socat      | Connect almost anything to almost anything  |
 
+`nmap` explores remote systems over the network, while `ss` investigates your own local machine
+
 ```
 ```
 tunlp
@@ -1667,3 +1669,35 @@ openssl verify -CAfile ca.pem cert.pem
 Step 6: Test TLS Server
 openssl s_client -connect example.com:443
 ```
+
+## PORT SCAN
+
+- Is like walking down a hallway in a building and knocking on every door to see which ones are unlocked and who answers but now for ports.
+
+- `PortSweep` - is to scan multiple hosts for a specific listening port.
+
+### TCP/IP Basics — Key Points
+
+- TCP/IP is the protocol suite that powers the Internet.
+- Network services are identified by:
+  1. Host (IP) address
+  2. Port number
+- There are 65,535 usable ports (1–65,535). Port 0 is not usable.
+- Most services use one or a small range of ports.
+- Some port scanners only check common or high-risk ports.
+
+### Port Scan Results.
+
+- Open – A service is listening and accepts connections.
+- Closed – No service is listening; connections are rejected.
+- Filtered – No response, usually due to a firewall or packet filtering.
+
+### Security Implications.
+
+- Open ports can expose:
+
+1. Vulnerabilities in the service/application listening on the port.
+2. Vulnerabilities in the operating system itself.
+
+- Filtered ports generally present less risk because they are inaccessible from the scanner's perspective.
+

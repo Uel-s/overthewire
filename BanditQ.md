@@ -58,6 +58,27 @@ $ ssh -i bandit13 bandit14@bandit.labs.overthewire.org -p 2220 # cp into bandit1
 
 ```py
 $ bandit14@bandit:~$ nc localhost 30000
-MU4VWeTyJk8ROof1qqmcBPaLh7lDCPvS
+aaWecNkG4FhxJQxz07uiwzVP6bJiYS65
+```
+15. The password for the next level can be retrieved by submitting the password of the current level to port 30001 on localhost using SSL/TLS encryption.
+```bash
+$ openssl s_client -connect localhost:30001
+pbLYuZtTg4MgaqfJx8jbA9gKKGqM68A7
+```
+
+16.The credentials for the next level can be retrieved by submitting the password of the current level to a port on localhost in the range 31000 to 32000. First find out which of these ports have a server listening on them. Then find out which of those speak SSL/TLS and which don’t. There is only 1 server that will give the next credentials, the others will simply send back to you whatever you send to it.
+
+- The `-ign_eof(ignore End-Of-File)` used to keep a connection open after the standard input (stdin) has closed in an openssl network connection.
+
+```py
+$ nmap -p 31000-32000 localhost # to find open ports
+$ openssl s_client -connect localhost:31790 ign_eof # prevent network from closing
+$ mktemp -d # create a dir to store the private sshkey.
+$ touch sshprivate.key # cp sshkey
+$ nano sshprivate.key # paste key here
+$ exit # to use local terminal
+$ scp -P bandit16@bandit.labs.overthewire.org:/tmp/key/sshprivate.key ~./bandit17.key
+$ chmod 600 bandit17.key # grant permission.
+$ ssh -i bandit17.key bandit17@bandit.labs.overthewire.org -p 2220 # access to bandit 17.
 
 ```
