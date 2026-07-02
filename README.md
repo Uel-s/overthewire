@@ -1701,3 +1701,30 @@ openssl s_client -connect example.com:443
 
 - Filtered ports generally present less risk because they are inaccessible from the scanner's perspective.
 
+### diff(difference).
+`diff` - command used to compare two files line by line.
+
+```py
+# Flags
+
+$ diff -u old.txt new.txt  # show what left(-) in the old file and whats new in the new file(+). (space) file is unchanged.
+
+$ diff -y file1.txt file2.txt  # side by side comparision.
+
+$ diff -i file.text file2.txt # ignore case and reports no difference if file has mixed upper and lower case but same data. 
+
+$ diff -q file.text file2.txt # Only report whether files differ
+
+$ diff -r dir1 dir2 # compares directories .
+
+$ diff --color=auto # show the different colors on the diffrent dat in files.
+
+$ diff -rN dir1 dir2 # Treat missing files as empty
+
+$ diff -b file1.txt file2.txt # Ignore changes in amount of whitespace
+
+$ diff -B file1.txt file2.txt # Ignore blank lines
+
+$ diff -w file1.txt file2.txt # ignore whitespace
+
+```
