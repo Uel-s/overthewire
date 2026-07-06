@@ -924,6 +924,9 @@ eg:
 ```
 
 ```py
+
+`.bashrc` is simply a script that Bash executes when it starts
+
 #################################
 # SSH COMMON FLAGS + USE CASES
 #################################
@@ -972,6 +975,7 @@ ssh -f user@host
 # Jump host (proxy)
 ssh -J jumpuser@jumphost user@target
 # → connect through another server
+
 ```
 
 ## 12. IP Address and Ports

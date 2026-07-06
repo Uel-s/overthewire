@@ -66,7 +66,7 @@ $ openssl s_client -connect localhost:30001
 pbLYuZtTg4MgaqfJx8jbA9gKKGqM68A7
 ```
 
-16.The credentials for the next level can be retrieved by submitting the password of the current level to a port on localhost in the range 31000 to 32000. First find out which of these ports have a server listening on them. Then find out which of those speak SSL/TLS and which don’t. There is only 1 server that will give the next credentials, the others will simply send back to you whatever you send to it.
+17.The credentials for the next level can be retrieved by submitting the password of the current level to a port on localhost in the range 31000 to 32000. First find out which of these ports have a server listening on them. Then find out which of those speak SSL/TLS and which don’t. There is only 1 server that will give the next credentials, the others will simply send back to you whatever you send to it.
 
 - The `-ign_eof(ignore End-Of-File)` used to keep a connection open after the standard input (stdin) has closed in an openssl network connection.
 
@@ -80,5 +80,19 @@ $ exit # to use local terminal
 $ scp -P bandit16@bandit.labs.overthewire.org:/tmp/key/sshprivate.key ~./bandit17.key
 $ chmod 600 bandit17.key # grant permission.
 $ ssh -i bandit17.key bandit17@bandit.labs.overthewire.org -p 2220 # access to bandit 17.
+```
+19.The password for the next level is stored in a file readme in the homedirectory. Unfortunately, someone has modified .bashrc to log you out when you log in with SSH.
+```py
+# override bashrc
+$ ssh bandit19@bandit.labs.overthewire.org -p 2220  cat readme
+     or
+$ ssh -t bandit19@bandit.labs.overthewire.org -p 2220 /bin/sh or /bin/dash     
+    
+    or
+$ ssh -t bandit19@bandit.labs.overthewire.org -p 2220 'bash --norc --noprofile'
+
+# Rename the broken file.
+
+$ ssh bandit19@bandit.labs.overthewire.org -p 'mv ~/.bashrc  ~/.bashrc.bak'
 
 ```
