@@ -1732,3 +1732,60 @@ $ diff -B file1.txt file2.txt # Ignore blank lines
 $ diff -w file1.txt file2.txt # ignore whitespace
 
 ```
+
+## Set User Identity (setuid) and Set Group Identity(Setgid).
+
+- SetUID – Allows a user to run a program with the file owner's permissions.
+- SetGID – Allows a user to run a program with the file group's permissions.
+- Used to perform specific privileged tasks (e.g., changing passwords) without giving users     full root access.
+
+### How to tell a SETUID/GID file.
+
+```py
+s replaces the owner's x → SetUID enabled.
+-rwsr-xr-x
+
+s replaces the group's x → SetGID enabled.
+-rwxr-sr-x
+
+t adds permission to create file in the dir
+
+drwxrwxrwt
+
+```
+### To find SETUID and SETGID Programs
+
+```py
+$ ll
+
+$ find / -perm  -4000 2>/dev/null # SETUID
+
+$ find / -perm  -2000 2>/dev/null # SETGID
+
+find / -perm -1000 2>dev/null # sticky bit # used mainly on dir (Users can only delete or rename files that they own, even if everyone has write permission to the directory.)
+
+```
+
+### Set the SetUID/SetGID to files.
+
+```py
+
+$ chmod u+s filename or chmod 4755 # GETUID (u-s) #reverse
+
+$ chmod g+s filename or chmod 2755 # GETGID. (g-s) # reverse
+
+$ chmod ug+s filename or chmod 6755  # both GETUID/GID
+
+$ chmod +t directory or chmod 1777  # set sticky bit. (Without the Sticky Bit, one user could 
+delete another user's files.)
+
+```
+### Test sticky bit
+
+```py
+$ ls -ld /tmp
+
+out: drwxrwxrwt
+```
+
+`SetUID/SetGID are generally ignored on shell scripts (Bash, Python, Perl, etc.) for security reasons.`
