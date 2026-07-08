@@ -1776,8 +1776,7 @@ $ chmod g+s filename or chmod 2755 # GETGID. (g-s) # reverse
 
 $ chmod ug+s filename or chmod 6755  # both GETUID/GID
 
-$ chmod +t directory or chmod 1777  # set sticky bit. (Without the Sticky Bit, one user could 
-delete another user's files.)
+$ chmod +t directory or chmod 1755  # set sticky bit. (Without the Sticky Bit, one user could delete another user's files.)
 
 ```
 ### Test sticky bit
