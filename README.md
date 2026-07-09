@@ -1788,3 +1788,92 @@ out: drwxrwxrwt
 ```
 
 `SetUID/SetGID are generally ignored on shell scripts (Bash, Python, Perl, etc.) for security reasons.`
+
+
+## Managing Programs in GNU/LINUX.
+
+`1. Bash` -The shell(Command Interprate).
+`2. Job control` - Manage processes(pause,resume,move) started from the current shell.
+`3. Screen` - Keeps terminal session running after you disconnet from SSH or terminal.
+`4. tmux` - Modern terminal multiplexer with panes and windows.
+
+
+### BASH.
+
+- The normal commands:
+
+```bash
+ll
+pwd
+name=Meaknit;echo $name
+```
+
+### Job Control.
+
+- Common commands:
+
+```bash
+$ sleep 100 # Running process.
+
+Press Ctrl + z #  Stops the process.
+
+# The process isn't killed its just `Suspended`
+```
+```bash
+
+# Show background/suspended Process.
+
+$ jobs # [1]+  Stopped   sleep 100
+
+```
+
+```bash
+# Runs a stopped job in the background
+
+$ bg
+
+# [1]+ sleep 100 &
+```
+
+
+```bash
+# Brings a background job back to the foreground.
+
+$ fg
+
+# Sleep 100 
+# Now the shell waits for it again.
+
+```
+
+```bash
+# Start a program directly in the background use `&`.
+
+$ sleep 100 &
+
+output: [1] 23456
+
+# [1] = Job number.
+# 23456 = Process ID.
+
+```
+```bash
+# Stop a running process.
+
+$ sleep 100
+
+press Ctrl + c
+
+# The process exists Immediatly.
+```
+
+```bash
+# Ends a process
+
+$ kill 23456 # process ID.
+or
+$ kill %1 # job number.
+
+
+
+
