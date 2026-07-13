@@ -1,11 +1,18 @@
-#!/usr/bin/env python3
-import sys
+# def upper_lower(letter):
+#     upper=0
+#     lower=0
 
-# Loop from 1 to 10
-for i in range(1, 11):
+#     for char in letter:
+#         if char.isupper():
+#             upper+=1
+#         elif char.islower():
+#             lower+=1
+#     print(f"Number of upper case is {upper}")
+#     print((f"Number of lower case is {lower}"))
+# upper_lower("Maybe this is right have to check Tomorrow")
+
+import time
+
+for i in range(1, 10001):
     print(i)
-
-print("Goodbye")
-
-# Explicitly exit the script
-sys.exit(0)
+    time.sleep(1)

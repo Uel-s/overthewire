@@ -1580,7 +1580,7 @@ netstat -s
 
 `4.ss (Socket Statistics).`
 
-- Used to display detailed information about `network sockets `.
+- Used to display detailed information about `network sockets`.
 
 ```py
 # Listening ports and processes
@@ -1608,7 +1608,7 @@ $ ss -t state established #(or just -t) (or -tp to see specific server)
 
 - A `socket` is an internal software endpoint that allows two different programs (either on the same computer or across the internet) to talk to each other.
 
-### Network troubleshooting summary.
+### Network troubleshooting summary
 
 ```bash
 | Tool       | Main Purpose                                |
@@ -1623,6 +1623,7 @@ $ ss -t state established #(or just -t) (or -tp to see specific server)
 `nmap` explores remote systems over the network, while `ss` investigates your own local machine
 
 ```
+
 ```
 tunlp
 -t -> show tcp port.
@@ -1690,13 +1691,13 @@ openssl s_client -connect example.com:443
 - Most services use one or a small range of ports.
 - Some port scanners only check common or high-risk ports.
 
-### Port Scan Results.
+### Port Scan Results
 
 - Open – A service is listening and accepts connections.
 - Closed – No service is listening; connections are rejected.
 - Filtered – No response, usually due to a firewall or packet filtering.
 
-### Security Implications.
+### Security Implications
 
 - Open ports can expose:
 
@@ -1705,7 +1706,8 @@ openssl s_client -connect example.com:443
 
 - Filtered ports generally present less risk because they are inaccessible from the scanner's perspective.
 
-### diff(difference).
+### diff(difference)
+
 `diff` - command used to compare two files line by line.
 
 ```py
@@ -1733,13 +1735,13 @@ $ diff -w file1.txt file2.txt # ignore whitespace
 
 ```
 
-## Set User Identity (setuid) and Set Group Identity(Setgid).
+## Set User Identity (setuid) and Set Group Identity(Setgid)
 
 - SetUID – Allows a user to run a program with the file owner's permissions.
 - SetGID – Allows a user to run a program with the file group's permissions.
 - Used to perform specific privileged tasks (e.g., changing passwords) without giving users     full root access.
 
-### How to tell a SETUID/GID file.
+### How to tell a SETUID/GID file
 
 ```py
 s replaces the owner's x → SetUID enabled.
@@ -1753,6 +1755,7 @@ t adds permission to create file in the dir
 drwxrwxrwt
 
 ```
+
 ### To find SETUID and SETGID Programs
 
 ```py
@@ -1766,19 +1769,20 @@ find / -perm -1000 2>dev/null # sticky bit # used mainly on dir (Users can only 
 
 ```
 
-### Set the SetUID/SetGID to files.
+### Set the SetUID/SetGID to files
 
 ```py
 
-$ chmod u+s filename or chmod 4755 # GETUID (u-s) #reverse
+chmod u+s filename or chmod 4755 # GETUID (u-s) #reverse
 
-$ chmod g+s filename or chmod 2755 # GETGID. (g-s) # reverse
+chmod g+s filename or chmod 2755 # GETGID. (g-s) # reverse
 
-$ chmod ug+s filename or chmod 6755  # both GETUID/GID
+chmod ug+s filename or chmod 6755  # both GETUID/GID
 
-$ chmod +t directory or chmod 1755  # set sticky bit. (Without the Sticky Bit, one user could delete another user's files.)
+chmod +t directory or chmod 1755  # set sticky bit. (Without the Sticky Bit, one user could delete another user's files.)
 
 ```
+
 ### Test sticky bit
 
 ```py
@@ -1789,16 +1793,14 @@ out: drwxrwxrwt
 
 `SetUID/SetGID are generally ignored on shell scripts (Bash, Python, Perl, etc.) for security reasons.`
 
-
-## Managing Programs in GNU/LINUX.
+## Managing Programs in GNU/LINUX
 
 `1. Bash` -The shell(Command Interprate).
 `2. Job control` - Manage processes(pause,resume,move) started from the current shell.
 `3. Screen` - Keeps terminal session running after you disconnet from SSH or terminal.
 `4. tmux` - Modern terminal multiplexer with panes and windows.
 
-
-### BASH.
+### BASH
 
 - The normal commands:
 
@@ -1808,7 +1810,7 @@ pwd
 name=Meaknit;echo $name
 ```
 
-### Job Control.
+### Job Control
 
 - Common commands:
 
@@ -1819,6 +1821,7 @@ Press Ctrl + z #  Stops the process.
 
 # The process isn't killed its just `Suspended`
 ```
+
 ```bash
 
 # Show background/suspended Process.
@@ -1834,7 +1837,6 @@ $ bg
 
 # [1]+ sleep 100 &
 ```
-
 
 ```bash
 # Brings a background job back to the foreground.
@@ -1857,6 +1859,7 @@ output: [1] 23456
 # 23456 = Process ID.
 
 ```
+
 ```bash
 # Stop a running process.
 
@@ -1873,7 +1876,77 @@ press Ctrl + c
 $ kill 23456 # process ID.
 or
 $ kill %1 # job number.
+```
+
+#### Summary
+
+```py
+[1]+ Stopped sleep 1000    # + → Current job (the default job used by commands like fg and bg)
+[2]- Running sleep 2000 &  # - → Previous job (the one that becomes current if the + job ends)
+[3] Running sleep 3000 &   # No symbol → Other jobs
+
+| State                 | `jobs` output                         |
+| --------------------- | ------------------------------------- |
+| Running in foreground | Doesn't appear in `jobs` while active |
+| Stopped (`Ctrl+Z`)    | No `&`                                |
+| Running in background | Has `&`                               |
+# The & means "run this command in the background"
+```
+
+### Screen
+
+- Is a tool that allows programs to continue running even when you disconnect from SSH or terminate the  terminal.
+
+## Example
+
+```py
+screen # To activate tool.
+
+python app.py # run a script/program.
+
+ctrl + a + d # detach without stopping.
+
+screen -ls # Show sessions.
+
+screen -r # Reconnect.
+```
+
+#### Common screen commands
+
+```bash
+screen                           # Create session
+screen -ls                       # List sessions
+screen -r                        # Reattach
+screen -S session name           #  Name a session
+screen -r session name           #  switch between specific running processes.
+screen -d session name           #  Detach the session name session remotely
+screen -d -r session name        # Force-detach and reattach to session name 
+screen -X -S session name quit   # End a named session
+```
 
 
+### tmux.
 
+- Terminal Multiplayer is a more modern and feature-rich alternative to `screen.`
 
+- Added advantage to `tmux` is splitting the terminal.
+
+```bash
+$ CTRL+B %  # vertical split
+$ CTRL+B "  # Horizontal split
+```
+
+### Common tmux commands.
+
+```bash
+$ tmux # Start. 
+
+$ CTRL+B D  # Detach.
+
+$ tmux ls # list previous sessions.
+
+$ tmux attach  # Reconnect.
+
+$ tmux new -s session name  # Create a new sesion.
+
+$ tmux kill-session -t session name # Kill a session
