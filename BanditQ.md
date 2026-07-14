@@ -107,3 +107,16 @@ $ ll # search for a SETUID file
 $ ./bandit20-do whoami # to see owner 
 
 $ ./bandit20-do cat /etc/bandit_pass/bandit20 # Accessing files as bandit19 due to SETUID privilege 
+
+21.There is a setuid binary in the homedirectory that does the following: it makes a connection to localhost on the port you specify as a commandline argument. It then reads a line of text from the connection and compares it to the password in the previous level (bandit20). If the password is correct, it will transmit the password for the next level (bandit21).
+
+```bash
+$ tmux new -s bandit20
+
+$ nc -l 4040 # Submit password bandit20 4pIjcunZ0fK2vmp3IwfG8Vf7VhxD6pOA
+
+$ CtrlB +% # To split terminal.
+
+$ ./suconnect 4444 # wait and the password will show.
+
+```
