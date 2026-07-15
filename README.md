@@ -1950,3 +1950,94 @@ $ tmux attach  # Reconnect.
 $ tmux new -s session name  # Create a new sesion.
 
 $ tmux kill-session -t session name # Kill a session
+```
+
+## cron, crontab crontab file.
+
+### 1. cron.
+
+- This is background service that constantly checks whether it's time to run a scheduled `jobs`.
+
+```bash
+# Think of it as an alarm clock.
+
+09:59
+cron: Not yet...
+
+10:00
+cron: Time to run the backup script!
+
+10:01
+cron: Waiting for the next scheduled task...
+```
+
+- `cron` runs in the background you don't get to interact with it.
+
+
+### crontab
+
+- crontab is command-line tool used to create, edit, list or remove scheduled jobs.
+
+```bash
+$ crontab -e # create/edit your cron jobs.
+
+$ crontab -l # List your cron jobs.
+
+$ crontab -r # Remove your cron jobs.
+```
+
+### Example
+
+```bash
+
+$ crontab -e # Choose nano
+
+$ 28 19 * * * DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus notify-send "Break Time" "Take a break!" # save and you will receive a notification.
+```
+
+```bash
+
+$ crontab -e
+
+48 19 * * * echo "This is a test" > /home/mikneat/Documents/Securty/overthewire/test.txt
+# at exactly 1948 hrs 
+# * → Every day of the month
+# * → Every month
+# * → Every day of the week
+```
+
+
+```bash 
+$ mkdir crontest
+
+$ nano file.sh 
+
+# add script 
+#!/bin/bash
+
+LOGFILE="/home/mikneat/cron/update.log"
+
+echo "========== $(date) ==========" >> "$LOGFILE"
+
+apt update >> "$LOGFILE" 2>&1
+apt upgrade -y >> "$LOGFILE" 2>&1
+apt autoremove -y >> "$LOGFILE" 2>&1
+apt autoclean -y >> "$LOGFILE" 2>&1
+
+echo "Update complete." >> "$LOGFILE"
+echo "" >> "$LOGFILE"
+
+$ chmod +x file.sh
+
+$ sudo crontab -e # bypass password
+
+# under nano add.
+
+00 9 * * * /home/mikneat/crontest/file.sh # 00 9 * * 0  (0-7) day of the week 0 == Sunday
+
+# add save
+
+$ systemctl status cron # check if active
+
+$ cat ~/updates/update.log # inspect updates
+```
