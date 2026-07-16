@@ -1986,7 +1986,7 @@ $ crontab -l # List your cron jobs.
 $ crontab -r # Remove your cron jobs.
 ```
 
-### Example
+### Examples
 
 ```bash
 
@@ -2040,4 +2040,32 @@ $ sudo crontab -e # bypass password
 $ systemctl status cron # check if active
 
 $ cat ~/updates/update.log # inspect updates
+```
+
+### Simple Example.
+
+```bash
+
+$ mkdir cronexample
+
+$ touch cron.sh
+
+# add script.
+#!/bin/bash
+
+echo "===========" >> home/mikneat/cronexample/log.txt
+date >> home/mikneat/cronexample/log.txt
+pwd >> home/mikneat/cronexample/log.txt
+ls >> home/mikneat/cronexample/log.txt
+echo "" >> home/mikneat/cronexample/log.txt
+
+$ chmod +x cron.sh
+
+$ crontab -e
+
+# Add the command
+
+00 9 * * * /home/mikneat/cronexample/cron.sh
+
+$ cat log.txt # Check if it passed.
 ```
