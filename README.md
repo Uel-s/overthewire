@@ -2069,3 +2069,26 @@ $ crontab -e
 
 $ cat log.txt # Check if it passed.
 ```
+
+## Crontab File
+
+-It is simply a text file containing cron jobs
+
+```bash
+# Daily backup
+0 2 * * * /home/mikneat/scripts/backup.sh
+
+# Weekly update
+0 3 * * 0 /home/mikneat/updates/update.sh
+
+# Every 10 minutes
+*/10 * * * * echo "Running..."
+```
+
+### Creating personal crontab file
+
+```bash
+ $ nano mycron
+
+ $ crontab mycron
+ ```
