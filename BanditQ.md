@@ -115,8 +115,16 @@ $ tmux new -s bandit20
 
 $ nc -l 4040 # Submit password bandit20 4pIjcunZ0fK2vmp3IwfG8Vf7VhxD6pOA
 
-$ CtrlB +% # To split terminal.
+$ Ctrl B + % # To split terminal.
 
 $ ./suconnect 4444 # wait and the password will show.
 
+```
+22. A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed.
+
+```bash
+$ ll
+$ cat cronjob_bandit22
+cat /usr/bin/cronjob_bandit22.sh 
+cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
 ```

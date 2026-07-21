@@ -1,3 +1,5 @@
-def uniq_numbers(*numbers):
-    print(set(numbers))
-uniq_numbers(1,2,1,2,3,4,5,3,5)
+def uniq_letters(letters):
+    char = list(letters.replace(" ", ""))
+    #char1 = set(char)
+    print(char)
+uniq_letters("This is a test, might or might not pass")    

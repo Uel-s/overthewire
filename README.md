@@ -148,6 +148,9 @@ Changes file permissions.
 - **6** = `rw-` (Read + Write)
 - **5** = `r-x` (Read + Execute)
 - **4** = `r--` (Read only)
+- **3** = `-wx` (Write + Execute)
+- **2** = `-w-` (Write only)
+- **1** = `--x` (Execute only)
 - **0** = `---` (No access)
 
 **Common Permissions:**
@@ -2092,3 +2095,9 @@ $ cat log.txt # Check if it passed.
 
  $ crontab mycron
  ```
+
+ ```bash
+man 1 crontab # This is the one you'll use regularly (crontab -e, -l, -r).
+man 5 crontab # When you need to look up syntax, special strings, environment variables, or advanced features.
+man 8 crontab # When administering the cron service, troubleshooting why jobs aren't running, or learning how the daemon works.
+```
