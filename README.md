@@ -1834,7 +1834,7 @@ $ jobs # [1]+  Stopped   sleep 100
 ```
 
 ```bash
-# Runs a stopped job in the background
+# Continues a suspended job in the background
 
 $ bg
 
@@ -1879,6 +1879,10 @@ press Ctrl + c
 $ kill 23456 # process ID.
 or
 $ kill %1 # job number.
+
+$ fg %2 # After killing kill %1 continue with [2] don't jump to current process [3]
+$ bg %2 # Same as for fg
+
 ```
 
 #### Summary
