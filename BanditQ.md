@@ -128,3 +128,22 @@ $ cat cronjob_bandit22
 cat /usr/bin/cronjob_bandit22.sh 
 cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
 ```
+
+23. A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed.
+
+```bash
+$ cd etc/cron.d
+$ cat cronjob_bandit23
+$ cat /usr/bin/cronjob_bandit23.sh 
+```
+### Output Script
+
+```bash
+#!/bin/bash
+myname=$(whoami) 
+mytarget=$(echo I am user $myname | md5sum | cut -d ' ' -f1)
+# md5sum used to hash the text: output --> 8ca319486bfbbc3663ea0fbe81326349 -
+# `cut -d ' ' -f1` extracts the first field from the input and discards all remaining fields.
+# Example: 8ca319486bfbbc3663ea0fbe81326349 (See the - missing)
+echo "Copying passwordfile /etc/bandit_pass/$myname to /tmp/$mytarget"
+```

@@ -1924,11 +1924,11 @@ screen -r # Reconnect.
 screen                           # Create session
 screen -ls                       # List sessions
 screen -r                        # Reattach
-screen -S session name           #  Name a session
-screen -r session name           #  switch between specific running processes.
-screen -d session name           #  Detach the session name session remotely
-screen -d -r session name        # Force-detach and reattach to session name 
-screen -X -S session name quit   # End a named session
+screen -S sessionName           #  Name a session
+screen -r sessionName           #  switch between specific running processes.
+screen -d sessionName           #  Detach the sessionName session remotely
+screen -d -r sessionName        # Force-detach and reattach to sessionName 
+screen -X -S sessionName quit   # End a named session
 ```
 
 
@@ -1954,9 +1954,9 @@ $ tmux ls # list previous sessions.
 
 $ tmux attach  # Reconnect.
 
-$ tmux new -s session name  # Create a new sesion.
+$ tmux new -s sessionName  # Create a new sesion.
 
-$ tmux kill-session -t session name # Kill a session
+$ tmux kill-session -t sessionName # Kill a session
 ```
 
 ## cron, crontab crontab file.
@@ -2104,4 +2104,459 @@ $ cat log.txt # Check if it passed.
 man 1 crontab # This is the one you'll use regularly (crontab -e, -l, -r).
 man 5 crontab # When you need to look up syntax, special strings, environment variables, or advanced features.
 man 8 crontab # When administering the cron service, troubleshooting why jobs aren't running, or learning how the daemon works.
+```
+
+`/usr/bin`- is a directory that stores executable programs
+
+```bash
+# Linux Directory Structure (Filesystem Hierarchy)
+
+```text
+/
+├── bin/
+├── boot/
+├── dev/
+├── etc/
+├── home/
+├── lib/
+├── media/
+├── mnt/
+├── opt/
+├── proc/
+├── root/
+├── run/
+├── sbin/
+├── srv/
+├── sys/
+├── tmp/
+├── usr/
+└── var/
+```
+
+---
+
+## `/` (Root Directory)
+
+The **root directory** is the top of the Linux filesystem. Every file and directory on the system starts from here.
+
+```text
+/
+├── home
+├── etc
+├── usr
+└── var
+```
+
+Example:
+
+```bash
+cd /
+pwd
+```
+
+Output:
+
+```text
+/
+```
+
+---
+
+## `/bin` (Essential User Commands)
+
+Contains **essential executable programs** required for the system to operate and for users to perform basic tasks.
+
+Examples:
+
+```text
+/bin/ls
+/bin/cp
+/bin/mv
+/bin/cat
+/bin/bash
+```
+
+Example:
+
+```bash
+ls /bin
+```
+
+Think of it as:
+
+> 📦 A toolbox containing the most important command-line tools.
+
+---
+
+## `/boot` (Boot Files)
+
+Contains everything needed to boot Linux.
+
+Examples:
+
+```text
+/boot/vmlinuz
+/boot/initrd.img
+/boot/grub/
+```
+
+Think of it as:
+
+> 🚀 The files Linux needs to start the operating system.
+
+---
+
+## `/dev` (Device Files)
+
+Contains files representing hardware devices.
+
+Examples:
+
+```text
+/dev/sda
+/dev/null
+/dev/random
+/dev/tty
+```
+
+Example:
+
+```bash
+ls /dev
+```
+
+Think of it as:
+
+> 🔌 Hardware appears as files in Linux.
+
+---
+
+## `/etc` (Configuration Files)
+
+Stores **system-wide configuration files**.
+
+Examples:
+
+```text
+/etc/passwd
+/etc/hosts
+/etc/hostname
+/etc/ssh/
+/etc/crontab
+```
+
+Example:
+
+```bash
+cat /etc/hostname
+```
+
+Think of it as:
+
+> ⚙️ The settings folder for the operating system.
+
+---
+
+## `/home` (User Home Directories)
+
+Contains each user's personal files.
+
+Example:
+
+```text
+/home/
+├── mikneat/
+├── alice/
+└── bob/
+```
+
+Your documents are here:
+
+```text
+/home/mikneat/Documents
+```
+
+Example:
+
+```bash
+cd ~
+pwd
+```
+
+Think of it as:
+
+> 🏠 Every user's personal workspace.
+
+---
+
+## `/lib` (Libraries)
+
+Contains shared libraries required by programs.
+
+Example:
+
+```text
+/lib/
+/lib64/
+```
+
+Think of it as:
+
+> 📚 Libraries that programs use to run.
+
+---
+
+## `/media` (Removable Media)
+
+Automatically mounted removable devices.
+
+Examples:
+
+```text
+/media/mikneat/USB
+/media/mikneat/DVD
+```
+
+Think of it as:
+
+> 💾 USB drives and DVDs appear here.
+
+---
+
+## `/mnt` (Temporary Mount Point)
+
+Used to manually mount filesystems.
+
+Example:
+
+```bash
+sudo mount /dev/sdb1 /mnt
+```
+
+Think of it as:
+
+> 🔧 A temporary place to attach another filesystem.
+
+---
+
+## `/opt` (Optional Software)
+
+Stores third-party or optional applications.
+
+Example:
+
+```text
+/opt/google/
+/opt/discord/
+/opt/custom-app/
+```
+
+Think of it as:
+
+> 📦 Large applications installed separately.
+
+---
+
+## `/proc` (Process Information)
+
+A virtual filesystem providing information about running processes and the kernel.
+
+Examples:
+
+```text
+/proc/cpuinfo
+/proc/meminfo
+/proc/self
+```
+
+Example:
+
+```bash
+cat /proc/cpuinfo
+```
+
+Think of it as:
+
+> 🧠 A live view into the running Linux system.
+
+---
+
+## `/root` (Root User's Home)
+
+The home directory of the **root** (administrator) user.
+
+Example:
+
+```text
+/ root
+```
+
+Do not confuse this with `/`.
+
+Think of it as:
+
+> 👑 The administrator's home directory.
+
+---
+
+## `/run` (Runtime Data)
+
+Stores temporary runtime information created after boot.
+
+Examples:
+
+```text
+/run/systemd/
+/run/user/
+```
+
+Think of it as:
+
+> ⚡ Temporary data needed while Linux is running.
+
+---
+
+## `/sbin` (System Binaries)
+
+Contains programs mainly used for system administration.
+
+Examples:
+
+```text
+/sbin/fsck
+/sbin/reboot
+/sbin/shutdown
+```
+
+Think of it as:
+
+> 🛠️ Administrative tools for managing the system.
+
+---
+
+## `/srv` (Service Data)
+
+Stores data served by system services.
+
+Examples:
+
+```text
+/srv/www/
+/srv/ftp/
+```
+
+Think of it as:
+
+> 🌐 Files used by web servers or FTP servers.
+
+---
+
+## `/sys` (System Information)
+
+A virtual filesystem exposing kernel and hardware information.
+
+Example:
+
+```bash
+ls /sys
+```
+
+Think of it as:
+
+> 🖥️ Information about your computer's hardware and kernel.
+
+---
+
+## `/tmp` (Temporary Files)
+
+Stores temporary files created by users and programs.
+
+Example:
+
+```bash
+echo "Hello" > /tmp/test.txt
+```
+
+Think of it as:
+
+> 🗑️ Scratch space that may be cleaned automatically.
+
+---
+
+## `/usr` (User Programs and Resources)
+
+Contains most installed applications, documentation, and libraries.
+
+Common subdirectories:
+
+```text
+/usr/
+├── bin/
+├── lib/
+├── share/
+└── local/
+```
+
+Examples:
+
+```text
+/usr/bin/python3
+/usr/bin/git
+/usr/bin/vim
+```
+
+Think of it as:
+
+> 💻 The main collection of user applications.
+
+---
+
+## `/var` (Variable Data)
+
+Stores files that frequently change.
+
+Examples:
+
+```text
+/var/log/
+/var/mail/
+/var/cache/
+/var/tmp/
+```
+
+Example:
+
+```bash
+ls /var/log
+```
+
+Think of it as:
+
+> 📈 Logs, caches, mail, and other changing data.
+
+---
+
+# Quick Summary
+
+| Directory | Purpose |
+| ----------- | --------- |
+| `/` | Root of the filesystem |
+| `/bin` | Essential commands |
+| `/boot` | Boot files |
+| `/dev` | Device files |
+| `/etc` | Configuration files |
+| `/home` | User home directories |
+| `/lib` | Shared libraries |
+| `/media` | Removable media |
+| `/mnt` | Temporary mounts |
+| `/opt` | Optional software |
+| `/proc` | Process and kernel information |
+| `/root` | Root user's home |
+| `/run` | Runtime data |
+| `/sbin` | System administration commands |
+| `/srv` | Service data |
+| `/sys` | Hardware and kernel information |
+| `/tmp` | Temporary files |
+| `/usr` | User applications and resources |
+| `/var` | Logs and variable data |
 ```
