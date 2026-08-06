@@ -147,3 +147,8 @@ mytarget=$(echo I am user $myname | md5sum | cut -d ' ' -f1)
 # Example: 8ca319486bfbbc3663ea0fbe81326349 (See the - missing)
 echo "Copying passwordfile /etc/bandit_pass/$myname to /tmp/$mytarget"
 ```
+```bash
+$ echo I am user bandit23 | md5sum | cut -d ' ' -f1
+#8ca319486bfbbc3663ea0fbe81326349
+$ cat /tmp/8ca319486bfbbc3663ea0fbe81326349
+```

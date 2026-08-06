@@ -2558,5 +2558,22 @@ Think of it as:
 | `/sys` | Hardware and kernel information |
 | `/tmp` | Temporary files |
 | `/usr` | User applications and resources |
-| `/var` | Logs and variable data |
+| `/var` | Logs and variable data 
+
+```
+
+### Core Usage and Flags
+
+```bash
+$ shopt :Lists all available shell options and shows if they are on or off.
+$ shopt -s [name]: Turns on (sets) a specific shell option.
+$ shopt -u [name]: Turns off (unsets) a specific shell option.
+$ shopt [name]: Checks the current status of a single option.
+```
+
+### Common Options
+
+```bash
+shopt -s nullglob 
+# Makes wildcards (*, ?, []) expand to nothing(empty output)if they don't match any files, instead of remaining as literal text.
 ```
