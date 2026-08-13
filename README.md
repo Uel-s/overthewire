@@ -1931,37 +1931,36 @@ screen -d -r sessionName        # Force-detach and reattach to sessionName
 screen -X -S sessionName quit   # End a named session
 ```
 
-
-### tmux.
+### tmux
 
 - Terminal Multiplayer is a more modern and feature-rich alternative to `screen.`
 
 - Added advantage to `tmux` is splitting the terminal.
 
 ```bash
-$ CTRL+B %  # vertical split
-$ CTRL+B "  # Horizontal split
+CTRL+B %  # vertical split
+CTRL+B "  # Horizontal split
 ```
 
-### Common tmux commands.
+### Common tmux commands
 
 ```bash
-$ tmux # Start. 
+tmux # Start. 
 
-$ CTRL+B D  # Detach.
+CTRL+B D  # Detach.
 
-$ tmux ls # list previous sessions.
+tmux ls # list previous sessions.
 
-$ tmux attach  # Reconnect.
+tmux attach  # Reconnect.
 
-$ tmux new -s sessionName  # Create a new sesion.
+tmux new -s sessionName  # Create a new sesion.
 
-$ tmux kill-session -t sessionName # Kill a session
+tmux kill-session -t sessionName # Kill a session
 ```
 
-## cron, crontab crontab file.
+## cron, crontab crontab file
 
-### 1. cron.
+### 1. cron
 
 - This is background service that constantly checks whether it's time to run a scheduled `jobs`.
 
@@ -1980,26 +1979,25 @@ cron: Waiting for the next scheduled task...
 
 - `cron` runs in the background you don't get to interact with it.
 
-
 ### crontab
 
 - crontab is command-line tool used to create, edit, list or remove scheduled jobs.
 
 ```bash
-$ crontab -e # create/edit your cron jobs.
+crontab -e # create/edit your cron jobs.
 
-$ crontab -l # List your cron jobs.
+crontab -l # List your cron jobs.
 
-$ crontab -r # Remove your cron jobs.
+crontab -r # Remove your cron jobs.
 ```
 
 ### Examples
 
 ```bash
 
-$ crontab -e # Choose nano
+crontab -e # Choose nano
 
-$ 28 19 * * * DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus notify-send "Break Time" "Take a break!" # save and you will receive a notification.
+28 19 * * * DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus notify-send "Break Time" "Take a break!" # save and you will receive a notification.
 ```
 
 ```bash
@@ -2013,8 +2011,7 @@ $ crontab -e
 # * → Every day of the week
 ```
 
-
-```bash 
+```bash
 $ mkdir crontest
 
 $ nano file.sh 
@@ -2049,7 +2046,7 @@ $ systemctl status cron # check if active
 $ cat ~/updates/update.log # inspect updates
 ```
 
-### Simple Example.
+### Simple Example
 
 ```bash
 
@@ -2095,9 +2092,9 @@ $ cat log.txt # Check if it passed.
 ### Creating personal crontab file
 
 ```bash
- $ nano mycron
+ nano mycron
 
- $ crontab mycron
+ crontab mycron
  ```
 
  ```bash
@@ -2113,24 +2110,24 @@ man 8 crontab # When administering the cron service, troubleshooting why jobs ar
 | Directory | Purpose |
 | ----------- | --------- |
 | `/` | Root of the filesystem |
-| `/bin` | Essential commands |
-| `/boot` | Boot files |
-| `/dev` | Device files |
-| `/etc` | Configuration files |
 | `/home` | User home directories |
-| `/lib` | Shared libraries |
-| `/media` | Removable media |
-| `/mnt` | Temporary mounts |
-| `/opt` | Optional software |
+| `/bin` | Essential commands available to user |
+| `/sbin` | System administration commands |
+| `/usr` | used to store user-related programs and data, including executable files, libraries, and documentation. |
+| `/tmp` | Temporary files |
+| `/etc` | Stores Configuration files and installed applications |
+| `/boot` | Boot files and is responsible for  |
+| `/dev` | Converts hardware and Virtual devices into files where programs and users can interect with them. |
+| `/lib` | Contains shared libraries(reuseble programs) that programs need to run. |
+| `/media`  → usually where USB/external drives are mounted |
+| `/mnt`    → usually where you manually mount something temporarily |
+| `/opt` | Optional software installed from 3rd party sources |
 | `/proc` | Process and kernel information |
 | `/root` | Root user's home |
-| `/run` | Runtime data |
-| `/sbin` | System administration commands |
-| `/srv` | Service data |
+| `/run` | What process,services,sockets are runnuing right now |
+| `/srv` | Files that a server is sharing/providing to others. |
 | `/sys` | Hardware and kernel information |
-| `/tmp` | Temporary files |
-| `/usr` | User applications and resources |
-| `/var` | Logs and variable data 
+| `/var` | Files that change while Linux is running. |
 
 ```
 
