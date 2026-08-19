@@ -2146,3 +2146,85 @@ $ shopt [name]: Checks the current status of a single option.
 shopt -s nullglob 
 # Makes wildcards (*, ?, []) expand to nothing(empty output)if they don't match any files, instead of remaining as literal text.
 ```
+
+## more,vi,id.
+
+```bash
+more → READ
+vi   → EDIT
+id   → IDENTIFY
+```
+
+### more.
+
+- Used to read file page by page
+
+```bash
+more filename # Will show some data in the file but in % ie 2%, press up-down arrow to increase %.
+```~
+
+```bash
+Space       → next page
+Enter       → next line
+q           → quit
+/word       → search for "word"
+```
+```bash
+more -d file.txt # Shows helpful instructions when you reach the end
+
+
+more -c file.txt  # Redraws the screen instead of scrolling normally.
+```
+
+### vi 
+
+- Used to open and edit a file
+
+```bash
+i    → enter insert mode
+x    → delete a character
+dd   → delete a line
+yy   → copy a line
+p    → paste
+```
+
+```bash
+vi file       → open file
+i             → start typing
+Esc           → stop typing
+:w            → save
+:q            → quit
+:wq           → save + quit
+:q!           → quit without saving
+```
+
+### id.
+
+- Find out who you are
+
+```bash
+uid
+$ id -u
+
+Shows your User ID.
+
+Example:
+
+1000
+gid
+$ id -g
+
+Shows your primary Group ID.
+
+Username
+$ id -un
+
+Shows your username:
+
+mikneat
+Groups
+$ id -Gn
+
+Shows the groups you belong to.
+
+```

