@@ -2222,9 +2222,12 @@ $ id -un
 Shows your username:
 
 mikneat
-Groups
-$ id -Gn
 
-Shows the groups you belong to.
+$ id -gn # Shows your primary group name only.
+mikneat
+
+$ id -Gn
+mikneat adm cdrom sudo dip plugdev users lpadmin lxd. # Shows the groups you belong to.
+
 
 ```

@@ -46,7 +46,7 @@ file *
 13. - Q. The password for the next level is stored in /etc/bandit_pass/bandit14 and can only be read by user bandit14. For this level, you don’t get the next password, but you get a private SSH key that can be used to log into the next level. Look at the commands that logged you into previous bandit levels, and find out how to use the key for this level.
 
 ```py
-$ scp -P 2220 bandit13@bandit.labs.overthewire.org:~/sshkey.private ~/bandit13 # on localhost cli
+$ scp -P 2220 bandit13@bandit.labs.overthewire.org:~/sshkey.private ~/bandit13 # on local cli
 
 $ chmod 700 ~/bandit13 # to give permission to cp.
 
@@ -209,8 +209,31 @@ for char in {0..9}{0..9}{0..9}{0..9}; do
 done
 # Finish the loop.
 
-
 $ chmod +x bandit25.sh
 $ bash -n bandit25.sh # test script
 $ ./bandit25.sh
+```
 
+26. Logging in to bandit26 from bandit25 should be fairly easy… The shell for user bandit26 is not /bin/bash, but something else. Find out what it is, how it works and how to break out of it.
+
+```bash
+
+$ ll # to find private.key
+$ cat /etc/passwd | grep bandit26 # Display the bandit26 account entry from /etc/passwd
+$ cat /usr/bin/showtext # Show what the script is executing, we cant chmod status 401.
+$ exit # use local connection.
+$ scp -P 2220 bandit25@bandit.labs.overthewire.org:~/bandit26.sshkey ~/ssh26.private
+$ chmod 700 ~/ssh26.private
+$ tmux # to shrink screen to be very tiny
+$ ssh -i ssh26.private bandit26@localhost -p 2220
+
+
+```bash
+# Well inside the shell change it 
+v # to enter vim
+:set shell=/bin/bash + Enter # changing from /bin/sh  
+:shell + Enter # Now 26 will open.
+```
+```bash
+bandit26@bandit:~$ cat /etc/bandit_pass/bandit26 # password found!
+```
