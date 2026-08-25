@@ -225,15 +225,39 @@ $ exit # use local connection.
 $ scp -P 2220 bandit25@bandit.labs.overthewire.org:~/bandit26.sshkey ~/ssh26.private
 $ chmod 700 ~/ssh26.private
 $ tmux # to shrink screen to be very tiny
-$ ssh -i ssh26.private bandit26@localhost -p 2220
+$ ssh -i ssh26.private bandit26@bandit.labs.overthewire.org  -p 2220
 
 
 ```bash
 # Well inside the shell change it 
-v # to enter vim
+v # to enter vim next try vi -i enter edit mode.
 :set shell=/bin/bash + Enter # changing from /bin/sh  
 :shell + Enter # Now 26 will open.
 ```
 ```bash
 bandit26@bandit:~$ cat /etc/bandit_pass/bandit26 # password found!
+```
+
+27. Good job getting a shell! Now hurry and grab the password for bandit27!
+Commands you may need to solve this level
+ls
+
+```bash
+- follow bandit26 then;
+$ bandit26@bandit:~$ ll
+total 44
+drwxr-xr-x   3 root     root      4096 Jun 24 14:59 ./
+drwxr-xr-x 150 root     root      4096 Jun 24 15:02 ../
+-rw-r--r--   1 root     root       220 Feb 13  2026 .bash_logout
+-rw-r--r--   1 root     root      3851 Jun 24 14:50 .bashrc
+-rw-r--r--   1 root     root       807 Feb 13  2026 .profile
+drwxr-xr-x   2 root     root      4096 Jun 24 14:59 .ssh/
+-rwsr-x---   1 bandit27 bandit26 14880 Jun 24 14:59 bandit27-do*
+-rw-r-----   1 bandit26 bandit26   258 Jun 24 14:59 text.txt
+$ bandit26@bandit:~$ whoami
+bandit26
+$ bandit26@bandit:~$ id
+uid=11026(bandit26) gid=11026(bandit26) groups=11026(bandit26)
+bandit26@bandit:~$ ./bandit27-do cat /etc/bandit_pass/bandit27
+STJLJBRRphMxKB392CT4iOr5CbzPU9ER
 ```
