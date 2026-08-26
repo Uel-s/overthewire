@@ -261,3 +261,11 @@ uid=11026(bandit26) gid=11026(bandit26) groups=11026(bandit26)
 bandit26@bandit:~$ ./bandit27-do cat /etc/bandit_pass/bandit27
 STJLJBRRphMxKB392CT4iOr5CbzPU9ER
 ```
+
+28. There is a git repository at ssh://bandit27-git@bandit.labs.overthewire.org/home/bandit27-git/repo via the port 2220. The password for the user bandit27-git is the same as for the user bandit27.
+
+From your local machine (not the OverTheWire machine!), clone the repository and find the password for the next level. This needs git installed locally on your machine.
+
+```bash
+$ git clone ssh://bandit27-git@bandit.labs.overthewire.org:2220/home/bandit27-git/repo # make sure to add port :2220 
+$ cat repo/README 
