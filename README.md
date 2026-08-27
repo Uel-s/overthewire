@@ -2263,3 +2263,85 @@ restore        = CHANGE/UNDO 🔧
 add            = STAGE 📦
 commit         = SAVE SNAPSHOT 💾
 ```
+
+### Branches.
+
+- A branch is basically a movable pointer to commits.
+
+```bash
+git branch                  # list branches
+git branch feature          # create branch
+git switch feature          # move to branch
+git switch -c feature       # create + switch
+git checkout feature        # older equivalent of switching branches. 
+```
+
+### Merge Branches.
+
+```bash
+git switch main
+git merge feature
+```
+
+### Remote repositories
+
+```bash
+git remote -v
+git fetch         # download remote history without changing your current branch.
+git pull          # fetch + integrate the changes.
+git push          # send your commits to remote.
+```
+
+### Undo / rollback — VERY important
+
+```bash
+git commit --amend          # Modify the latest commit.
+
+git reset --soft HEAD~1     # Undo the latest commit, keep changes staged.
+
+git reset --mixed HEAD~1    # Undo the latest commit, keep changes but unstage them.
+
+git reset --hard HEAD~1     # Undo the latest commit and discard the changes.
+
+git revert <commit>         # Create a new commit that undoes the specified commit.
+```
+
+### HEAD.
+
+- Head is the commit/branch you're currently on.
+
+```bash
+
+git show HEAD
+git reset HEAD~1  # The commit before HEAD.
+```
+
+### Inspect history.
+
+```bash
+git log
+git log --oneline
+git log --graph --oneline --all
+git show <commit>
+git diff A B
+git reflog    #often save you after a bad reset, rebase, etc. 
+```
+
+### Tags.
+
+- Tags give names to specific commits:
+
+```bash
+git tag v1.0
+git tag
+git checkout v1.0
+```
+
+### Stash.
+
+- Temporary put unfinished work aside.
+
+```bash
+git stash
+git stash pop
+```
