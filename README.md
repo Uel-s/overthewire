@@ -2231,3 +2231,13 @@ mikneat adm cdrom sudo dip plugdev users lpadmin lxd. # Shows the groups you bel
 
 
 ```
+
+## Git.
+
+```bash
+Repository
+├── Working tree      ← files you're editing
+├── Staging area      ← changes prepared for commit
+└── Commit history    ← saved snapshots
+```
+
