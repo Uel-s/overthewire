@@ -2232,7 +2232,7 @@ mikneat adm cdrom sudo dip plugdev users lpadmin lxd. # Shows the groups you bel
 
 ```
 
-## Git.
+## The most important Git concepts to learn.
 
 ```bash
 Repository
@@ -2240,4 +2240,26 @@ Repository
 ├── Staging area      ← changes prepared for commit
 └── Commit history    ← saved snapshots
 ```
+### Git Commands.
 
+-`Staging` = choosing what goes into the next commit
+
+```bash
+git init                       # create repository
+git clone URL                  # download repository
+git status                     # what's changed?
+git add file                   # stage one file eg git add app.py
+git add .                      # stage everything
+git commit -m "message"        # save snapshot
+git log --oneline              # view history
+git diff                       # unstaged changes:What changed in my files but has NOT been staged yet
+git diff --staged              # staged changes
+git restore filename           # discard unstaged changes.
+git restore --staged filename  # remove it from staging, but keep the changes in your file
+```
+```bash
+diff           = LOOK 👀
+restore        = CHANGE/UNDO 🔧
+add            = STAGE 📦
+commit         = SAVE SNAPSHOT 💾
+```
