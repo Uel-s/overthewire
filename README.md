@@ -2270,12 +2270,12 @@ git commit --amend
 # VIEWING CHANGES & HISTORY
 # ============================================================
 
-git diff                         # Show unstaged changes
+git diff                          # Show unstaged changes
 git diff --staged                 # Show staged changes
 git log                           # Show detailed commit history
 git log --oneline                 # Show compact commit history
 git log --oneline --graph --all   # Show compact visual history of all branches
-git show <commit>                 # Show details of a specific commit
+git show <commit> #eg a83f91c     # Show details of a specific commit
 git blame filename                 # Show who last changed each line
 
 
@@ -2299,7 +2299,7 @@ git branch -D <name>             # Force-delete a branch
 # MERGING
 # ============================================================
 
-git merge <branch>               # Merge another branch into current branch
+git merge <branch name>               # Merge another branch into current branch
 git merge --abort                # Cancel an in-progress merge/conflict
 
 
@@ -2318,7 +2318,7 @@ git fetch                        # Download remote changes WITHOUT modifying you
 git fetch --all                  # Fetch from all configured remotes
 
 git pull                         # Fetch + integrate remote changes
-git pull --rebase                # Fetch + rebase your commits on top of remote changes
+git pull --rebase                # Fetch + rebase your commits on top of remote changes #rebase keeps your commit  history linear and clean eg A-B-C-D-E.
 
 git push                         # Upload your commits to the remote
 git push origin main             # Push local main to origin
@@ -2364,7 +2364,7 @@ git reset --mixed HEAD~1          # Undo latest commit; keep changes but UNSTAGE
 git reset --hard HEAD~1           # Undo latest commit AND discard changes
 # ⚠️ Dangerous: can permanently discard work
 
-git revert <commit>               # Create a NEW commit that reverses an old commit
+git revert <commit> #eg a83f91c               # Create a NEW commit that reverses an old commit
 
 git reflog                        # Show where HEAD/branches have previously pointed
 # Extremely useful for recovering from accidental resets/rebases
@@ -2374,9 +2374,9 @@ git reflog                        # Show where HEAD/branches have previously poi
 # RESET — UNDERSTAND THE THREE MODES
 # ============================================================
 
-git reset --soft <commit>         # Move HEAD; keep changes staged
-git reset --mixed <commit>        # Move HEAD; keep changes unstaged
-git reset --hard <commit>         # Move HEAD; discard changes
+git reset --soft <commit> #eg a83f91c         # Move HEAD; keep changes staged
+git reset --mixed <commit> #eg a83f91c        # Move HEAD; keep changes unstaged
+git reset --hard <commit> #eg a83f91c         # Move HEAD; discard changes
 
 
 # ============================================================
