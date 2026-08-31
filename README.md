@@ -54,7 +54,7 @@ cd -        # Go to previous directory
 
 ---
 
-## 3. File Operations
+## 3. File Operations.
 
 ### **touch**
 
@@ -2235,118 +2235,193 @@ mikneat adm cdrom sudo dip plugdev users lpadmin lxd. # Shows the groups you bel
 ## The most important Git concepts to learn.
 
 ```bash
-Repository
-├── Working tree      ← files you're editing
-├── Staging area      ← changes prepared for commit
-└── Commit history    ← saved snapshots
-```
-### Git Commands.
+# ============================================================
+# BASIC
+# ============================================================
 
--`Staging` = choosing what goes into the next commit
+git init                         # Create a new Git repository
+git clone <URL>                  # Clone/download a remote repository
+git status                       # Show current state of working tree
+git help <command>               # Show help for a Git command
 
-```bash
-git init                       # create repository
-git clone URL                  # download repository
-git status                     # what's changed?
-git add file                   # stage one file eg git add app.py
-git add .                      # stage everything
-git commit -m "message"        # save snapshot
-git log --oneline              # view history also git log 
-git diff                       # unstaged changes:What changed in my files but has NOT been staged yet
-git diff --staged              # staged changes
-git restore filename           # discard unstaged changes.
-git restore --staged filename  # remove it from staging, but keep the changes in your file
-```
-```bash
-diff           = LOOK 👀
-restore        = CHANGE/UNDO 🔧
-add            = STAGE 📦
-commit         = SAVE SNAPSHOT 💾
-```
 
-### Branches.
+# ============================================================
+# STAGING & COMMITS
+# ============================================================
 
-- A branch is basically a movable pointer to commits.
+git add filename                 # Stage a specific file
+git add .                        # Stage all changes in current directory
+git restore filename              # Discard unstaged changes to a file
+git restore --staged filename     # Unstage a file (keep its changes)
 
-```bash
-git branch                  # list branches
-git branch feature          # create branch
-git switch feature          # move to branch
-git switch -c feature       # create + switch
-git checkout feature        # older equivalent of switching branches. 
-```
+git commit -m "message"          # Create a commit from staged changes
+git commit --amend               # Modify the latest commit
+git commit --amend --no-edit     # Modify latest commit without changing its message
 
-### Merge Branches.
+# 1. Change the commit message
+git commit --amend -m "Better message"
 
-```bash
-git switch main
-git merge feature
-```
+# 2. Add/change files in the latest commit
+git add file.txt
+git commit --amend
 
-### Remote repositories
 
-```bash
-<<<<<<< HEAD
-git remote -v     # it shows the remote repositories connected to your local Git repository.
-git fetch         # download remote history without changing your current branch.
-=======
-git remote -v
-git fetch         # download remote history without changing your current branch or files
->>>>>>> 36e8ce66b7bf63a01025b6a7845c7f54b61ec8c2
-git pull          # fetch + integrate the changes.
-git push          # send your commits to remote.
-```
+# ============================================================
+# VIEWING CHANGES & HISTORY
+# ============================================================
 
-### Undo / rollback — VERY important
+git diff                         # Show unstaged changes
+git diff --staged                 # Show staged changes
+git log                           # Show detailed commit history
+git log --oneline                 # Show compact commit history
+git log --oneline --graph --all   # Show compact visual history of all branches
+git show <commit>                 # Show details of a specific commit
+git blame filename                 # Show who last changed each line
 
-```bash
-git commit --amend          # Modify the latest commit.
 
-git reset --soft HEAD~1     # Undo the latest commit, keep changes staged.
+# ============================================================
+# BRANCHES
+# ============================================================
 
-git reset --mixed HEAD~1    # Undo the latest commit, keep changes but unstage them.
+git branch                       # List local branches
+git branch <name>                # Create a new branch
+git switch <name>                # Switch to an existing branch
+git switch -c <name>             # Create AND switch to a new branch
 
-git reset --hard HEAD~1     # Undo the latest commit and discard the changes.
+# Older Git syntax:
+git checkout <name>              # Older way to switch branches
 
-git revert <commit>         # Create a new commit that undoes the specified commit.
-```
+git branch -d <name>             # Delete a branch if it has been merged
+git branch -D <name>             # Force-delete a branch
 
-### HEAD.
 
-- Head is the commit/branch you're currently on.
+# ============================================================
+# MERGING
+# ============================================================
 
-```bash
+git merge <branch>               # Merge another branch into current branch
+git merge --abort                # Cancel an in-progress merge/conflict
 
-git show HEAD
-git reset HEAD~1  # The commit before HEAD.
-```
 
-### Inspect history.
+# ============================================================
+# REMOTES
+# ============================================================
 
-```bash
-git log
-git log --oneline
-git log --graph --oneline --all
-git show <commit>
-git diff A B
-git reflog    #often save you after a bad reset, rebase, etc. 
-```
+git remote -v                    # Show remote repository URLs
+git remote                       # Show remote names
 
-### Tags.
+git remote add origin <URL>      # Add a remote named "origin"
+git remote remove origin         # Remove the "origin" remote
+git remote rename origin <name>  # Rename a remote
 
-- Tags give names to specific commits:
+git fetch                        # Download remote changes WITHOUT modifying your branch
+git fetch --all                  # Fetch from all configured remotes
 
-```bash
-git tag v1.0
-git tag
-git checkout v1.0
-```
+git pull                         # Fetch + integrate remote changes
+git pull --rebase                # Fetch + rebase your commits on top of remote changes
 
-### Stash.
+git push                         # Upload your commits to the remote
+git push origin main             # Push local main to origin
+git push -u origin main          # Push and remember origin/main as upstream
 
-- Temporary put unfinished work aside.
 
-```bash
-git stash
-git stash pop
+# ============================================================
+# STASH — TEMPORARILY STORE UNFINISHED WORK
+# ============================================================
+
+git stash                        # Temporarily save uncommitted changes
+git stash push -m "message"      # Stash changes with a descriptive name
+
+git stash list                   # List all saved stashes
+
+git stash show                   # Show summary of latest stash
+git stash show -p                # Show the actual changes in latest stash
+
+git stash pop                    # Restore latest stash AND remove it from stash list
+git stash apply                  # Restore latest stash BUT keep it in stash list
+
+git stash apply stash@{1}        # Apply a specific stash
+
+git stash drop stash@{1}         # Delete a specific stash
+git stash clear                  # Delete ALL stashes
+
+# Include untracked files:
+git stash -u                     # Stash tracked + untracked files
+
+# Include ignored files too:
+git stash -a                     # Stash tracked + untracked + ignored files
+
+
+# ============================================================
+# UNDO / ROLLBACK
+# ============================================================
+
+git reset --soft HEAD~1           # Undo latest commit; keep changes STAGED
+
+git reset --mixed HEAD~1          # Undo latest commit; keep changes but UNSTAGE them
+# --mixed is the default reset mode
+
+git reset --hard HEAD~1           # Undo latest commit AND discard changes
+# ⚠️ Dangerous: can permanently discard work
+
+git revert <commit>               # Create a NEW commit that reverses an old commit
+
+git reflog                        # Show where HEAD/branches have previously pointed
+# Extremely useful for recovering from accidental resets/rebases
+
+
+# ============================================================
+# RESET — UNDERSTAND THE THREE MODES
+# ============================================================
+
+git reset --soft <commit>         # Move HEAD; keep changes staged
+git reset --mixed <commit>        # Move HEAD; keep changes unstaged
+git reset --hard <commit>         # Move HEAD; discard changes
+
+
+# ============================================================
+# TAGS
+# ============================================================
+
+git tag                           # List tags
+git tag v1.0                      # Create a tag
+git tag -a v1.0 -m "Release 1.0"  # Create an annotated tag
+git push origin v1.0              # Push a tag to remote
+git push origin --tags            # Push all tags
+
+
+# ============================================================
+# USEFUL SEARCH / INSPECTION
+# ============================================================
+
+git grep "text"                  # Search tracked files for text
+git status -sb                   # Short/compact status
+git log --oneline -5             # Show last 5 commits
+git diff HEAD                    # Show all changes since last commit
+git diff <commit1> <commit2>     # Compare two commits
+
+
+# ============================================================
+# CLEANUP
+# ============================================================
+
+git clean -n                     # Preview untracked files that would be deleted
+git clean -f                     # Delete untracked files
+git clean -fd                    # Delete untracked files AND directories
+# ⚠️ Dangerous: deleted files aren't moved to Trash
+
+
+# ============================================================
+# CONFIGURATION
+# ============================================================
+
+git config --list                # Show Git configuration
+git config user.name "Name"      # Set your Git username
+git config user.email "email"    # Set your Git email
+
+git config --global user.name "Name"
+# Set username globally for all repositories
+
+git config --global user.email "email"
+# Set email globally for all repositories
 ```
