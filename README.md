@@ -2381,7 +2381,7 @@ git push --force-with-lease
 
 
 # ============================================================
-# 7. Feature is ready → go to main
+# 7. Feature is ready → go to main.
 # ============================================================
 
 git switch main
