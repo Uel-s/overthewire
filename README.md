@@ -2389,7 +2389,7 @@ git pull
 
 
 # ============================================================
-# 8. Merge your feature into main
+# 8. Merge your feature into main.
 # ============================================================
 
 git merge feature
