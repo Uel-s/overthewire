@@ -2283,7 +2283,7 @@ git switch main
 git merge feature
 ```
 
-### Remote repositories
+### Remote repositories.
 
 ```bash
 git remote -v
