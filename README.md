@@ -16,7 +16,7 @@ A comprehensive guide to Linux commands, SSH, and file operations.
 
 ---
 
-## 2. Basic Navigation
+## 2. Basic Navigation.
 
 ### **pwd**
 
