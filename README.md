@@ -54,7 +54,7 @@ cd -        # Go to previous directory
 
 ---
 
-## 3. File Operations
+## 3. File Operations.
 
 ### **touch**
 
