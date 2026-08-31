@@ -2393,6 +2393,47 @@ git pull
 # ============================================================
 
 git merge feature
+
+# ============================================================
+# MERGE FEATURE INTO MAIN — FAST-FORWARD ONLY
+# ============================================================
+
+git switch main
+# Switch to the main branch.
+# You MUST be on main because you want feature → main.
+
+
+git pull --rebase
+# Update local main from origin/main.
+# --rebase avoids creating an unnecessary merge commit
+# if your local main and origin/main have diverged.
+
+
+git merge --ff-only feature
+# Merge feature into main ONLY if Git can do a fast-forward if not stop.
+#
+# "Fast-forward" means main has no unique commits of its own.
+#
+# Before:
+#
+# main:     A---B
+#                \
+# feature:       C---D
+#
+# After:
+#
+# main:     A---B---C---D
+#                     ↑
+#                  feature
+#
+# No merge commit is created.
+#
+# If a fast-forward is NOT possible, Git stops and does NOT
+# automatically create a merge commit.
+
+
+git push
+# Push the updated main branch to GitHub.
 ```
 
 ### Remote repositories
