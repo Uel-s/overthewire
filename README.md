@@ -2436,6 +2436,14 @@ git push
 # Push the updated main branch to GitHub.
 ```
 
+```bash
+git push→ normal push; doesn't rewrite remote history
+
+git push --force→ force overwrite remote; dangerous
+
+git push --force-with-lease → force overwrite only if remote hasn't unexpectedly changed
+```
+
 ### Remote repositories
 
 ```bash
