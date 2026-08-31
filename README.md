@@ -2393,88 +2393,21 @@ git pull
 # ============================================================
 
 git merge feature
+```
 
+### Remote repositories
 
-# ============================================================
-# 9. Push the updated main to GitHub
-# ============================================================
+```bash
+git remote -v
+git fetch         # download remote history without changing your current branch or files
+git pull          # fetch + integrate the changes.
+git push          # send your commits to remote.
+```
 
-git push
+### Undo / rollback — VERY important
 
-git push                         # Upload your commits to the remote
-git push origin main             # Push local main to origin
-git push -u origin main          # Push and remember origin/main as upstream
-
-
-# ============================================================
-# MERGE FEATURE INTO MAIN — FAST-FORWARD ONLY
-# ============================================================
-
-git switch main
-# Switch to the main branch.
-# You MUST be on main because you want feature → main.
-
-
-git pull --rebase
-# Update local main from origin/main.
-# --rebase avoids creating an unnecessary merge commit
-# if your local main and origin/main have diverged.
-
-
-git merge --ff-only feature # The fast-forward(--ff-only) becomes impossible when main has commits that feature does not have.
-# "Fast-forward" means main has no unique commits of its own.
-#
-# Before:
-#
-# main:     A---B
-#                \
-# feature:       C---D
-#
-# After:
-#
-# main:     A---B---C---D
-#                     ↑
-#                  feature
-#
-# No merge commit is created.
-#
-# If a fast-forward is NOT possible, Git stops and does NOT
-# automatically create a merge commit.
-
-
-git push
-# Push the updated main branch to GitHub.
-
-# ============================================================
-# STASH — TEMPORARILY STORE UNFINISHED WORK
-# ============================================================
-
-git stash                        # Temporarily save uncommitted changes
-git stash push -m "message"      # Stash changes with a descriptive name
-
-git stash list                   # List all saved stashes
-
-git stash show                   # Show summary of latest stash
-git stash show -p                # Show the actual changes in latest stash
-
-git stash pop                    # Restore latest stash AND remove it from stash list
-git stash apply                  # Restore latest stash BUT keep it in stash list
-
-git stash apply stash@{1}        # Apply a specific stash
-
-git stash drop stash@{1}         # Delete a specific stash
-git stash clear                  # Delete ALL stashes
-
-# Include untracked files:
-git stash -u                     # Stash tracked + untracked files
-
-# Include ignored files too:
-git stash -a                     # Stash tracked + untracked + ignored files
-
-
-# ============================================================
-# UNDO / ROLLBACK
-# ============================================================
+```bash
+git commit --amend          # Modify the latest commit.
 
 git reset --soft HEAD~1           # Undo latest commit; keep changes STAGED
 
