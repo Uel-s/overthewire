@@ -4,7 +4,7 @@ A comprehensive guide to Linux commands, SSH, and file operations.
 
 ---
 
-## 1. Introduction & Core Concepts
+## 1. Introduction & Core Concepts.
 
 ### **Definitions**
 
