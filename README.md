@@ -1,4 +1,4 @@
-# Capture the flag (BANDIT)
+# Capture the flag (BANDIT).
 
 A comprehensive guide to Linux commands, SSH, and file operations.
 
