@@ -2318,12 +2318,132 @@ git fetch                        # Download remote changes WITHOUT modifying you
 git fetch --all                  # Fetch from all configured remotes
 
 git pull                         # Fetch + integrate remote changes
-git pull --rebase                # Fetch + rebase your commits on top of remote changes #rebase keeps your commit  history linear and clean eg A-B-C-D-E.
+git pull --rebase                # Update my feature from remote feature.  #Rebase keeps your commit  history linear and clean eg A-B-C-D-E.
+
+# ============================================================
+# 1. Start on main and make sure it's up to date
+# ============================================================
+
+git switch main
+git pull
+
+
+# ============================================================
+# 2. Create your feature branch
+# ============================================================
+
+git switch -c feature
+
+
+# ============================================================
+# 3. Make your changes
+# ============================================================
+
+# edit your files...
+
+git status
+git add .
+git commit -m "Add feature"
+
+
+# ============================================================
+# 4. Push feature to GitHub
+# ============================================================
+
+git push -u origin feature
+
+
+# ============================================================
+# 5. Someone may have updated main while you were working
+#    Update your feature branch with the latest main
+# ============================================================
+
+git switch feature
+
+git fetch origin
+git rebase origin/main
+
+# If there are conflicts:
+#   1. Fix the conflicted files
+#   2. git add <file>
+#   3. git rebase --continue
+#
+# To cancel the rebase:
+#   git rebase --abort
+
+
+# ============================================================
+# 6. Because rebase changed your feature commits,
+#    update the remote feature branch
+# ============================================================
+
+git push --force-with-lease
+
+
+# ============================================================
+# 7. Feature is ready → go to main
+# ============================================================
+
+git switch main
+git pull
+
+
+# ============================================================
+# 8. Merge your feature into main
+# ============================================================
+
+git merge feature
+
+
+# ============================================================
+# 9. Push the updated main to GitHub
+# ============================================================
+
+git push
 
 git push                         # Upload your commits to the remote
 git push origin main             # Push local main to origin
 git push -u origin main          # Push and remember origin/main as upstream
 
+
+# ============================================================
+# MERGE FEATURE INTO MAIN — FAST-FORWARD ONLY
+# ============================================================
+
+git switch main
+# Switch to the main branch.
+# You MUST be on main because you want feature → main.
+
+
+git pull --rebase
+# Update local main from origin/main.
+# --rebase avoids creating an unnecessary merge commit
+# if your local main and origin/main have diverged.
+
+
+git merge --ff-only feature # The fast-forward(--ff-only) becomes impossible when main has commits that feature does not have.
+# "Fast-forward" means main has no unique commits of its own.
+#
+# Before:
+#
+# main:     A---B
+#                \
+# feature:       C---D
+#
+# After:
+#
+# main:     A---B---C---D
+#                     ↑
+#                  feature
+#
+# No merge commit is created.
+#
+# If a fast-forward is NOT possible, Git stops and does NOT
+# automatically create a merge commit.
+
+
+git push
+# Push the updated main branch to GitHub.
 
 # ============================================================
 # STASH — TEMPORARILY STORE UNFINISHED WORK
