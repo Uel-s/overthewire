@@ -2287,7 +2287,7 @@ git merge feature
 
 ```bash
 git remote -v
-git fetch         # download remote history without changing your current branch.
+git fetch         # download remote history without changing your current branch or files
 git pull          # fetch + integrate the changes.
 git push          # send your commits to remote.
 ```
