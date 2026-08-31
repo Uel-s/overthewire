@@ -2286,8 +2286,8 @@ git merge feature
 ### Remote repositories
 
 ```bash
-git remote -v
-git fetch         # download remote history without changing your current branch or files
+git remote -v     # it shows the remote repositories connected to your local Git repository.
+git fetch         # download remote history without changing your current branch.
 git pull          # fetch + integrate the changes.
 git push          # send your commits to remote.
 ```
