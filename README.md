@@ -2493,7 +2493,7 @@ git push origin --tags            # Push all tags
 
 
 # ============================================================
-# USEFUL SEARCH / INSPECTION
+# USEFUL SEARCH / INSPECTION.
 # ============================================================
 
 git grep "text"                  # Search tracked files for text
