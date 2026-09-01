@@ -2319,7 +2319,7 @@ git fetch --all                  # Fetch from all configured remotes
 
 git pull                         # Fetch + integrate remote changes
 git pull --rebase                # Update my feature from remote feature.  #Rebase keeps your commit  history linear and clean eg A-B-C-D-E.
-```bash
+
 # ============================================================
 # WORKFLOW 1: MERGE FEATURE INTO MAIN
 # ============================================================
@@ -2334,19 +2334,15 @@ git switch main
 # Move to main.
 # The branch receiving the feature MUST be the current branch.
 
-
 git pull
 # Make sure local main has the latest changes from GitHub.
-
 
 git merge --ff-only feature
 # Bring feature into main.
 # --ff-only = only merge if main can simply move forward.
 # No merge commit is created.
-#
 # If fast-forward is NOT possible, Git stops.
 # This usually means main has commits that feature doesn't have.
-
 
 git push
 # Push the updated main to GitHub.
@@ -2469,7 +2465,6 @@ git merge main
 # This is valid, but history is less linear than rebase.
 
 
-
 # ============================================================
 # WORKFLOW 4: REBASE MAIN INTO FEATURE
 # ============================================================
@@ -2514,7 +2509,7 @@ git rebase origin/main
 
 git push --force-with-lease
 # Update remote feature because rebase rewrote its commits.
-```
+
 
 ```bash
 git push→ normal push; doesn't rewrite remote history
@@ -2607,3 +2602,4 @@ git config --global user.name "Name"
 git config --global user.email "email"
 # Set email globally for all repositories
 ```
+
