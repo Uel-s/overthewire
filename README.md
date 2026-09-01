@@ -2387,6 +2387,18 @@ git rebase origin/main
 #
 # Your history is now linear.
 
+# If you want to see what files your feature changed compared with main
+
+git diff --name-only origin/main...feature
+
+# See the actual changes.
+
+git diff origin/main...feature
+
+# See a summary 
+
+git diff --stat origin/main...feature
+
 
 # If there are conflicts:
 #
