@@ -2555,6 +2555,7 @@ git reset --mixed HEAD~1          # Undo latest commit; keep changes but UNSTAGE
 git reset --hard HEAD~1           # Undo latest commit AND discard changes
 # ⚠️ Dangerous: can permanently discard work
 
+git reset --soft || --mixed || --hard 0969684 # Use commit hash to be safe after running git log --oneline --graph --all || git relog
 
 # Commit history:
 # git log --online
@@ -2633,4 +2634,3 @@ git config --global user.name "Name"
 git config --global user.email "email"
 # Set email globally for all repositories
 ```
-
