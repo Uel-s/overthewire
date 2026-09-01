@@ -2319,121 +2319,201 @@ git fetch --all                  # Fetch from all configured remotes
 
 git pull                         # Fetch + integrate remote changes
 git pull --rebase                # Update my feature from remote feature.  #Rebase keeps your commit  history linear and clean eg A-B-C-D-E.
-
+```bash
 # ============================================================
-# 1. Merging from main to feature
+# WORKFLOW 1: MERGE FEATURE INTO MAIN
 # ============================================================
-
-git switch main
-git pull
-
-
-# ============================================================
-# 2. Create your feature branch
-# ============================================================
-
-git switch -c feature
-
-
-# ============================================================
-# 3. Make your changes.
-# ============================================================
-
-# edit your files...
-
-git status
-git add .
-git commit -m "Add feature"
-
-
-# ============================================================
-# 4. Push feature to GitHub
-# ============================================================
-
-git push -u origin feature
-
-
-# ============================================================
-# 5. Someone may have updated main while you were working
-#    Update your feature branch with the latest main
-# ============================================================
-
-git switch feature
-
-git fetch origin
-git rebase origin/main
-
-# If there are conflicts:
-#   1. Fix the conflicted files
-#   2. git add <file>
-#   3. git rebase --continue
 #
-# To cancel the rebase:
-#   git rebase --abort
-
-
-# ============================================================
-# 6. Because rebase changed your feature commits,
-#    update the remote feature branch
-# ============================================================
-
-git push --force-with-lease
-
-
-# ============================================================
-# 7. Feature is ready → go to main.
+# Use this when your feature is finished and you want:
+#
+# feature  →  main
+#
 # ============================================================
 
 git switch main
+# Move to main.
+# The branch receiving the feature MUST be the current branch.
+
+
 git pull
-
-
-# ============================================================
-# 8. Merge your feature into main.
-# ============================================================
-
-git merge feature
-
-# ============================================================
-# MERGE FEATURE INTO MAIN — FAST-FORWARD ONLY
-# ============================================================
-
-git switch main
-# Switch to the main branch.
-# You MUST be on main because you want feature → main.
-
-
-git pull --rebase
-# Update local main from origin/main.
-# --rebase avoids creating an unnecessary merge commit
-# if your local main and origin/main have diverged.
+# Make sure local main has the latest changes from GitHub.
 
 
 git merge --ff-only feature
-# Merge feature into main ONLY if Git can do a fast-forward if not stop.
-#
-# "Fast-forward" means main has no unique commits of its own.
-#
-# Before:
-#
-# main:     A---B
-#                \
-# feature:       C---D
-#
-# After:
-#
-# main:     A---B---C---D
-#                     ↑
-#                  feature
-#
+# Bring feature into main.
+# --ff-only = only merge if main can simply move forward.
 # No merge commit is created.
 #
-# If a fast-forward is NOT possible, Git stops and does NOT
-# automatically create a merge commit.
+# If fast-forward is NOT possible, Git stops.
+# This usually means main has commits that feature doesn't have.
 
 
 git push
-# Push the updated main branch to GitHub.
+# Push the updated main to GitHub.
+
+
+
+# ============================================================
+# WORKFLOW 2: MERGE FEATURE INTO MAIN — WHEN MAIN CHANGED
+# ============================================================
+#
+# Use this when another developer changed main while
+# you were working on feature.
+#
+# First update feature with the latest main.
+#
+# main:    A---B---C
+#              \
+# feature:     D---E
+#
+# ============================================================
+
+git switch feature
+# Move to feature.
+
+
+git fetch origin
+# Download the latest remote information.
+# Does NOT change your working files or move your branch.
+
+
+git rebase origin/main
+# Replay your feature commits on top of the latest main.
+#
+# Before:
+#
+# main:    A---B---C
+#              \
+# feature:     D---E
+#
+# After:
+#
+# main:    A---B---C
+#                   \
+# feature:            D'---E'
+#
+# Your history is now linear.
+
+
+# If there are conflicts:
+#
+# 1. Fix the conflicted files
+# 2. git add <file>
+# 3. git rebase --continue
+#
+# To cancel the rebase:
+# git rebase --abort
+
+
+git push --force-with-lease
+# Rebase created new versions of your feature commits.
+# Update the remote feature branch safely.
+#
+# --force-with-lease = force the update only if nobody
+# unexpectedly changed the remote feature branch.
+
+
+# Now feature is up to date with main.
+# You can merge it into main:
+
+
+git switch main
+# Move to main.
+
+
+git pull
+# Get the latest main from GitHub.
+
+
+git merge --ff-only feature
+# Merge the updated feature into main.
+# Because feature was rebased onto main, this should
+# normally be a fast-forward.
+
+
+git push
+# Push the final main to GitHub.
+
+
+
+# ============================================================
+# WORKFLOW 3: MERGE MAIN INTO FEATURE
+# ============================================================
+#
+# Use this when you want to update feature with main,
+# but you DON'T want to rebase.
+#
+# main:    A---B---C
+#              \
+# feature:     D---E
+#
+# ============================================================
+
+git switch feature
+# Move to feature.
+
+
+git pull
+# Update feature from origin/feature, if necessary.
+
+
+git merge main
+# Bring main's changes into feature.
+#
+# This can create a merge commit:
+#
+# main:    A---B---C
+#              \     \
+# feature:     D---E---M
+#
+# This is valid, but history is less linear than rebase.
+
+
+
+# ============================================================
+# WORKFLOW 4: REBASE MAIN INTO FEATURE
+# ============================================================
+#
+# This is YOUR preferred clean-history workflow.
+#
+# Use this when:
+#
+# "I want my feature to be based on the latest main."
+#
+# ============================================================
+
+git switch feature
+# You MUST be on feature.
+# You're changing feature's history.
+
+
+git fetch origin
+# Get the latest remote information.
+
+
+git rebase origin/main
+# Replay feature's commits on top of latest main.
+#
+# Result:
+#
+# main:    A---B---C
+#                   \
+# feature:            D'---E'
+#
+# Clean, linear history.
+
+
+# If conflicts:
+#
+# git add <file>
+# git rebase --continue
+#
+# Cancel:
+# git rebase --abort
+
+
+git push --force-with-lease
+# Update remote feature because rebase rewrote its commits.
 ```
 
 ```bash
