@@ -2302,7 +2302,7 @@ git branch -D <name>             # Force-delete a branch
 
 ```bash
 git merge <branch name>               # Merge another branch into current branch
-git merge --abort                # Cancel an in-progress merge/conflict
+git merge --abort                     # Cancel an in-progress merge/conflict
 
 ```
 
@@ -2512,6 +2512,17 @@ git rebase origin/main
 git push --force-with-lease
 # Update remote feature because rebase rewrote its commits.
 
+```
+
+### GIT STASH — TEMPORARILY SAVE UNCOMMITTED CHANGES
+
+```bash
+git stash              # Save unfinished work
+git stash list         # See saved work
+git stash pop          # Restore + remove saved work meaning i'll no longer need that change put now i can commit it
+git stash apply        # Restore but KEEP saved work, the changes are still present saved under stash.
+git stash drop         # Delete a specific stash
+git stash clear        # Delete ALL stashes
 ```
 
 ```bash
