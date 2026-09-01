@@ -2555,6 +2555,23 @@ git reset --mixed HEAD~1          # Undo latest commit; keep changes but UNSTAGE
 git reset --hard HEAD~1           # Undo latest commit AND discard changes
 # ⚠️ Dangerous: can permanently discard work
 
+
+# Commit history:
+# git log --online
+# a82f91d  ← HEAD (current commit)
+# c31e2aa
+# 7f42b91  ← target commit
+# 4ab12cd
+
+# Count backwards from HEAD:
+#
+# HEAD     = a82f91d   (0 commits back)
+# HEAD~1   = c31e2aa   (1 commit back)
+# HEAD~2   = 7f42b91   (2 commits back)
+# HEAD~3   = 4ab12cd   (3 commits back)
+# git reset --soft HEAD~2
+
+
 git revert <commit> #eg a83f91c               # Create a NEW commit that reverses an old commit
 
 git reflog                        # Show where HEAD/branches have previously pointed
