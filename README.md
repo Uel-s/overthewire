@@ -2321,7 +2321,7 @@ git pull                         # Fetch + integrate remote changes
 git pull --rebase                # Update my feature from remote feature.  #Rebase keeps your commit  history linear and clean eg A-B-C-D-E.
 
 # ============================================================
-# 1. Start on main and make sure it's up to date
+# 1. Merging from main to feature
 # ============================================================
 
 git switch main
