@@ -1,58 +1,40 @@
 # Passwords for Bandit
 
-0.Bandit0.
-`bandit0`
+| Level | Password |
+| ----- | -------- |
+| 0. Bandit0. | `bandit0` |
+| 1. Bandit1. | `6y2kwnwK6grgvwvpvLaa2T1cpFEKOhNR` |
+| 2. Bandit2. | `PK8fYLZg2hnHSz83plBL1iEPKdD3QToB` |
+| 3. Bandit3. | `7ZZ2LFrykP2zEyvBl4m3clcL7tGYJPME` |
+| 4. Bandit4. | `xzTXq1rDJQVVAzdv5cHq1TQytTWufAMq` |
+| 5. Bandit5. | `6C7h9GD8M6ai5nr7wo1RonrzFjj9yIrG` |
+| 6. Bandit6. | `pXa26xhMWaC2SvDotA4r9EgZkulOeSBW` |
+| 7. Bandit7. | `Bmnnvf82KzQlfxgAI2d1zYbr1u9pr3E3` |
+| 8. Bandit8. | `VR1ljMayciFxbnUokuQmJFw6QC9VKtub` |
+| 9. Bandit9. | `EjmOSvuAu7sGAHqHVcBDPirRe9T03kxl` |
+| 10. Bandit10. | `B0s2khmbT9u0geKuOoVGW3JZKhndE3BG` |
+| 11. Bandit11. | `pYfOY6HwUsDj5rL9UvyhU7MCmv8vN5Ro` |
+| 12. Bandit12. | `GROozWPO8QyN0mGrjUkID0WCYkZiQxrN` |
+| 13. Bandit13. | `qQYQiHOBPR8zR61qxYqX45quvihF2uzk` |
+| 14. Bandit14. | `aaWecNkG4FhxJQxz07uiwzVP6bJiYS65` |
+| 15. Bandit15. | `pbLYuZtTg4MgaqfJx8jbA9gKKGqM68A7` |
+| 16. Bandit16. | `kS0Hf0u5HiXFwKMKFqXvPdOTNGGa0X8V` |
+| 18. Bandit18. | `OQxXZjELndr90zuhOTDYBEomI0SZITXI` |
+| 19. Bandit19. | `KpsOfPkcP7i1FlIExk2QEjyt6dw8dxZI` |
+| 20. Bandit20. | `4pIjcunZ0fK2vmp3IwfG8Vf7VhxD6pOA` |
+| 21. Bandit21. | `bW9kBv5WC3P4yoDyf12LSdGuNz5ka6hY` |
+| 22. Bandit22. | `RYVux2rHEm9tiXHmLFzuR7Vhx6AZQMEz` |
+| 23. Bandit23. | `gKXDTAXnIz3OBxiPjRZ2uqutUlPZrBsw` |
+| 24. Bandit24. | `hVQMk3lJNsmQ7VF3ubyrNNBom7BOgVXv` |
+| 25. Bandit25. | `SoHfqMOEqIX2IYKVciZxvgpR9a2Djx4P` |
+| 26. Bandit26. | `jHdv2ELQhT22BkprMNDjybZDAkw1zeBJ` |
+| 27. Bandit27. | `STJLJBRRphMxKB392CT4iOr5CbzPU9ER` |
+| 28. Bandit28. | `y8Yd2ssKcpHpud7UvOSOxwamRMzIGIeQ` |
 
-1.Bandit1.
-`6y2kwnwK6grgvwvpvLaa2T1cpFEKOhNR`
+## 17. Bandit17.
 
-2.Bandit2.
-`PK8fYLZg2hnHSz83plBL1iEPKdD3QToB`
-
-3.Bandit3.
-`7ZZ2LFrykP2zEyvBl4m3clcL7tGYJPME`
-
-4.Bandit4.
-`xzTXq1rDJQVVAzdv5cHq1TQytTWufAMq`
-
-5.Bandit5.
-`6C7h9GD8M6ai5nr7wo1RonrzFjj9yIrG`
-
-6.Bandit6.
-`pXa26xhMWaC2SvDotA4r9EgZkulOeSBW`
-
-7.Bandit7.
-`Bmnnvf82KzQlfxgAI2d1zYbr1u9pr3E3`
-
-8.Bandit8.
-`VR1ljMayciFxbnUokuQmJFw6QC9VKtub`
-
-9.Bandit9.
-`EjmOSvuAu7sGAHqHVcBDPirRe9T03kxl`
-
-10.Bandit10.
-`B0s2khmbT9u0geKuOoVGW3JZKhndE3BG`
-
-11.Bandit11.
-`pYfOY6HwUsDj5rL9UvyhU7MCmv8vN5Ro`
-
-12.Bandit12.
-`GROozWPO8QyN0mGrjUkID0WCYkZiQxrN`
-
-13.Bandit13.
-`qQYQiHOBPR8zR61qxYqX45quvihF2uzk`
-
-14.Bandit14.
-`aaWecNkG4FhxJQxz07uiwzVP6bJiYS65`
-
-15.Bandit15.
-`pbLYuZtTg4MgaqfJx8jbA9gKKGqM68A7`
-
-16.Bandit16.
-`kS0Hf0u5HiXFwKMKFqXvPdOTNGGa0X8V`
-
-17.bandit17.
-`-----BEGIN OPENSSH PRIVATE KEY-----
+`-----BEGIN OPENSSH PRIVATE KEY-----`
+```text
 b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
 NhAAAAAwEAAQAAAYEAvdSaw8j1FQ2DjtbQPGiEVtqEG5kt3g71uDlixg42vRN2MvWRVnGQ
 t4k9T9tDWaisnn+6I4RCkhEzw231WA6KVc0Sd0+6/6Cp1Egp4o4l+xf5gPNo7A2OqjqN67
@@ -89,37 +71,5 @@ OmfbD3ab8psuVcllydLWQfmJmJ7xXyAEtmO2kIg6ax6AEd4PLAgDC504v+bmLPjdvSwqGk
 //vONxwDY+Uy3m3oX+MHK2KRq5Zd3YJd9Px6AF5iMbyiQYA69nsBumqt04Ihe8CFYHa9uG
 KLE1QobuX5Wx6cWaOsc1j61vpaYDEwMUT8LeMFqKjN1rF1LMiNENBQhtd+ikJmYYwB01/5
 Pfos/2C+rbNuHjAAAADnJ1ZHlAbG9jYWxob3N0AQIDBA==
------END OPENSSH PRIVATE KEY-----
-` 
-18.Bandit18.
-`OQxXZjELndr90zuhOTDYBEomI0SZITXI`
-
-19.Bandit19.
-`KpsOfPkcP7i1FlIExk2QEjyt6dw8dxZI`
-
-20.Bandit20.
-`4pIjcunZ0fK2vmp3IwfG8Vf7VhxD6pOA`
-
-21.Bandit21.
-`bW9kBv5WC3P4yoDyf12LSdGuNz5ka6hY`
-
-22. Bandit22.
-`RYVux2rHEm9tiXHmLFzuR7Vhx6AZQMEz`
-
-23.Bandit23.
-`gKXDTAXnIz3OBxiPjRZ2uqutUlPZrBsw`
-
-24.Bandit24.
-`hVQMk3lJNsmQ7VF3ubyrNNBom7BOgVXv`
-
-25.Bandit25.
-`SoHfqMOEqIX2IYKVciZxvgpR9a2Djx4P`
-
-26.Bandit26.
-`jHdv2ELQhT22BkprMNDjybZDAkw1zeBJ`
-
-27.Bandit27.
-`STJLJBRRphMxKB392CT4iOr5CbzPU9ER`
-
-28.Bandit28.
-`y8Yd2ssKcpHpud7UvOSOxwamRMzIGIeQ`
+```
+`-----END OPENSSH PRIVATE KEY-----`

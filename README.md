@@ -4,6 +4,32 @@ A comprehensive guide to Linux commands, SSH, and file operations.
 
 ---
 
+## Table of Contents
+
+- [1. Introduction & Core Concepts](#1-introduction--core-concepts)
+- [2. Basic Navigation](#2-basic-navigation)
+- [3. File Operations](#3-file-operations)
+- [4. Permissions & Ownership](#4-permissions--ownership)
+- [5. Viewing, Searching & Processing](#5-viewing-searching--processing)
+- [6. Compression & Archives](#6-compression--archives)
+- [6. Network & Remote Access](#6-network--remote-access)
+- [7. Shell Syntax & Scripting](#7-shell-syntax--scripting)
+- [8. Miscellaneous](#8-miscellaneous)
+- [Piping and Redirection](#piping-and-redirection)
+- [Rotation](#10-rotation)
+- [Hex dump](#hex-dump)
+- [11. SSH/OpenSSH/Keys](#11-sshopensshkeys)
+- [12. IP Address and Ports](#12-ip-address-and-ports)
+- [13. Network troubleshooting](#13-network-troubleshooting)
+- [PORT SCAN](#port-scan)
+- [Set User Identity (setuid) and Set Group Identity(Setgid)](#set-user-identity-setuid-and-set-group-identitysetgid)
+- [Managing Programs in GNU/LINUX](#managing-programs-in-gnulinux)
+- [cron, crontab crontab file](#cron-crontab-crontab-file)
+- [more, vi, id.](#moreviid)
+- [The most important Git concepts to learn](#the-most-important-git-concepts-to-learn)
+
+---
+
 ## 1. Introduction & Core Concepts.
 
 ### **Definitions**
@@ -144,14 +170,16 @@ Changes file permissions.
 
 **Numeric Mode:**
 
-- **7** = `rwx` (Read + Write + Execute)
-- **6** = `rw-` (Read + Write)
-- **5** = `r-x` (Read + Execute)
-- **4** = `r--` (Read only)
-- **3** = `-wx` (Write + Execute)
-- **2** = `-w-` (Write only)
-- **1** = `--x` (Execute only)
-- **0** = `---` (No access)
+| Value | Permissions | Meaning |
+| ----- | ----------- | ------- |
+| **7** | `rwx` | Read + Write + Execute |
+| **6** | `rw-` | Read + Write |
+| **5** | `r-x` | Read + Execute |
+| **4** | `r--` | Read only |
+| **3** | `-wx` | Write + Execute |
+| **2** | `-w-` | Write only |
+| **1** | `--x` | Execute only |
+| **0** | `---` | No access |
 
 **Common Permissions:**
 
@@ -164,8 +192,15 @@ chmod 700 directory/   # Owner: rwx, Group: ---, Others: --- (Private directorie
 
 **Symbolic Mode:**
 
-- `u` = user/owner, `g` = group, `o` = others, `a` = all
-- `+` = add, `-` = remove, `=` = set
+| Symbol | Meaning |
+| ------ | ------- |
+| `u` | user/owner |
+| `g` | group |
+| `o` | others |
+| `a` | all |
+| `+` | add |
+| `-` | remove |
+| `=` | set |
 
 ```bash
 chmod u+x script.sh    # Add execute for user
@@ -213,9 +248,11 @@ find / -name README.md 2>/dev/null
 find / -type f -size 33c -user bandit -group bandit1 2>/dev/null
 ```
 
-- `-type f`: File
-- `-size 33c`: Exactly 33 bytes
-- `2>/dev/null`: Hide error messages
+| Option | Meaning |
+| ------ | ------- |
+| `-type f` | File |
+| `-size 33c` | Exactly 33 bytes |
+| `2>/dev/null` | Hide error messages |
 
 ### **sort & uniq**
 
@@ -409,11 +446,11 @@ history         # Show command history
 
 - Every program we run on the command line has 3 data streams connected to it.
 
-```bash
-1. STDIN(0) - Standard input (data fed into the program).
-2. STDOUT(1) - Standard output (data printed by the program, default to terminal).
-3. STDERR(2) - Standard Error (for error messages, also default to the terminal).
-```
+| Stream | Descriptor | Purpose |
+| ------ | ---------- | ------- |
+| STDIN | 0 | Standard input (data fed into the program) |
+| STDOUT | 1 | Standard output (data printed by the program, default to terminal) |
+| STDERR | 2 | Standard Error (for error messages, also default to the terminal) |
 
 - **Piping and Redirection** is the means by which we connect these `streams` between programs and files to direct data in interesting and useful ways
 
@@ -613,7 +650,7 @@ $ ls | head -3 | tail -2 > myoutput
 
 _**In-site**_
 
-```py
+```bash
 ABCDEFGHIJKLM NOPQRSTUVWXYZ
 NOPQRSTUVWXYZ ABCDEFGHIJKLM
 
@@ -623,12 +660,12 @@ nopqrstuvwxyz abcdefghijklm
 
 ***Example**_
 
-```py
+```bash
 Hello → Uryyb 
 Uryyb → Hello
 ```
 
-```py
+```bash
 cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
 ```
 
@@ -638,14 +675,14 @@ cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
 
 _**In-site**_
 
-```py
+```bash
 01234 56789
 56789 01234
 ```
 
 ***Example1**_
 
-```py
+```bash
 Hello123
 Hello678
 ```
@@ -654,7 +691,7 @@ _**Example2**_
 
 - Find the code which is encoded with  ROT18.
 
-```py
+```bash
 cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m' | tr '0-9' '5-90-4'
 ```
 
@@ -666,13 +703,13 @@ cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m' | tr '0-9' '5-90-4'
 
 _**Example1**_
 
-```py
+```bash
 echo "ROT47 test 123!" | tr '\!-~' 'P-~\!-O'
 ```
 
 _**Example2**_
 
-```py
+```bash
 Input:  The Quick Brown Fox
 Output: %96 "F:4< qC@H? u@I
 ```
@@ -685,7 +722,7 @@ Output: %96 "F:4< qC@H? u@I
 
 - A hex dump shows each byte like this:
 
-```py
+```bash
 00000000 → memory/file position (offset)
 
 48 65 6c 6c 6f (Hello) -> raw bytes in Hex
@@ -695,7 +732,7 @@ Output: %96 "F:4< qC@H? u@I
 
 - For spotting hidden formatting issues.
 
-```py
+```bash
 Common hex values:
 0a → newline (\n)
 09 → tab (\t)
@@ -720,33 +757,33 @@ Common hex values:
 
 _**example**_
 
-```py
+```bash
 echo -e "A\tB\nC" | xxd
 #(hex dump)
 00000000: 4109 420a 430a                           A.B.C.
 ```
 
-```py
+```bash
 echo -e "A\tB\nC" | hexdump -C
 
 00000000  41 09 42 0a 43 0a                                 |A.B.C.|
 00000006
 ```
 
-```py
+```bash
 echo  "A\tB\nC" | od -x 
 
 0000000 5c41 4274 6e5c 0a43
 0000010
 ```
 
-```py
+```bash
 echo "00000000: 4109 420a 430a" | xxd -r -p (human readable)
 output:A       B
 C
 ```
 
-```py
+```bash
 echo "00000000: 4109 420a 430a" | xxd -p (hexadecimal)
 output: 30303030303030303a2034313039203432306120343330610a
 ```
@@ -761,7 +798,7 @@ output: 30303030303030303a2034313039203432306120343330610a
 
 Connecting to a remote machine.
 
-```py
+```bash
 ssh user@host
 ssh -p 2220 user@localhost  # Connect to specific port 
 ```
@@ -770,7 +807,7 @@ ssh -p 2220 user@localhost  # Connect to specific port
 
 **Generating keys:**
 
-```py
+```bash
 # New Standard (Recommended)
 
 ssh-keygen -t ed25519 -C "comment"  
@@ -785,7 +822,7 @@ Avoid re-typing passphrases.
 
 `Linux`
 
-```py
+```bash
 eval "$(ssh-agent -s)"      # Start agent
 ssh-add ~/.ssh/id_ed25519   # Add private-key
 ssh-add -l                  # List keys
@@ -793,7 +830,7 @@ ssh-add -l                  # List keys
 
 `Windows`
 
-```py
+```bash
 Get-Service ssh-agent
 Set-Service -Name ssh-agent -StartupType Automatic
 Start-Service ssh-agent
@@ -844,7 +881,7 @@ scp -r -P 2220 username@host:~/remote_folder/ ~/my_folder/
 
 - For secure ssh run the following:
 
-```py
+```bash
 chmod 700 ~/.ssh # Only owner can -rwx-
 chmod 600 ~/.ssh/authorized_keys # only owner can -rw- key files.
 chmod go-w ~/ # Remove write permission (w) from group (g) and others (o) on your home directory (~)
@@ -855,7 +892,7 @@ chmod go-w ~/ # Remove write permission (w) from group (g) and others (o) on you
 - Run the command below to make sure;
  `PubkeyAuthentication: yes and RSAAuthentication: yes`
 
-```py
+```bash
 sudo cat /etc/ssh/sshd_config
 $ sudo service ssh restart # To apply any change/fix
 ```
@@ -864,7 +901,7 @@ $ sudo service ssh restart # To apply any change/fix
 
 - How to copy .pub-key
 
-```py
+```bash
 $ ssh-copy-id user@host # Copies your public key to the remote server for login
    or
 $ cat id_rsa.pub >> ~/.ssh/authorized_keys
@@ -877,7 +914,7 @@ $ cat ~/.ssh/id_ed22519.pub || $ cat ~/.ssh/authorized_keys
 
 **4.Debug connection**
 
-```py
+```bash
 ssh -v user@host
 # look for the following;
 Offering public key → good
@@ -888,13 +925,13 @@ Permission denied → problem
 
 `ERROR`
 
-```py
+```bash
 Agent admitted failure to sign
 ```
 
 `FIX`
 
-```py
+```bash
 ssh-add
 ```
 
@@ -910,7 +947,7 @@ ssh-add
 
  `👉 SSH can’t read:`
 
-```py
+```bash
 ~/.ssh/authorized_keys
 ```
 
@@ -918,7 +955,7 @@ ssh-add
 
 - move it to:
 
-```py
+```bash
 /etc/ssh/<username>/authorized_keys
 
 eg:
@@ -926,60 +963,27 @@ eg:
 /etc/ssh/mikneat/authorized_keys
 ```
 
-```py
+```bash
 
 `.bashrc` is simply a script that Bash executes when it starts
 
-#################################
-# SSH COMMON FLAGS + USE CASES
-#################################
-
-# Use specific private key
-ssh -i key user@host
-# → when key is not default (~/.ssh/id_*)
-
-# Specify port
-ssh -p 2220 user@host
-# → when server not on port 22 (Bandit uses 2220)
-
-# Verbose (debugging)
-ssh -v user@host
-ssh -vvv user@host
-# → shows why auth fails
-
-# Disable strict host checking (CTF/testing)
-ssh -o StrictHostKeyChecking=no user@host
-# → avoids "authenticity" prompt
-
-# Use different config file
-ssh -F custom_config user@host
-# → for custom setups
-
-# Forward local port
-ssh -L 8080:localhost:80 user@host
-# → access remote service locally
-
-# Run command without shell
-ssh user@host "ls -la"
-# → execute remote command directly
-
-# Allocate TTY (force interactive shell)
-ssh -t user@host
-# → needed for some commands (sudo, etc.)
-
-# Quiet mode
-ssh -q user@host
-# → suppress output
-
-# Background connection
-ssh -f user@host
-# → run in background (with port forwarding)
-
-# Jump host (proxy)
-ssh -J jumpuser@jumphost user@target
-# → connect through another server
-
 ```
+
+### SSH Common Flags + Use Cases
+
+| Command | Purpose |
+| ------- | ------- |
+| `ssh -i key user@host` | Use specific private key (when key is not default `~/.ssh/id_*`) |
+| `ssh -p 2220 user@host` | Specify port (when server not on port 22 - Bandit uses 2220) |
+| `ssh -v user@host` / `ssh -vvv user@host` | Verbose / debugging (shows why auth fails) |
+| `ssh -o StrictHostKeyChecking=no user@host` | Disable strict host checking (CTF/testing, avoids "authenticity" prompt) |
+| `ssh -F custom_config user@host` | Use different config file (for custom setups) |
+| `ssh -L 8080:localhost:80 user@host` | Forward local port (access remote service locally) |
+| `ssh user@host "ls -la"` | Run command without shell (execute remote command directly) |
+| `ssh -t user@host` | Allocate TTY (force interactive shell, needed for some commands like sudo) |
+| `ssh -q user@host` | Quiet mode (suppress output) |
+| `ssh -f user@host` | Background connection (run in background with port forwarding) |
+| `ssh -J jumpuser@jumphost user@target` | Jump host / proxy (connect through another server) |
 
 ## 12. IP Address and Ports
 
@@ -996,30 +1000,30 @@ ssh -J jumpuser@jumphost user@target
 
 - A MAC address is the hardware address of a network interface (Wi-Fi card, Ethernet card). ($ ip link)
 
-```bash
-Public IP 102.89.10.25 Identifies your network on the Internet
-Local (Private) IP 192.168.100.17 Identifies your device inside your local network
-MAC Address 34:56:FE:A1:22:9C Identifies device's serial number/ID card
-```
+| Address | Value | Identifies |
+| ------- | ----- | ---------- |
+| Public IP | `102.89.10.25` | Your network on the Internet |
+| Local (Private) IP | `192.168.100.17` | Your device inside your local network |
+| MAC Address | `34:56:FE:A1:22:9C` | Device's serial number/ID card |
 
 ### Commands to use
 
 - 1. To check your Local IP/Private IP.
 
-```py
+```bash
 ip a || hostname -I
 ```
 
 - 1. Public IP
 
-```py
+```bash
 curl ifconfig.me
 ```
 
 - 1. To check (DNS query) information about a domain name eg IP address.
 (DNS=converting names into IP addresses)
 
-```py
+```bash
 $ dig +short google.com # Only IP
 
 $ dig google.com || $ nslookup google.com 
@@ -1056,7 +1060,7 @@ Static IP = Permanent,manually configured address that never changes. (website,s
 
 - $ curl = a command-line tool to send requests to URLs (servers) and get responses.
 
-```py
+```bash
 $ curl -Iv https://google.com #HTTPS debugging
 # Get API data
 curl https://api.github.com
@@ -1081,7 +1085,7 @@ $ curl -X DELETE https://api.example.com/users/1
 - `Loopback/localhost` is a built-in networking feature where your computer sends traffic back to itself instead of out to the network.
 - `Packets` is data divided into smaller units for transmission and reassembled at the destination
 
-```py
+```bash
 Main loopback addresses:
 
 127.0.0.1 #IPv4
@@ -1114,21 +1118,21 @@ Example: deployed apps
 ***
 Common ports you should memorize
 
-80 → HTTP (web)
-
-443 → HTTPS (secure web)
-
-22 → SSH (remote login)
-
-25 → SMTP(Simple Mail Transfer Protocol) email sending
-
-53 → DNS (domain lookup) UDP&TCP
+| Port | Protocol / Service |
+| ---- | ------------------ |
+| 80   | HTTP (web) |
+| 443  | HTTPS (secure web) |
+| 22   | SSH (remote login) |
+| 25   | SMTP (Simple Mail Transfer Protocol) email sending |
+| 53   | DNS (domain lookup) UDP & TCP |
 ***
 
-- TCP → reliable, ordered (web, email, SSH)
-- UDP → faster, no guarantee (streaming, games)
-- LAN → Locally
-- WAN → Globally
+| Term | Meaning |
+| ---- | ------- |
+| TCP  | Reliable, ordered (web, email, SSH) |
+| UDP  | Faster, no guarantee (streaming, games) |
+| LAN  | Locally |
+| WAN  | Globally |
 
 **Command under IP/Ports**
 
@@ -1172,7 +1176,7 @@ Ad hoc file transfer
 Reverse shells (security testing)
 ```
 
-```py
+```bash
 Check port:
 
 $ nc -zv google.com 80
@@ -1368,7 +1372,7 @@ $ nmap -sn 192.168.1.0/24
 
 - if curl or your browser complains about an untrusted certificate, use the `showcerts` flag to dump the full chain sent by the server.
 
-```py
+```bash
 openssl s_client -connect example.com:443 -servername example.com -showcerts < /dev/null
 ```
 
@@ -1376,7 +1380,7 @@ openssl s_client -connect example.com:443 -servername example.com -showcerts < /
 
 - If a connection is dropping mid-handshake and you do not know why, you can peek at the raw data packets using -debug or -msg
 
-```py
+```bash
 openssl s_client -connect example.com:443 -servername example.com -msg -debug < /dev/null
 
 ```
@@ -1385,7 +1389,7 @@ openssl s_client -connect example.com:443 -servername example.com -msg -debug < 
 
 - To check whether a machine support you specific tls version and force openssl to drop to older protocol levels.
 
-```py
+```bash
 openssl s_client -connect example.com:443 -servername example.com -tls1_2 < /dev/null #1.2 only.
 openssl s_client -connect example.com:443 -servername example.com -tls1_3 < /dev/null #1.3 only.
 
@@ -1393,7 +1397,7 @@ openssl s_client -connect example.com:443 -servername example.com -tls1_3 < /dev
 
 ### 4. Testing a specific Cipher Suite.(specific/weak cipher)
 
-```py
+```bash
 # Test a TLS 1.2 cipher
 openssl s_client -connect example.com:443 -servername example.com -cipher ECDHE-RSA-AES128-GCM-SHA256 < /dev/null
 
@@ -1406,13 +1410,13 @@ openssl s_client -connect example.com:443 -servername example.com -ciphersuites 
 
 - When a server demands a client certificate to let you in, debugging it can be tricky. Pass your local client certificate and key to test the handshake:
 
-```py
+```bash
 openssl s_client -connect example.com:443 -servername example.com -cert client.crt -key client.key -CAfile rootCA.crt
 ```
 
 ### 6.Testing Non-Web Services (STARTTLS)
 
-```py
+```bash
 # Test a Mail Server (SMTP)
 openssl s_client -connect ://example.com -starttls smtp
 
@@ -1445,7 +1449,7 @@ Use Case:
 - Create encrypted tunnels.
 - Connect files, sockets, serial ports, TCP & UDP
 
-```py
+```bash
 #port forwarding 8080 -> 80
 $ socat TCP-LISTEN:8080,fork TCP:example.com:
 $ curl -vk https://localhost:8080 
@@ -1534,7 +1538,7 @@ $ socat - UNIX-CONNECT:/tmp/chat.sock
 
 - a command-line tool used to display active network connections (both incoming and outgoing),  routing tables, and interface statistics.
 
-```py
+```bash
 
 # show listening ports:
 
@@ -1542,7 +1546,7 @@ $ netstat -tulnp
 
 ```
 
-```py
+```bash
 
 # Show routing table
 
@@ -1550,14 +1554,14 @@ $ netstat -rn
 
 ```
 
-```py
+```bash
 # Continuos mode to watch live connections.
 
 $ netstat -c 
 
 ```
 
-```py
+```bash
 
 # This flag includes all established outbound web-browsing connections too not just listening.
 
@@ -1565,7 +1569,7 @@ $ netstat -a
 
 ```
 
-```py
+```bash
 
 #  Interface Statistics. Shows a quick health breakdown of packets sent, received, or dropped on your Wi-Fi card
 
@@ -1573,7 +1577,7 @@ $ netstat -i
 
 ```
 
-```py
+```bash
 
 # Protocol Summary.
 
@@ -1585,23 +1589,21 @@ netstat -s
 
 - Used to display detailed information about `network sockets`.
 
-```py
+```bash
 # Listening ports and processes
 
 $ ss -tunlp
 
 ```
 
-```py
-
-```py
+```bash
 # Establish connection.
 
 $ ss -tan
 
 ```
 
-```py
+```bash
 
 # shows only connections that are actively transmitting data right now.
 
@@ -1613,7 +1615,6 @@ $ ss -t state established #(or just -t) (or -tp to see specific server)
 
 ### Network troubleshooting summary
 
-```bash
 | Tool       | Main Purpose                                |
 | ---------- | ------------------------------------------- |
 | ss         | See network connections and listening ports |
@@ -1625,29 +1626,31 @@ $ ss -t state established #(or just -t) (or -tp to see specific server)
 
 `nmap` explores remote systems over the network, while `ss` investigates your own local machine
 
-```
+### `ss` flags
 
-```
-tunlp
--t -> show tcp port.
--u -> show udp port.
--n -> show numerical addresses (192.168.0.1:80).
--l -> show only listening port.
--p -> show the PID(process ID) and program name using port.
-```
+| Flag | Meaning |
+| ---- | ------- |
+| `-t` | Show tcp port |
+| `-u` | Show udp port |
+| `-n` | Show numerical addresses (192.168.0.1:80) |
+| `-l` | Show only listening port |
+| `-p` | Show the PID (process ID) and program name using port |
+
+### Quick Memory Trick
+
+| Command   | What it does |
+| --------- | ------------ |
+| s_client  | Connect to TLS server |
+| x509      | Read/manage certificates |
+| req       | Create/read CSRs (Certificate Signing Requests) |
+| genpkey   | Generate private keys |
+| verify    | Validate certificates |
+
+`Flow: genpkey → req → x509 → verify → s_client`
+
+### Typical Workflow
 
 ```bash
-Quick Memory Trick
-Command What it does
-s_client Connect to TLS server
-x509 Read/manage certificates
-req Create/read CSRs(Certificate Signing Requests)
-genpkey Generate private keys
-verify Validate certificates
-
-Flow: genpkey → req → x509 → verify → s_client
-
-Typical Workflow
 Step 1: Generate Private Key
 openssl genpkey -algorithm RSA -out private.key
 
@@ -1696,9 +1699,11 @@ openssl s_client -connect example.com:443
 
 ### Port Scan Results
 
-- Open – A service is listening and accepts connections.
-- Closed – No service is listening; connections are rejected.
-- Filtered – No response, usually due to a firewall or packet filtering.
+| Result | Meaning |
+| ------ | ------- |
+| Open | A service is listening and accepts connections |
+| Closed | No service is listening; connections are rejected |
+| Filtered | No response, usually due to a firewall or packet filtering |
 
 ### Security Implications
 
@@ -1713,7 +1718,7 @@ openssl s_client -connect example.com:443
 
 `diff` - command used to compare two files line by line.
 
-```py
+```bash
 # Flags
 
 $ diff -u old.txt new.txt  # show what left(-) in the old file and whats new in the new file(+). (space) file is unchanged.
@@ -1746,7 +1751,7 @@ $ diff -w file1.txt file2.txt # ignore whitespace
 
 ### How to tell a SETUID/GID file
 
-```py
+```bash
 s replaces the owner's x → SetUID enabled.
 -rwsr-xr-x
 
@@ -1761,7 +1766,7 @@ drwxrwxrwt
 
 ### To find SETUID and SETGID Programs
 
-```py
+```bash
 $ ll
 
 $ find / -perm  -4000 2>/dev/null # SETUID
@@ -1774,7 +1779,7 @@ find / -perm -1000 2>dev/null # sticky bit # used mainly on dir (Users can only 
 
 ### Set the SetUID/SetGID to files
 
-```py
+```bash
 
 chmod u+s filename or chmod 4755 # GETUID (u-s) #reverse
 
@@ -1788,7 +1793,7 @@ chmod +t directory or chmod 1755  # set sticky bit. (Without the Sticky Bit, one
 
 ### Test sticky bit
 
-```py
+```bash
 $ ls -ld /tmp
 
 out: drwxrwxrwt
@@ -1887,18 +1892,19 @@ $ bg %2 # Same as for fg
 
 #### Summary
 
-```py
+```bash
 [1]+ Stopped sleep 1000    # + → Current job (the default job used by commands like fg and bg)
 [2]- Running sleep 2000 &  # - → Previous job (the one that becomes current if the + job ends)
 [3] Running sleep 3000 &   # No symbol → Other jobs
+```
 
 | State                 | `jobs` output                         |
 | --------------------- | ------------------------------------- |
 | Running in foreground | Doesn't appear in `jobs` while active |
 | Stopped (`Ctrl+Z`)    | No `&`                                |
 | Running in background | Has `&`                               |
-# The & means "run this command in the background"
-```
+
+`The & means "run this command in the background"`
 
 ### Screen
 
@@ -1906,7 +1912,7 @@ $ bg %2 # Same as for fg
 
 ## Example
 
-```py
+```bash
 screen # To activate tool.
 
 python app.py # run a script/program.
@@ -2105,7 +2111,7 @@ man 8 crontab # When administering the cron service, troubleshooting why jobs ar
 
 `/usr/bin`- is a directory that stores executable programs
 
-# Quick Summary
+### Quick Summary
 
 | Directory | Purpose |
 | ----------- | --------- |
@@ -2119,8 +2125,8 @@ man 8 crontab # When administering the cron service, troubleshooting why jobs ar
 | `/boot` | Boot files and is responsible for  |
 | `/dev` | Converts hardware and Virtual devices into files where programs and users can interect with them. |
 | `/lib` | Contains shared libraries(reuseble programs) that programs need to run. |
-| `/media`  → usually where USB/external drives are mounted |
-| `/mnt`    → usually where you manually mount something temporarily |
+| `/media` | Usually where USB/external drives are mounted |
+| `/mnt` | Usually where you manually mount something temporarily |
 | `/opt` | Optional software installed from 3rd party sources |
 | `/proc` | Process and kernel information |
 | `/root` | Root user's home |
@@ -2128,8 +2134,6 @@ man 8 crontab # When administering the cron service, troubleshooting why jobs ar
 | `/srv` | Files that a server is sharing/providing to others. |
 | `/sys` | Hardware and kernel information |
 | `/var` | Files that change while Linux is running. |
-
-```
 
 ### Core Usage and Flags
 
@@ -2161,7 +2165,7 @@ id   → IDENTIFY
 
 ```bash
 more filename # Will show some data in the file but in % ie 2%, press up-down arrow to increase %.
-```~
+```
 
 ```bash
 Space       → next page
@@ -2234,21 +2238,19 @@ mikneat adm cdrom sudo dip plugdev users lpadmin lxd. # Shows the groups you bel
 
 ## The most important Git concepts to learn.
 
-```bash
-# ============================================================
-# BASIC
-# ============================================================
+#### BASIC
 
+```bash
 git init                         # Create a new Git repository
 git clone <URL>                  # Clone/download a remote repository
 git status                       # Show current state of working tree
 git help <command>               # Show help for a Git command
 
+```
 
-# ============================================================
-# STAGING & COMMITS
-# ============================================================
+#### STAGING & COMMITS
 
+```bash
 git add filename                 # Stage a specific file
 git add .                        # Stage all changes in current directory
 git restore filename              # Discard unstaged changes to a file
@@ -2265,11 +2267,11 @@ git commit --amend -m "Better message"
 git add file.txt
 git commit --amend
 
+```
 
-# ============================================================
-# VIEWING CHANGES & HISTORY
-# ============================================================
+#### VIEWING CHANGES & HISTORY
 
+```bash
 git diff                          # Show unstaged changes
 git diff --staged                 # Show staged changes
 git log                           # Show detailed commit history
@@ -2278,11 +2280,11 @@ git log --oneline --graph --all   # Show compact visual history of all branches
 git show <commit> #eg a83f91c     # Show details of a specific commit
 git blame filename                 # Show who last changed each line
 
+```
 
-# ============================================================
-# BRANCHES
-# ============================================================
+#### BRANCHES
 
+```bash
 git branch                       # List local branches
 git branch <name>                # Create a new branch
 git switch <name>                # Switch to an existing branch
@@ -2294,19 +2296,21 @@ git checkout <name>              # Older way to switch branches
 git branch -d <name>             # Delete a branch if it has been merged
 git branch -D <name>             # Force-delete a branch
 
+```
 
-# ============================================================
-# MERGING
-# ============================================================
+#### MERGING
 
+```bash
 git merge <branch name>               # Merge another branch into current branch
 git merge --abort                # Cancel an in-progress merge/conflict
 
+```
 
-# ============================================================
-# REMOTES
-# ============================================================
+#### REMOTES
 
+#### REMOTES
+
+```bash
 git remote -v                    # Show remote repository URLs
 git remote                       # Show remote names
 
@@ -2320,16 +2324,13 @@ git fetch --all                  # Fetch from all configured remotes
 git pull                         # Fetch + integrate remote changes
 git pull --rebase                # Update my feature from remote feature.  #Rebase keeps your commit  history linear and clean eg A-B-C-D-E.
 
-# ============================================================
-# WORKFLOW 1: MERGE FEATURE INTO MAIN
-# ============================================================
-#
-# Use this when your feature is finished and you want:
-#
-# feature  →  main
-#
-# ============================================================
+```
 
+#### WORKFLOW 1: MERGE FEATURE INTO MAIN
+
+*Use this when your feature is finished and you want: `feature → main`*
+
+```bash
 git switch main
 # Move to main.
 # The branch receiving the feature MUST be the current branch.
@@ -2347,23 +2348,19 @@ git merge --ff-only feature
 git push
 # Push the updated main to GitHub.
 
+```
 
+#### WORKFLOW 2: MERGE FEATURE INTO MAIN — WHEN MAIN CHANGED
 
-# ============================================================
-# WORKFLOW 2: MERGE FEATURE INTO MAIN — WHEN MAIN CHANGED
-# ============================================================
-#
-# Use this when another developer changed main while
-# you were working on feature.
-#
-# First update feature with the latest main.
-#
-# main:    A---B---C
-#              \
-# feature:     D---E
-#
-# ============================================================
+*Use this when another developer changed main while you were working on feature. First update feature with the latest main.*
 
+```text
+main:    A---B---C
+             \
+feature:     D---E
+```
+
+```bash
 git switch feature
 # Move to feature.
 
@@ -2430,21 +2427,19 @@ git merge --ff-only feature
 git push
 # Push the final main to GitHub.
 
+```
 
+#### WORKFLOW 3: MERGE MAIN INTO FEATURE
 
-# ============================================================
-# WORKFLOW 3: MERGE MAIN INTO FEATURE
-# ============================================================
-#
-# Use this when you want to update feature with main,
-# but you DON'T want to rebase.
-#
-# main:    A---B---C
-#              \
-# feature:     D---E
-#
-# ============================================================
+*Use this when you want to update feature with main, but you DON'T want to rebase.*
 
+```text
+main:    A---B---C
+             \
+feature:     D---E
+```
+
+```bash
 git switch feature
 # Move to feature.
 
@@ -2464,19 +2459,13 @@ git merge main
 #
 # This is valid, but history is less linear than rebase.
 
+```
 
-# ============================================================
-# WORKFLOW 4: REBASE MAIN INTO FEATURE
-# ============================================================
-#
-# This is YOUR preferred clean-history workflow.
-#
-# Use this when:
-#
-# "I want my feature to be based on the latest main."
-#
-# ============================================================
+#### WORKFLOW 4: REBASE MAIN INTO FEATURE
 
+*This is YOUR preferred clean-history workflow. Use this when: "I want my feature to be based on the latest main."*
+
+```bash
 git switch feature
 # You MUST be on feature.
 # You're changing feature's history.
@@ -2505,11 +2494,10 @@ git rebase origin/main
 #
 # Cancel:
 # git rebase --abort
-
-
 git push --force-with-lease
 # Update remote feature because rebase rewrote its commits.
 
+```
 
 ```bash
 git push→ normal push; doesn't rewrite remote history
