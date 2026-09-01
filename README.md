@@ -2335,7 +2335,9 @@ git switch main
 # Move to main.
 # The branch receiving the feature MUST be the current branch.
 
-git pull
+git fetch origin
+
+git pull --rebase 
 # Make sure local main has the latest changes from GitHub.
 
 git merge --ff-only feature
@@ -2425,8 +2427,9 @@ git push --force-with-lease
 git switch main
 # Move to main.
 
+git fetch origin
 
-git pull
+git pull --rebase
 # Get the latest main from GitHub.
 
 
