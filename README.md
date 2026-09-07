@@ -2573,7 +2573,7 @@ git reset --soft || --mixed || --hard 0969684 # Use commit hash to be safe after
 # git reset --soft HEAD~2
 
 
-git revert <commit> #eg a83f91c               # Create a NEW commit that reverses an old commit
+git revert <commit> #eg a83f91c   # Create a NEW commit that reverses an old commit but stores the history tree.
 
 git reflog                        # Show where HEAD/branches have previously pointed
 # Extremely useful for recovering from accidental resets/rebases
@@ -2646,7 +2646,4 @@ ps -ef
 # All running processes in full format
 
 ps aux | grep <name>
-# Find a specific process
-```
-
-# revert
+# Find a specific proce
