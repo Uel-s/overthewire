@@ -2634,3 +2634,17 @@ git config --global user.name "Name"
 git config --global user.email "email"
 # Set email globally for all repositories
 ```
+
+```bash
+ps
+# Processes in your current terminal
+
+ps aux
+# All running processes + detailed information
+
+ps -ef
+# All running processes in full format
+
+ps aux | grep <name>
+# Find a specific process
+```
