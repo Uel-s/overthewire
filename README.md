@@ -2526,7 +2526,7 @@ git stash clear        # Delete ALL stashes
 ```
 
 ```bash
-git push→ normal push; doesn't rewrite remote history
+git push→ normal push; doesn't rewrite remote history.
 
 git push --force→ force overwrite remote; dangerous
 
