@@ -2616,7 +2616,7 @@ git diff <commit1> <commit2>     # Compare two commits
 # CLEANUP
 # ============================================================
 
-git clean -n                     # Preview untracked files that would be deleted
+git clean -n                     # Preview untracked *files* that would be deleted
 git clean -f                     # Delete untracked files
 git clean -fd                    # Delete untracked files AND directories
 # ⚠️ Dangerous: deleted files aren't moved to Trash
