@@ -2595,8 +2595,8 @@ git reset --hard <commit> #eg a83f91c         # Move HEAD; discard changes
 git tag                           # List tags
 git tag payments 7f43b91          # Create a tag. (7f43b91 - commit name that we change to payment)
 git show payments                   # Show tag or git show 7f42b91(commit#)
-git tag -a v1.0 -m "Release 1.0"  # Create an annotated tag
-git push origin v1.0              # Push a tag to remote
+git tag -a payments -m "Release 1.0"  # Create an annotated tag
+git push origin payments            # Push a tag to remote
 git push origin --tags            # Push all tags
 
 
