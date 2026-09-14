@@ -30,7 +30,7 @@
 | 26. Bandit26. | `jHdv2ELQhT22BkprMNDjybZDAkw1zeBJ` |
 | 27. Bandit27. | `STJLJBRRphMxKB392CT4iOr5CbzPU9ER` |
 | 28. Bandit28. | `y8Yd2ssKcpHpud7UvOSOxwamRMzIGIeQ` |
-| 29. Bandit29> | ``
+| 29. Bandit29> | `Em7eGtqaMySwNFjCpwzzHhLhospOcdt0` |
 
 ## 17. Bandit17.
 
