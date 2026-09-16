@@ -351,7 +351,23 @@ There is a git repository at ssh://bandit28-git@bandit.labs.overthewire.org/home
 From your local machine (not the OverTheWire machine!), clone the repository and find the password for the next level. This needs git installed locally on your machine.
 
 ```bash
+$ git clone ssh://bandit28-git@bandit.labs.overthewire.org:3000/home/bandit28-git/repo
 $ git branch -a # check all branches.
 $ git switch dev
 $ cat README.md
+```
+
+## 31. Using Tag to hide commits.
+
+There is a git repository at ssh://bandit28-git@bandit.labs.overthewire.org/home/bandit28-git/repo via the port 2220. The password for the user bandit28-git is the same as for the user bandit28.
+
+From your local machine (not the OverTheWire machine!), clone the repository and find the password for the next level. This needs git installed locally on your machine.
+
+```bash
+
+$ git clone ssh://bandit28-git@bandit.labs.overthewire.org:3000/home/bandit28-git/repo
+$ ll
+$ cat README.md
+$ git tag
+$ git show #tag name
 ```

@@ -2594,13 +2594,13 @@ git reset --hard <commit> #eg a83f91c         # Move HEAD; discard changes
 # TAGS - a tag is a human-friendly name attached to a specific commit
 # ============================================================
 
-git tag                               # List tags
-git tag payments 7f43b91              # Create a tag. (7f43b91 - commit name that we change to payment)
-git show payments                     # Show tag or git show 7f42b91(commit#)
+git tag                                           # List tags
+git tag payments 7f43b91                         # Create a tag. (7f43b91 - commit name that we change to payment)
+git show payments                               # Show tag or git show 7f42b91(commit#)
 git tag -a payments 7f43b91   -m "payroll"      # Create an annotated tag
-git push origin payments              # Push a tag to remote
-git push origin --tags                # Push all tags
-git tag -d payments                   # Delete tag
+git push origin payments                        # Push a tag to remote
+git push origin --tags                          # Push all tags
+git tag -d payments                             # Delete tag
 
 
 # ============================================================

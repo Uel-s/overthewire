@@ -32,7 +32,7 @@
 | 28. Bandit28. | `y8Yd2ssKcpHpud7UvOSOxwamRMzIGIeQ` |
 | 29. Bandit29> | `Em7eGtqaMySwNFjCpwzzHhLhospOcdt0` |
 | 30. Bandit29> | `jq9Dfg2rXsfYsWMgFuKlXhphjdH7USgX` |
-| 31. Bandit29> | `` |
+| 31. Bandit29> | `82NkymblpGBYmIXG6ZQ8YldBYstHpfUf` |
 | 32. Bandit29> | `` |
 | 33. Bandit29> | `` |
 | 34. Bandit29> | `` |
