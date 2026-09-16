@@ -2253,12 +2253,13 @@ git help <command>               # Show help for a Git command
 ```bash
 git add filename                 # Stage a specific file
 git add .                        # Stage all changes in current directory
-git restore filename              # Discard unstaged changes to a file
-git restore --staged filename     # Unstage a file (keep its changes)
+git restore filename             # Discard unstaged changes to a file
+git restore --staged filename    # Unstage a file (keep its changes) after git add .
+git restore --staged .           # Unstage all files
 
 git commit -m "message"          # Create a commit from staged changes
 git commit --amend               # Modify the latest commit
-git commit --amend --no-edit     # Modify latest commit without changing its message
+git commit --amend --no-edit     # Modify latest commit without changing its message.
 
 # 1. Change the commit message
 git commit --amend -m "Better message"
