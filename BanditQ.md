@@ -345,3 +345,13 @@ git clone ssh://bandit28-git@bandit.labs.overthewire.org:3000/home/bandit28-git/
 git log --oneline --graph --all
 git show 9530d52
 ```
+## 30. Access all branches.
+There is a git repository at ssh://bandit28-git@bandit.labs.overthewire.org/home/bandit28-git/repo via the port 2220. The password for the user bandit28-git is the same as for the user bandit28.
+
+From your local machine (not the OverTheWire machine!), clone the repository and find the password for the next level. This needs git installed locally on your machine.
+
+```bash
+$ git branch -a # check all branches.
+$ git switch dev
+$ cat README.md
+```

@@ -2287,6 +2287,7 @@ git blame filename                 # Show who last changed each line
 
 ```bash
 git branch                       # List local branches
+git branch -a                    # List all branch local&&remote
 git branch <name>                # Create a new branch
 git switch <name>                # Switch to an existing branch
 git switch -c <name>             # Create AND switch to a new branch
