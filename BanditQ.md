@@ -388,3 +388,9 @@ $ git commit -m "bandit31"
 $ git push origin master
 ```
 
+## 33. Script forcing commands to Upper-Case.
+
+```bash
+$ 0 # this breaks the uppercase command.
+$ cat /etc/bandit_pass/bandit33
+```
