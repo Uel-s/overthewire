@@ -2252,6 +2252,7 @@ git help <command>               # Show help for a Git command
 
 ```bash
 git add filename                 # Stage a specific file
+git add -f <filename>            # Incase we have a .gitignore *.txt
 git add .                        # Stage all changes in current directory
 git restore filename             # Discard unstaged changes to a file
 git restore --staged filename    # Unstage a file (keep its changes) after git add .
