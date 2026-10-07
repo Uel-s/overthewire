@@ -17,18 +17,18 @@ A comprehensive guide to Linux commands, SSH, and file operations.
 - [9. Miscellaneous](#9-miscellaneous)
 - [Piping and Redirection](#piping-and-redirection)
 - [10. Rotation](#10-rotation)
-- [Hex Dump](#hex-dump)
+- [11. Hex Dump](#11-hex-dump)
 - [Summary](#summary)
-- [11. SSH/OpenSSH/Keys](#11-sshopensshkeys)
-- [12. IP Address and Ports](#12-ip-address-and-ports)
-- [13. Network Troubleshooting](#13-network-troubleshooting)
-- [14. PORT SCAN](#port-scan)
-- [15. Set User Identity (SetUID) and Set Group Identity (SetGID)](#set-user-identity-setuid-and-set-group-identity-setgid)
-- [16.Managing Programs in GNU/Linux](#managing-programs-in-gnulinux)
-- [18. Cron, Crontab and the Crontab File](#cron-crontab-and-the-crontab-file)
-- [19. Crontab File](#crontab-file)
-- [20. More, vi, id](#more-vi-id)
-- [21. The Most Important Git Concepts to Learn](#the-most-important-git-concepts-to-learn)
+- [12. SSH/OpenSSH/Keys](#12-sshopensshkeys)
+- [13. IP Address and Ports](#13-ip-address-and-ports)
+- [14. Network Troubleshooting](#14-network-troubleshooting)
+- [15. Port Scan](#15-port-scan)
+- [16. Set User Identity (SetUID) and Set Group Identity (SetGID)](#16-set-user-identity-setuid-and-set-group-identity-setgid)
+- [17. Managing Programs in GNU/Linux](#17-managing-programs-in-gnulinux)
+- [18. Cron, Crontab and the Crontab File](#18-cron-crontab-and-the-crontab-file)
+- [19. Crontab File](#19-crontab-file)
+- [20. More, vi, id](#20-more-vi-id)
+- [21. The Most Important Git Concepts to Learn](#21-the-most-important-git-concepts-to-learn)
 
 ---
 
@@ -714,7 +714,7 @@ Input:  The Quick Brown Fox
 Output: %96 "F:4< qC@H? u@I
 ```
 
-## Hex Dump
+## 11. Hex Dump
 
 - A hex dump is just a way to look at raw data (bytes) as hexadecimal numbers so you can see exactly what’s inside a file.
 
@@ -794,7 +794,7 @@ echo "00000000: 4109 420a 430a" | xxd -p (hexadecimal)
 output: 30303030303030303a2034313039203432306120343330610a
 ```
 
-## 11. SSH/OpenSSH/Keys
+## 12. SSH/OpenSSH/Keys
 
 - The **private key** is kept on the computer you log in from, while the **public key** is stored on the `~/.ssh/authorized_keys` file on all the computers you want to log in to.
 
@@ -991,7 +991,7 @@ eg:
 | `ssh -f user@host` | Background connection (run in background with port forwarding) |
 | `ssh -J jumpuser@jumphost user@target` | Jump host / proxy (connect through another server) |
 
-## 12. IP Address and Ports
+## 13. IP Address and Ports
 
 - Every device on a network has an IP(Internet Protocol ) address (a unique identifier for communication).
 
@@ -1431,7 +1431,7 @@ openssl s_client -connect ://example.com -starttls smtp
 openssl s_client -connect ://example.com -starttls mysql
 ```
 
-## 13. Network Troubleshooting
+## 14. Network Troubleshooting
 
 `1.ncat(Netcat)`.
 
@@ -1688,7 +1688,7 @@ Step 6: Test TLS Server
 openssl s_client -connect example.com:443
 ```
 
-## PORT SCAN
+## 15. Port Scan
 
 - Is like walking down a hallway in a building and knocking on every door to see which ones are unlocked and who answers but now for ports.
 
@@ -1750,7 +1750,7 @@ $ diff -w file1.txt file2.txt # ignore whitespace
 
 ```
 
-## Set User Identity (SetUID) and Set Group Identity (SetGID)
+## 16. Set User Identity (SetUID) and Set Group Identity (SetGID)
 
 - SetUID – Allows a user to run a program with the file owner's permissions.
 - SetGID – Allows a user to run a program with the file group's permissions.
@@ -1808,7 +1808,7 @@ out: drwxrwxrwt
 
 `SetUID/SetGID are generally ignored on shell scripts (Bash, Python, Perl, etc.) for security reasons.`
 
-## Managing Programs in GNU/Linux
+## 17. Managing Programs in GNU/Linux
 
 `1. Bash` -The shell (Command Interpreter).
 `2. Job control` - Manage processes(pause,resume,move) started from the current shell.
@@ -1971,7 +1971,7 @@ tmux new -s sessionName  # Create a new session.
 tmux kill-session -t sessionName # Kill a session
 ```
 
-## Cron, Crontab and the Crontab File
+## 18. Cron, Crontab and the Crontab File
 
 ### 1. cron
 
@@ -2087,7 +2087,7 @@ $ crontab -e
 $ cat log.txt # Check if it passed.
 ```
 
-## Crontab File
+## 19. Crontab File
 
 - It is simply a text file containing cron jobs
 
@@ -2158,7 +2158,7 @@ shopt -s nullglob
 # Makes wildcards (*, ?, []) expand to nothing(empty output)if they don't match any files, instead of remaining as literal text.
 ```
 
-## More, vi, id
+## 20. More, vi, id
 
 ```bash
 more → READ
@@ -2231,7 +2231,7 @@ $ id -Gn     # Shows all the groups you belong to
 mikneat adm cdrom sudo dip plugdev users lpadmin lxd
 ```
 
-## The Most Important Git Concepts to Learn
+## 21. The Most Important Git Concepts to Learn
 
 ### BASIC
 
