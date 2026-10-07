@@ -1,0 +1,7 @@
+{
+  "chat.tools.terminal.autoApprove": {
+    "xxd": true,
+    "git mv": true,
+    "mv": true
+  }
+}

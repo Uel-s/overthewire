@@ -1,4 +1,4 @@
-# Capture the flag (BANDIT).
+# Capture the flag (BANDIT)
 
 A comprehensive guide to Linux commands, SSH, and file operations.
 
@@ -12,25 +12,27 @@ A comprehensive guide to Linux commands, SSH, and file operations.
 - [4. Permissions & Ownership](#4-permissions--ownership)
 - [5. Viewing, Searching & Processing](#5-viewing-searching--processing)
 - [6. Compression & Archives](#6-compression--archives)
-- [6. Network & Remote Access](#6-network--remote-access)
-- [7. Shell Syntax & Scripting](#7-shell-syntax--scripting)
-- [8. Miscellaneous](#8-miscellaneous)
+- [7. Network & Remote Access](#7-network--remote-access)
+- [8. Shell Syntax & Scripting](#8-shell-syntax--scripting)
+- [9. Miscellaneous](#9-miscellaneous)
 - [Piping and Redirection](#piping-and-redirection)
-- [Rotation](#10-rotation)
-- [Hex dump](#hex-dump)
+- [10. Rotation](#10-rotation)
+- [Hex Dump](#hex-dump)
+- [Summary](#summary)
 - [11. SSH/OpenSSH/Keys](#11-sshopensshkeys)
 - [12. IP Address and Ports](#12-ip-address-and-ports)
-- [13. Network troubleshooting](#13-network-troubleshooting)
-- [PORT SCAN](#port-scan)
-- [Set User Identity (setuid) and Set Group Identity(Setgid)](#set-user-identity-setuid-and-set-group-identitysetgid)
-- [Managing Programs in GNU/LINUX](#managing-programs-in-gnulinux)
-- [cron, crontab crontab file](#cron-crontab-crontab-file)
-- [more, vi, id.](#moreviid)
-- [The most important Git concepts to learn](#the-most-important-git-concepts-to-learn)
+- [13. Network Troubleshooting](#13-network-troubleshooting)
+- [14. PORT SCAN](#port-scan)
+- [15. Set User Identity (SetUID) and Set Group Identity (SetGID)](#set-user-identity-setuid-and-set-group-identity-setgid)
+- [16.Managing Programs in GNU/Linux](#managing-programs-in-gnulinux)
+- [18. Cron, Crontab and the Crontab File](#cron-crontab-and-the-crontab-file)
+- [19. Crontab File](#crontab-file)
+- [20. More, vi, id](#more-vi-id)
+- [21. The Most Important Git Concepts to Learn](#the-most-important-git-concepts-to-learn)
 
 ---
 
-## 1. Introduction & Core Concepts.
+## 1. Introduction & Core Concepts
 
 ### **Definitions**
 
@@ -42,7 +44,7 @@ A comprehensive guide to Linux commands, SSH, and file operations.
 
 ---
 
-## 2. Basic Navigation.
+## 2. Basic Navigation
 
 ### **pwd**
 
@@ -69,7 +71,7 @@ ll /        # list root dir
 
 ### **cd**
 
-Moves between directories..
+Moves between directories.
 
 ```bash
 cd /path/to/folder
@@ -80,7 +82,7 @@ cd -        # Go to previous directory
 
 ---
 
-## 3. File Operations.
+## 3. File Operations
 
 ### **touch**
 
@@ -149,7 +151,7 @@ Uninstall app + system configs.
 sudo apt purge app.name
 sudo apt autoremove --purge # Clears any left-overs
 sudo apt autoclean
-which app name # Checks if the file is gone.
+which app_name # Checks if the file is gone.
 ```
 
 ### **file**
@@ -226,9 +228,9 @@ Searches text for patterns.
 
 ```bash
 grep "password" file.txt
-grep -r "search_term" . # Recursive search in current dir(starting from the current directory (.))
-grep -r "search_term"  # Recursive search in current dir(starting from the current directory by default)
-# Example; mikneat@miknitt:~/overthewire$ grep -r "Password"
+grep -r "search_term" .  # Recursive search starting from current dir "." (explicit path)
+grep -r "search_term"    # Recursive search in current dir (default when no path given)
+# Example; mikneat@mikneat:~/overthewire$ grep -r "Password"
 #file.txt:# Passwords for Bandit.
 #pass.md:# Passwords for Bandit.
 grep -i "text" file.txt     # Case-insensitive
@@ -292,7 +294,7 @@ echo "Hello   World" | tr -s " "    # Squeeze repeated spaces
 ### **Encodings & Hex**
 
 ```bash
-# Base64 (value from 0 to 63) (A-Z=0-25) (a-z=(26-51) (0-9=52-61) 62=+or- 63=/or_)
+# Base64 (value from 0 to 63) (A-Z=0-25) (a-z=26-51) (0-9=52-61) (62=+ or -) (63=/ or _)
 echo "hello" | base64               # Encode -> aGVsbG8K
 echo "aGVsbG8K" | base64 -d         # Decode -> hello
 
@@ -300,7 +302,7 @@ echo "aGVsbG8K" | base64 -d         # Decode -> hello
 xxd  → convert to hexdump
 xxd -r → reverse a formatted hexdump back to binary
 xxd -p → output plain hex (no formatting)
-xxd -r -p → reverse plain hex back to binary     # Reverse plain hex to binary
+xxd -r -p → reverse plain hex back to binary
 
 # Strings
 strings binary_file                 # Extract printable strings
@@ -325,10 +327,9 @@ du -h . | sort -h       # Sort by size
 Tape ARchive - used for combining multiple files.
 
 ```bash
-tar -cf archive.txt file1.txt file2.txt
-tar -cf archive.txt file1 file2     # Creates files within archive.txt
-tar -tf archive.txt                 # List contents within archive.txt
-tar -xf archive.tar                 # Extract  files from archive.txt
+tar -cf archive.tar file1.txt file2.txt  # Creates an archive containing file1.txt and file2.txt
+tar -tf archive.tar                 # List contents within archive.tar
+tar -xf archive.tar                 # Extract files from archive.tar
 tar -czf archive.tar.gz folder/     # Create Gzip compressed archive -z → compress with gzip -f → specify filename
 tar -xzf archive.tar.gz             # Extract Gzip compressed archive
 ```
@@ -347,14 +348,13 @@ gunzip file.txt.gz      # Extracts to file.txt
 Higher compression ratio, slower speed.
 
 ```bash
-mv file.txt file.bz2    # change into bz2
 bzip2 file.txt          # Compresses to file.txt.bz2
 bunzip2 file.txt.bz2    # Extracts to file.txt
 ```
 
 ---
 
-## 6. Network & Remote Access
+## 7. Network & Remote Access
 
 ### **SSH (Secure Shell)**
 
@@ -371,7 +371,7 @@ Generating keys:
 
 ```bash
 # New Standard (Recommended)
-ssh-keygen -t ed25518 -C "email@example.com"
+ssh-keygen -t ed25519 -C "email@example.com"
 
 # Old Standard
 ssh-keygen -t rsa
@@ -383,11 +383,11 @@ Avoid re-typing passphrases.
 
 ```bash
 eval "$(ssh-agent -s)"      # Start agent
-ssh-add ~/.ssh/id_ed25518   # Add key
+ssh-add ~/.ssh/id_ed25519   # Add key
 ssh-add -l                  # List keys
 ```
 
-## 7. Shell Syntax & Scripting
+## 8. Shell Syntax & Scripting
 
 ### **Control Operators**
 
@@ -424,7 +424,7 @@ esac
 
 ---
 
-## 8. Miscellaneous
+## 9. Miscellaneous
 
 ### **Manual & Help**
 
@@ -714,7 +714,7 @@ Input:  The Quick Brown Fox
 Output: %96 "F:4< qC@H? u@I
 ```
 
-## Hex dump
+## Hex Dump
 
 - A hex dump is just a way to look at raw data (bytes) as hexadecimal numbers so you can see exactly what’s inside a file.
 
@@ -778,7 +778,13 @@ echo  "A\tB\nC" | od -x
 ```
 
 ```bash
-echo "00000000: 4109 420a 430a" | xxd -r -p (human readable)
+echo "00000000: 4109 420a 430a" | xxd -r (human readable, reverses a standard xxd hex dump with offsets)
+output:A       B
+C
+```
+
+```bash
+echo "4109420a430a" | xxd -r -p (human readable, reverses PLAIN hex - no offsets/colons)
 output:A       B
 C
 ```
@@ -890,7 +896,7 @@ chmod go-w ~/ # Remove write permission (w) from group (g) and others (o) on you
 **2.SSH config must allow Keys.**
 
 - Run the command below to make sure;
- `PubkeyAuthentication: yes and RSAAuthentication: yes`
+ `PubkeyAuthentication yes` and `RSAAuthentication yes`
 
 ```bash
 sudo cat /etc/ssh/sshd_config
@@ -908,7 +914,7 @@ $ cat id_rsa.pub >> ~/.ssh/authorized_keys
 
 # To view .pub-key
 
-$ cat ~/.ssh/id_ed22519.pub || $ cat ~/.ssh/authorized_keys
+$ cat ~/.ssh/id_ed25519.pub || $ cat ~/.ssh/authorized_keys
 
 ```
 
@@ -1008,19 +1014,19 @@ eg:
 
 ### Commands to use
 
-- 1. To check your Local IP/Private IP.
+1. To check your Local IP/Private IP.
 
 ```bash
 ip a || hostname -I
 ```
 
-- 1. Public IP
+1. Public IP
 
 ```bash
 curl ifconfig.me
 ```
 
-- 1. To check (DNS query) information about a domain name eg IP address.
+1. To check (DNS query) information about a domain name eg IP address.
 (DNS=converting names into IP addresses)
 
 ```bash
@@ -1038,7 +1044,7 @@ $ ss -tuln
 
 - A **subnet**, or subnetwork, is a logical subdivision of an IP network. The practice of dividing a network into two or more networks is called subnet
 
-***
+---
 `Technologies used to manage addresses in a computer network`
 Private IPs (local network):
 192.168.x.x, 10.x.x.x, 172.16–31.x.x
@@ -1052,7 +1058,7 @@ Dynamic IP = Temporary Address assigned automatically and can change over time(s
 Dynamic Host Configuration Protocol(DHCP) = The automated service that hand out dynamic ip address.
 
 Static IP = Permanent,manually configured address that never changes. (website,servers)
-***
+---
 
 ### LocalHost
 
@@ -1083,7 +1089,7 @@ $ curl -X DELETE https://api.example.com/users/1
 ```
 
 - `Loopback/localhost` is a built-in networking feature where your computer sends traffic back to itself instead of out to the network.
-- `Packets` is data divided into smaller units for transmission and reassembled at the destination
+- A `Packet` is data divided into smaller units for transmission and reassembled at the destination
 
 ```bash
 Main loopback addresses:
@@ -1094,7 +1100,7 @@ Main loopback addresses:
 
 - localhost is just a label → loopback is what actually does the work
 
-***
+---
 A. Loopback (127.0.0.1)
 
 Use: local testing, dev servers
@@ -1109,23 +1115,24 @@ C. Public IP / domain
 
 Use: expose to internet
 Example: deployed apps
-***
+---
 
 - `Name resolution` is how you system turns the name `localhost` to an `IP` which is stored in /etc/hosts
 
 - IP gets you to the server and Port gets you to the exact service
 
-***
+---
 Common ports you should memorize
 
 | Port | Protocol / Service |
-| ---- | ------------------ |
+| ---- | ------------------- |
 | 80   | HTTP (web) |
 | 443  | HTTPS (secure web) |
 | 22   | SSH (remote login) |
 | 25   | SMTP (Simple Mail Transfer Protocol) email sending |
 | 53   | DNS (domain lookup) UDP & TCP |
-***
+
+---
 
 | Term | Meaning |
 | ---- | ------- |
@@ -1229,7 +1236,7 @@ $ nc -zv 192.168.1.1 20-100
 
 - This is a tool used for troubleshooting and testing used to connect to servers over ssl/tls and inspect the secure connection details.
 
-***
+---
 
 1. TLS (Transport Layer Security)~NEW~
 
@@ -1301,7 +1308,7 @@ Certificate = identity proof
 
 SNI = chooses the right website
 
-***
+---
 
 ```bash
 Connect to HTTPS:
@@ -1328,14 +1335,14 @@ $ openssl s_client -connect example.com:443 </dev/null
 
 `5.nmap → Recon scanner(What’s running on this machine/network?)`
 
-***
+---
 Use-cases:
 
 Discover devices
 Security auditing
 Find forgotten services
 Identify exposed ports
-***
+---
 
 ```bash
 Basic scan:
@@ -1424,7 +1431,7 @@ openssl s_client -connect ://example.com -starttls smtp
 openssl s_client -connect ://example.com -starttls mysql
 ```
 
-## 13. Network troubleshooting
+## 13. Network Troubleshooting
 
 `1.ncat(Netcat)`.
 
@@ -1451,7 +1458,7 @@ Use Case:
 
 ```bash
 #port forwarding 8080 -> 80
-$ socat TCP-LISTEN:8080,fork TCP:example.com:
+$ socat TCP-LISTEN:8080,fork TCP:example.com:80
 $ curl -vk https://localhost:8080 
 
 # local Chat.
@@ -1505,7 +1512,7 @@ $ openssl req -x509 -newkey rsa:2048 \
  -out cert.pem \
  -nodes
 
- $ socat OPENSSL-LISTEN:4444,cert=cert.pem,key=key.pem,fork STOUT #Start TLS Server.
+ $ socat OPENSSL-LISTEN:4444,cert=cert.pem,key=key.pem,fork STDOUT #Start TLS Server.
  $ socat STDIN OPENSSL:localhost:4444,verify=0 # Connect 
 
  ## File Transfer.
@@ -1555,7 +1562,7 @@ $ netstat -rn
 ```
 
 ```bash
-# Continuos mode to watch live connections.
+# Continuous mode to watch live connections.
 
 $ netstat -c 
 
@@ -1639,7 +1646,7 @@ $ ss -t state established #(or just -t) (or -tp to see specific server)
 ### Quick Memory Trick
 
 | Command   | What it does |
-| --------- | ------------ |
+| --------- | ------------- |
 | s_client  | Connect to TLS server |
 | x509      | Read/manage certificates |
 | req       | Create/read CSRs (Certificate Signing Requests) |
@@ -1723,15 +1730,15 @@ openssl s_client -connect example.com:443
 
 $ diff -u old.txt new.txt  # show what left(-) in the old file and whats new in the new file(+). (space) file is unchanged.
 
-$ diff -y file1.txt file2.txt  # side by side comparision.
+$ diff -y file1.txt file2.txt  # side by side comparison.
 
-$ diff -i file.text file2.txt # ignore case and reports no difference if file has mixed upper and lower case but same data. 
+$ diff -i file.text file2.txt # ignore case and reports no difference if file has mixed upper and lower case but same data.
 
 $ diff -q file.text file2.txt # Only report whether files differ
 
 $ diff -r dir1 dir2 # compares directories .
 
-$ diff --color=auto # show the different colors on the diffrent dat in files.
+$ diff --color=auto # show the different colors on the different data in files.
 
 $ diff -rN dir1 dir2 # Treat missing files as empty
 
@@ -1743,7 +1750,7 @@ $ diff -w file1.txt file2.txt # ignore whitespace
 
 ```
 
-## Set User Identity (setuid) and Set Group Identity(Setgid)
+## Set User Identity (SetUID) and Set Group Identity (SetGID)
 
 - SetUID – Allows a user to run a program with the file owner's permissions.
 - SetGID – Allows a user to run a program with the file group's permissions.
@@ -1758,7 +1765,7 @@ s replaces the owner's x → SetUID enabled.
 s replaces the group's x → SetGID enabled.
 -rwxr-sr-x
 
-t adds permission to create file in the dir
+t adds the sticky bit on a directory → restricts deletion to the file's owner.
 
 drwxrwxrwt
 
@@ -1773,7 +1780,7 @@ $ find / -perm  -4000 2>/dev/null # SETUID
 
 $ find / -perm  -2000 2>/dev/null # SETGID
 
-find / -perm -1000 2>dev/null # sticky bit # used mainly on dir (Users can only delete or rename files that they own, even if everyone has write permission to the directory.)
+find / -perm -1000 2>/dev/null # sticky bit # used mainly on dir (Users can only delete or rename files that they own, even if everyone has write permission to the directory.)
 
 ```
 
@@ -1781,13 +1788,13 @@ find / -perm -1000 2>dev/null # sticky bit # used mainly on dir (Users can only 
 
 ```bash
 
-chmod u+s filename or chmod 4755 # GETUID (u-s) #reverse
+chmod u+s filename  or  chmod 4755  # Set SetUID  | reverse: chmod u-s filename
 
-chmod g+s filename or chmod 2755 # GETGID. (g-s) # reverse
+chmod g+s filename  or  chmod 2755  # Set SetGID  | reverse: chmod g-s filename
 
-chmod ug+s filename or chmod 6755  # both GETUID/GID
+chmod ug+s filename or  chmod 6755  # Set both SetUID and SetGID
 
-chmod +t directory or chmod 1755  # set sticky bit. (Without the Sticky Bit, one user could delete another user's files.)
+chmod +t directory  or  chmod 1755  # Set sticky bit. (Without the Sticky Bit, one user could delete another user's files.)
 
 ```
 
@@ -1801,11 +1808,11 @@ out: drwxrwxrwt
 
 `SetUID/SetGID are generally ignored on shell scripts (Bash, Python, Perl, etc.) for security reasons.`
 
-## Managing Programs in GNU/LINUX
+## Managing Programs in GNU/Linux
 
-`1. Bash` -The shell(Command Interprate).
+`1. Bash` -The shell (Command Interpreter).
 `2. Job control` - Manage processes(pause,resume,move) started from the current shell.
-`3. Screen` - Keeps terminal session running after you disconnet from SSH or terminal.
+`3. Screen` - Keeps terminal session running after you disconnect from SSH or terminal.
 `4. tmux` - Modern terminal multiplexer with panes and windows.
 
 ### BASH
@@ -1875,7 +1882,7 @@ $ sleep 100
 
 press Ctrl + c
 
-# The process exists Immediatly.
+# The process exits immediately.
 ```
 
 ```bash
@@ -1890,7 +1897,7 @@ $ bg %2 # Same as for fg
 
 ```
 
-#### Summary
+#### Job Control Summary
 
 ```bash
 [1]+ Stopped sleep 1000    # + → Current job (the default job used by commands like fg and bg)
@@ -1910,7 +1917,7 @@ $ bg %2 # Same as for fg
 
 - Is a tool that allows programs to continue running even when you disconnect from SSH or terminate the  terminal.
 
-## Example
+#### Example
 
 ```bash
 screen # To activate tool.
@@ -1939,7 +1946,7 @@ screen -X -S sessionName quit   # End a named session
 
 ### tmux
 
-- Terminal Multiplayer is a more modern and feature-rich alternative to `screen.`
+- Terminal Multiplexer is a more modern and feature-rich alternative to `screen.`
 
 - Added advantage to `tmux` is splitting the terminal.
 
@@ -1959,12 +1966,12 @@ tmux ls # list previous sessions.
 
 tmux attach  # Reconnect.
 
-tmux new -s sessionName  # Create a new sesion.
+tmux new -s sessionName  # Create a new session.
 
 tmux kill-session -t sessionName # Kill a session
 ```
 
-## cron, crontab crontab file
+## Cron, Crontab and the Crontab File
 
 ### 1. cron
 
@@ -2049,7 +2056,7 @@ $ sudo crontab -e # bypass password
 
 $ systemctl status cron # check if active
 
-$ cat ~/updates/update.log # inspect updates
+$ cat /home/mikneat/cron/update.log # inspect updates
 ```
 
 ### Simple Example
@@ -2063,11 +2070,11 @@ $ touch cron.sh
 # add script.
 #!/bin/bash
 
-echo "===========" >> home/mikneat/cronexample/log.txt
-date >> home/mikneat/cronexample/log.txt
-pwd >> home/mikneat/cronexample/log.txt
-ls >> home/mikneat/cronexample/log.txt
-echo "" >> home/mikneat/cronexample/log.txt
+echo "===========" >> /home/mikneat/cronexample/log.txt
+date >> /home/mikneat/cronexample/log.txt
+pwd >> /home/mikneat/cronexample/log.txt
+ls >> /home/mikneat/cronexample/log.txt
+echo "" >> /home/mikneat/cronexample/log.txt
 
 $ chmod +x cron.sh
 
@@ -2082,7 +2089,7 @@ $ cat log.txt # Check if it passed.
 
 ## Crontab File
 
--It is simply a text file containing cron jobs
+- It is simply a text file containing cron jobs
 
 ```bash
 # Daily backup
@@ -2122,15 +2129,15 @@ man 8 crontab # When administering the cron service, troubleshooting why jobs ar
 | `/usr` | used to store user-related programs and data, including executable files, libraries, and documentation. |
 | `/tmp` | Temporary files |
 | `/etc` | Stores Configuration files and installed applications |
-| `/boot` | Boot files and is responsible for  |
-| `/dev` | Converts hardware and Virtual devices into files where programs and users can interect with them. |
-| `/lib` | Contains shared libraries(reuseble programs) that programs need to run. |
+| `/boot` | Boot files and the bootloader |
+| `/dev` | Converts hardware and virtual devices into files where programs and users can interact with them. |
+| `/lib` | Contains shared libraries (reusable programs) that programs need to run. |
 | `/media` | Usually where USB/external drives are mounted |
 | `/mnt` | Usually where you manually mount something temporarily |
 | `/opt` | Optional software installed from 3rd party sources |
 | `/proc` | Process and kernel information |
 | `/root` | Root user's home |
-| `/run` | What process,services,sockets are runnuing right now |
+| `/run` | What processes, services, and sockets are running right now |
 | `/srv` | Files that a server is sharing/providing to others. |
 | `/sys` | Hardware and kernel information |
 | `/var` | Files that change while Linux is running. |
@@ -2138,10 +2145,10 @@ man 8 crontab # When administering the cron service, troubleshooting why jobs ar
 ### Core Usage and Flags
 
 ```bash
-$ shopt :Lists all available shell options and shows if they are on or off.
-$ shopt -s [name]: Turns on (sets) a specific shell option.
-$ shopt -u [name]: Turns off (unsets) a specific shell option.
-$ shopt [name]: Checks the current status of a single option.
+shopt                 # Lists all available shell options and shows if they are on or off
+shopt -s [name]       # Turns on (sets) a specific shell option
+shopt -u [name]       # Turns off (unsets) a specific shell option
+shopt [name]          # Checks the current status of a single option
 ```
 
 ### Common Options
@@ -2151,7 +2158,7 @@ shopt -s nullglob
 # Makes wildcards (*, ?, []) expand to nothing(empty output)if they don't match any files, instead of remaining as literal text.
 ```
 
-## more,vi,id.
+## More, vi, id
 
 ```bash
 more → READ
@@ -2159,7 +2166,7 @@ vi   → EDIT
 id   → IDENTIFY
 ```
 
-### more.
+### more
 
 - Used to read file page by page
 
@@ -2173,6 +2180,7 @@ Enter       → next line
 q           → quit
 /word       → search for "word"
 ```
+
 ```bash
 more -d file.txt # Shows helpful instructions when you reach the end
 
@@ -2180,7 +2188,7 @@ more -d file.txt # Shows helpful instructions when you reach the end
 more -c file.txt  # Redraws the screen instead of scrolling normally.
 ```
 
-### vi 
+### vi
 
 - Used to open and edit a file
 
@@ -2202,43 +2210,30 @@ Esc           → stop typing
 :q!           → quit without saving
 ```
 
-### id.
+### id
 
 - Find out who you are
 
 ```bash
-uid
-$ id -u
-
-Shows your User ID.
-
-Example:
-
+$ id -u      # Shows your User ID (uid)
 1000
-gid
-$ id -g
 
-Shows your primary Group ID.
+$ id -g      # Shows your primary Group ID (gid)
+1000
 
-Username
-$ id -un
-
-Shows your username:
-
+$ id -un     # Shows your username
 mikneat
 
-$ id -gn # Shows your primary group name only.
+$ id -gn     # Shows your primary group name only
 mikneat
 
-$ id -Gn
-mikneat adm cdrom sudo dip plugdev users lpadmin lxd. # Shows the groups you belong to.
-
-
+$ id -Gn     # Shows all the groups you belong to
+mikneat adm cdrom sudo dip plugdev users lpadmin lxd
 ```
 
-## The most important Git concepts to learn.
+## The Most Important Git Concepts to Learn
 
-#### BASIC
+### BASIC
 
 ```bash
 git init                         # Create a new Git repository
@@ -2248,7 +2243,7 @@ git help <command>               # Show help for a Git command
 
 ```
 
-#### STAGING & COMMITS
+### STAGING & COMMITS
 
 ```bash
 git add filename                 # Stage a specific file
@@ -2271,7 +2266,7 @@ git commit --amend
 
 ```
 
-#### VIEWING CHANGES & HISTORY
+### VIEWING CHANGES & HISTORY
 
 ```bash
 git diff                          # Show unstaged changes
@@ -2284,7 +2279,7 @@ git blame filename                 # Show who last changed each line
 
 ```
 
-#### BRANCHES
+### BRANCHES
 
 ```bash
 git branch                       # List local branches
@@ -2301,7 +2296,7 @@ git branch -D <name>             # Force-delete a branch
 
 ```
 
-#### MERGING
+### MERGING
 
 ```bash
 git merge <branch name>               # Merge another branch into current branch
@@ -2309,9 +2304,7 @@ git merge --abort                     # Cancel an in-progress merge/conflict
 
 ```
 
-#### REMOTES
-
-#### REMOTES
+### REMOTES
 
 ```bash
 git remote -v                    # Show remote repository URLs
@@ -2329,9 +2322,9 @@ git pull --rebase                # Update my feature from remote feature.  #Reba
 
 ```
 
-#### WORKFLOW 1: MERGE FEATURE INTO MAIN
+### WORKFLOW 1: MERGE FEATURE INTO MAIN
 
-*Use this when your feature is finished and you want: `feature → main`*
+_Use this when your feature is finished and you want: `feature → main`_
 
 ```bash
 git switch main
@@ -2355,9 +2348,9 @@ git push
 
 ```
 
-#### WORKFLOW 2: MERGE FEATURE INTO MAIN — WHEN MAIN CHANGED
+### WORKFLOW 2: MERGE FEATURE INTO MAIN — WHEN MAIN CHANGED
 
-*Use this when another developer changed main while you were working on feature. First update feature with the latest main.*
+_Use this when another developer changed main while you were working on feature. First update feature with the latest main._
 
 ```text
 main:    A---B---C
@@ -2447,9 +2440,9 @@ git push
 
 ```
 
-#### WORKFLOW 3: MERGE MAIN INTO FEATURE
+### WORKFLOW 3: MERGE MAIN INTO FEATURE
 
-*Use this when you want to update feature with main, but you DON'T want to rebase.*
+_Use this when you want to update feature with main, but you DON'T want to rebase._
 
 ```text
 main:    A---B---C
@@ -2479,9 +2472,9 @@ git merge main
 
 ```
 
-#### WORKFLOW 4: REBASE MAIN INTO FEATURE
+### WORKFLOW 4: REBASE MAIN INTO FEATURE
 
-*This is YOUR preferred clean-history workflow. Use this when: "I want my feature to be based on the latest main."*
+_This is YOUR preferred clean-history workflow. Use this when: "I want my feature to be based on the latest main."_
 
 ```bash
 git switch feature
@@ -2558,7 +2551,7 @@ git reset --mixed HEAD~1          # Undo latest commit; keep changes but UNSTAGE
 git reset --hard HEAD~1           # Undo latest commit AND discard changes
 # ⚠️ Dangerous: can permanently discard work
 
-git reset --soft || --mixed || --hard 0969684 # Use commit hash to be safe after running git log --oneline --graph --all || git relog
+git reset --soft || --mixed || --hard 0969684 # Use commit hash to be safe after running git log --oneline --graph --all || git reflog
 
 # Commit history:
 # git log --online

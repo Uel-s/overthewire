@@ -1,46 +1,48 @@
 # Passwords for Bandit
 
-| Level | Password |
-| ----- | -------- |
-| 0. Bandit0. | `bandit0` |
-| 1. Bandit1. | `6y2kwnwK6grgvwvpvLaa2T1cpFEKOhNR`   |
-| 2. Bandit2. | `PK8fYLZg2hnHSz83plBL1iEPKdD3QToB`   |
-| 3. Bandit3. | `7ZZ2LFrykP2zEyvBl4m3clcL7tGYJPME`   |
-| 4. Bandit4. | `xzTXq1rDJQVVAzdv5cHq1TQytTWufAMq`   |
-| 5. Bandit5. | `6C7h9GD8M6ai5nr7wo1RonrzFjj9yIrG`   |
-| 6. Bandit6. | `pXa26xhMWaC2SvDotA4r9EgZkulOeSBW`   |
-| 7. Bandit7. | `Bmnnvf82KzQlfxgAI2d1zYbr1u9pr3E3`   |
-| 8. Bandit8. | `VR1ljMayciFxbnUokuQmJFw6QC9VKtub`   |
-| 9. Bandit9. | `EjmOSvuAu7sGAHqHVcBDPirRe9T03kxl`   |
-| 10. Bandit10. | `B0s2khmbT9u0geKuOoVGW3JZKhndE3BG` |
-| 11. Bandit11. | `pYfOY6HwUsDj5rL9UvyhU7MCmv8vN5Ro` |
-| 12. Bandit12. | `GROozWPO8QyN0mGrjUkID0WCYkZiQxrN` |
-| 13. Bandit13. | `qQYQiHOBPR8zR61qxYqX45quvihF2uzk` |
-| 14. Bandit14. | `aaWecNkG4FhxJQxz07uiwzVP6bJiYS65` |
-| 15. Bandit15. | `pbLYuZtTg4MgaqfJx8jbA9gKKGqM68A7` |
-| 16. Bandit16. | `kS0Hf0u5HiXFwKMKFqXvPdOTNGGa0X8V` |
-| 18. Bandit18. | `OQxXZjELndr90zuhOTDYBEomI0SZITXI` |
-| 19. Bandit19. | `KpsOfPkcP7i1FlIExk2QEjyt6dw8dxZI` |
-| 20. Bandit20. | `4pIjcunZ0fK2vmp3IwfG8Vf7VhxD6pOA` |
-| 21. Bandit21. | `bW9kBv5WC3P4yoDyf12LSdGuNz5ka6hY` |
-| 22. Bandit22. | `RYVux2rHEm9tiXHmLFzuR7Vhx6AZQMEz` |
-| 23. Bandit23. | `gKXDTAXnIz3OBxiPjRZ2uqutUlPZrBsw` |
-| 24. Bandit24. | `hVQMk3lJNsmQ7VF3ubyrNNBom7BOgVXv` |
-| 25. Bandit25. | `SoHfqMOEqIX2IYKVciZxvgpR9a2Djx4P` |
-| 26. Bandit26. | `jHdv2ELQhT22BkprMNDjybZDAkw1zeBJ` |
-| 27. Bandit27. | `STJLJBRRphMxKB392CT4iOr5CbzPU9ER` |
-| 28. Bandit28. | `y8Yd2ssKcpHpud7UvOSOxwamRMzIGIeQ` |
-| 29. Bandit29> | `Em7eGtqaMySwNFjCpwzzHhLhospOcdt0` |
-| 30. Bandit29> | `jq9Dfg2rXsfYsWMgFuKlXhphjdH7USgX` |
-| 31. Bandit29> | `82NkymblpGBYmIXG6ZQ8YldBYstHpfUf` |
-| 32. Bandit29> | `pWuj5jBQ6IgV0NXwiH6g1pXRF8S1YvbT` |
-| 33. Bandit29> | `u4P2CyPOwPGLe94RdD9Uo2FxFwvnFswM` |
+| Level | User | Password |
+| ----- | -------- | -------- |
+| 0 | bandit0 | `bandit0` |
+| 1 | bandit1 | `6y2kwnwK6grgvwvpvLaa2T1cpFEKOhNR` |
+| 2 | bandit2 | `PK8fYLZg2hnHSz83plBL1iEPKdD3QToB` |
+| 3 | bandit3 | `7ZZ2LFrykP2zEyvBl4m3clcL7tGYJPME` |
+| 4 | bandit4 | `xzTXq1rDJQVVAzdv5cHq1TQytTWufAMq` |
+| 5 | bandit5 | `6C7h9GD8M6ai5nr7wo1RonrzFjj9yIrG` |
+| 6 | bandit6 | `pXa26xhMWaC2SvDotA4r9EgZkulOeSBW` |
+| 7 | bandit7 | `Bmnnvf82KzQlfxgAI2d1zYbr1u9pr3E3` |
+| 8 | bandit8 | `VR1ljMayciFxbnUokuQmJFw6QC9VKtub` |
+| 9 | bandit9 | `EjmOSvuAu7sGAHqHVcBDPirRe9T03kxl` |
+| 10 | bandit10 | `B0s2khmbT9u0geKuOoVGW3JZKhndE3BG` |
+| 11 | bandit11 | `pYfOY6HwUsDj5rL9UvyhU7MCmv8vN5Ro` |
+| 12 | bandit12 | `GROozWPO8QyN0mGrjUkID0WCYkZiQxrN` |
+| 13 | bandit13 | `qQYQiHOBPR8zR61qxYqX45quvihF2uzk` |
+| 14 | bandit14 | `aaWecNkG4FhxJQxz07uiwzVP6bJiYS65` |
+| 15 | bandit15 | `pbLYuZtTg4MgaqfJx8jbA9gKKGqM68A7` |
+| 16 | bandit16 | `kS0Hf0u5HiXFwKMKFqXvPdOTNGGa0X8V` |
+| 17 | bandit17 | _(SSH key, no password - see [below](#17-bandit17-private-ssh-key))_ |
+| 18 | bandit18 | `OQxXZjELndr90zuhOTDYBEomI0SZITXI` |
+| 19 | bandit19 | `KpsOfPkcP7i1FlIExk2QEjyt6dw8dxZI` |
+| 20 | bandit20 | `4pIjcunZ0fK2vmp3IwfG8Vf7VhxD6pOA` |
+| 21 | bandit21 | `bW9kBv5WC3P4yoDyf12LSdGuNz5ka6hY` |
+| 22 | bandit22 | `RYVux2rHEm9tiXHmLFzuR7Vhx6AZQMEz` |
+| 23 | bandit23 | `gKXDTAXnIz3OBxiPjRZ2uqutUlPZrBsw` |
+| 24 | bandit24 | `hVQMk3lJNsmQ7VF3ubyrNNBom7BOgVXv` |
+| 25 | bandit25 | `SoHfqMOEqIX2IYKVciZxvgpR9a2Djx4P` |
+| 26 | bandit26 | `jHdv2ELQhT22BkprMNDjybZDAkw1zeBJ` |
+| 27 | bandit27 | `STJLJBRRphMxKB392CT4iOr5CbzPU9ER` |
+| 28 | bandit28 | `y8Yd2ssKcpHpud7UvOSOxwamRMzIGIeQ` |
+| 29 | bandit29 | `Em7eGtqaMySwNFjCpwzzHhLhospOcdt0` |
+| 30 | bandit30 | `jq9Dfg2rXsfYsWMgFuKlXhphjdH7USgX` |
+| 31 | bandit31 | `82NkymblpGBYmIXG6ZQ8YldBYstHpfUf` |
+| 32 | bandit32 | `pWuj5jBQ6IgV0NXwiH6g1pXRF8S1YvbT` |
+| 33 | bandit33 | `u4P2CyPOwPGLe94RdD9Uo2FxFwvnFswM` |
 
+---
 
-
-## 17. Bandit17.
+## 17. Bandit17 (Private SSH Key)
 
 `-----BEGIN OPENSSH PRIVATE KEY-----`
+
 ```text
 b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
 NhAAAAAwEAAQAAAYEAvdSaw8j1FQ2DjtbQPGiEVtqEG5kt3g71uDlixg42vRN2MvWRVnGQ
@@ -79,4 +81,5 @@ OmfbD3ab8psuVcllydLWQfmJmJ7xXyAEtmO2kIg6ax6AEd4PLAgDC504v+bmLPjdvSwqGk
 KLE1QobuX5Wx6cWaOsc1j61vpaYDEwMUT8LeMFqKjN1rF1LMiNENBQhtd+ikJmYYwB01/5
 Pfos/2C+rbNuHjAAAADnJ1ZHlAbG9jYWxob3N0AQIDBA==
 ```
+
 `-----END OPENSSH PRIVATE KEY-----`
